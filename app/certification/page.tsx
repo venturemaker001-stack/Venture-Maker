@@ -16,7 +16,7 @@ export default function CertificationPage() {
       category: "VENTURE CERTIFICATION",
       description: "기술성과 성장성을 인정받아 정부 지원 혜택을 받을 수 있는 벤처기업 인증",
       detailedInfo: "벤처기업 인증을 통해 세제 혜택, 정책자금 지원, 인력 채용 우대 등 다양한 혜택을 받을 수 있습니다. 기술평가보증, 연구개발비 세액공제, 스톡옵션 부여 등의 특별한 지원이 제공됩니다.",
-      image: "/venture-cert.jpg",
+      image: "/venture-benefit.jpg",
       gradient: "from-emerald-400 via-teal-500 to-cyan-600",
       href: "/certification/venture",
     },
@@ -34,7 +34,7 @@ export default function CertificationPage() {
       category: "MAINBIZ CERTIFICATION",
       description: "경영혁신형 중소기업 인증으로 우수한 경영 시스템 보유 증명",
       detailedInfo: "경영혁신형 중소기업(MAIN-BIZ)은 우수한 경영시스템을 갖춘 기업을 인증합니다. 정책자금 지원, 경영 컨설팅, 해외 진출 지원, 신용보증 우대 등의 혜택을 받을 수 있습니다.",
-      image: "/mainbiz-cert.jpg",
+      image: "/mainbiz-benefit.jpg",
       gradient: "from-orange-400 via-amber-500 to-yellow-600",
       href: "/certification/mainbiz",
     },
@@ -43,7 +43,7 @@ export default function CertificationPage() {
       category: "ISO CERTIFICATION",
       description: "국제 표준 품질경영시스템 인증으로 글로벌 신뢰도 확보",
       detailedInfo: "ISO 인증은 국제표준화기구가 정한 품질경영시스템 인증입니다. ISO 9001(품질경영), ISO 14001(환경경영), ISO 45001(안전보건경영) 등을 통해 글로벌 경쟁력을 확보할 수 있습니다.",
-      image: "/iso-cert.jpg",
+      image: "/iso-logo.png",
       gradient: "from-cyan-400 via-sky-500 to-blue-600",
       href: "/certification/iso",
     },
@@ -52,7 +52,7 @@ export default function CertificationPage() {
       category: "RESEARCH CENTER",
       description: "연구개발 전담 조직 설립으로 기술 개발 및 세제 혜택 확보",
       detailedInfo: "기업부설연구소 인정을 받으면 연구개발비 세액공제, 연구전담요원 병역특례, 국가연구개발사업 참여 자격, 우수인력 채용 지원 등 다양한 혜택이 제공됩니다.",
-      image: "/research-cert.jpg",
+      image: "/research-activity.png",
       gradient: "from-violet-400 via-purple-500 to-fuchsia-600",
       href: "/certification/research-center",
     },
@@ -61,7 +61,7 @@ export default function CertificationPage() {
       category: "MATERIALS & PARTS",
       description: "소재·부품·장비 분야 전문기업 지정으로 특별 지원 수혜",
       detailedInfo: "소재·부품·장비 전문기업으로 지정되면 R&D 자금 지원 확대, 세액 감면 혜택, 수출 지원, 공공구매 우선 구매 대상 지정 등의 특별한 혜택을 받을 수 있습니다.",
-      image: "/materials-cert.jpg",
+      image: "/sobujang-benefits.jpg",
       gradient: "from-green-400 via-emerald-500 to-teal-600",
       href: "/certification/materials-parts",
     },
@@ -268,6 +268,7 @@ export default function CertificationPage() {
             <div className="relative w-full flex items-center justify-center">
               {extendedCertifications.map((cert, index) => {
                 const cardStyle = getCardStyle(index);
+                const originalIndex = index % certifications.length;
                 return (
                   <div
                     key={index}
@@ -278,10 +279,10 @@ export default function CertificationPage() {
                     onMouseLeave={() => setHoveredCard(null)}
                   >
                     <div className="relative w-full h-full bg-white rounded-2xl shadow-2xl overflow-hidden">
-                      {/* Background Image */}
+                      {/* Background Image - Now uses different image for each card */}
                       <div className="absolute inset-0">
                         <img 
-                          src="/venture-benefit.jpg"
+                          src={cert.image}
                           alt={cert.title}
                           className="w-full h-full object-cover"
                         />
@@ -477,43 +478,97 @@ export default function CertificationPage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              왜 기업인증이 필요한가요?
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              기업인증은 단순한 인증서가 아닙니다. 세제 혜택, 정책자금 지원, 
-              입찰 우대 등 실질적인 혜택을 제공하며, 기업의 신뢰도와 경쟁력을 높입니다.
-            </p>
-          </div>
+<section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="text-center mb-16">
+      <h2 className="text-4xl font-bold text-gray-900 mb-4">
+        왜 기업인증이 필요한가요?
+      </h2>
+      <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+        기업인증은 단순한 인증서가 아닙니다. 세제 혜택, 정책자금 지원, 
+        입찰 우대 등 실질적인 혜택을 제공하며, 기업의 신뢰도와 경쟁력을 높입니다.
+      </p>
+    </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-8 rounded-xl bg-white shadow-sm">
-              <div className="text-5xl mb-4">💰</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">세제 혜택</h3>
-              <p className="text-gray-600">
-                법인세 감면, 세액공제 등 다양한 세제 혜택 제공
-              </p>
-            </div>
-            <div className="text-center p-8 rounded-xl bg-white shadow-sm">
-              <div className="text-5xl mb-4">📈</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">정책자금 지원</h3>
-              <p className="text-gray-600">
-                저금리 융자, R&D 지원금 등 정부 지원 프로그램 접근
-              </p>
-            </div>
-            <div className="text-center p-8 rounded-xl bg-white shadow-sm">
-              <div className="text-5xl mb-4">🏆</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">기업 신뢰도</h3>
-              <p className="text-gray-600">
-                공공기관 입찰 우대, 거래처 신뢰도 향상
-              </p>
-            </div>
+    <div className="grid md:grid-cols-3 gap-8">
+      {/* Card 1 - 세제 혜택 */}
+      <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-blue-200">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-blue-600 rounded-t-2xl"></div>
+        
+        <div className="flex items-center justify-center w-16 h-16 bg-blue-50 rounded-xl mb-6 group-hover:bg-blue-100 transition-colors">
+          <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+
+        <h3 className="text-2xl font-bold text-gray-900 mb-3">세제 혜택</h3>
+        <p className="text-gray-600 leading-relaxed">
+          법인세 감면, 세액공제 등 다양한 세제 혜택 제공
+        </p>
+
+        <div className="mt-6 pt-6 border-t border-gray-100">
+          <div className="flex items-center text-blue-600 font-semibold text-sm group-hover:translate-x-2 transition-transform">
+            <span>자세히 알아보기</span>
+            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
           </div>
         </div>
-      </section>
+      </div>
+
+      {/* Card 2 - 정책자금 지원 */}
+      <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-green-200">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 to-green-600 rounded-t-2xl"></div>
+        
+        <div className="flex items-center justify-center w-16 h-16 bg-green-50 rounded-xl mb-6 group-hover:bg-green-100 transition-colors">
+          <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+          </svg>
+        </div>
+
+        <h3 className="text-2xl font-bold text-gray-900 mb-3">정책자금 지원</h3>
+        <p className="text-gray-600 leading-relaxed">
+          저금리 융자, R&D 지원금 등 정부 지원 프로그램 접근
+        </p>
+
+        <div className="mt-6 pt-6 border-t border-gray-100">
+          <div className="flex items-center text-green-600 font-semibold text-sm group-hover:translate-x-2 transition-transform">
+            <span>자세히 알아보기</span>
+            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      {/* Card 3 - 기업 신뢰도 */}
+      <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-purple-200">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-purple-600 rounded-t-2xl"></div>
+        
+        <div className="flex items-center justify-center w-16 h-16 bg-purple-50 rounded-xl mb-6 group-hover:bg-purple-100 transition-colors">
+          <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+          </svg>
+        </div>
+
+        <h3 className="text-2xl font-bold text-gray-900 mb-3">기업 신뢰도</h3>
+        <p className="text-gray-600 leading-relaxed">
+          공공기관 입찰 우대, 거래처 신뢰도 향상
+        </p>
+
+        <div className="mt-6 pt-6 border-t border-gray-100">
+          <div className="flex items-center text-purple-600 font-semibold text-sm group-hover:translate-x-2 transition-transform">
+            <span>자세히 알아보기</span>
+            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Footer */}
       <Footer />

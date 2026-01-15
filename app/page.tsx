@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Footer from "./components/Footer";  // 이 줄 추가
+import Footer from "./components/Footer";
+
 
 const items = [
   {
@@ -79,7 +80,20 @@ const items = [
 export default function Home() {
   const [activeTab, setActiveTab] = useState<"strategy" | "rnd" | "swot">("swot");
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
+  // Auto-slide functionality
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % items.length);
+    }, 3000); // Slides every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [isAutoPlaying]);
+
+  // Navigation functions
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % items.length);
   };
@@ -87,24 +101,6 @@ export default function Home() {
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
   };
-
-  useEffect(() => {
-  const interval = setInterval(nextSlide, 5000);
-  return () => clearInterval(interval);
-}, []);
-
-// Reset position when reaching end
-useEffect(() => {
-  if (currentIndex >= items.length * 2) {
-    setTimeout(() => {
-      setCurrentIndex(items.length);
-    }, 600);
-  } else if (currentIndex < 0) {
-    setTimeout(() => {
-      setCurrentIndex(items.length - 1);
-    }, 600);
-  }
-}, [currentIndex]);
 
   return (
     <main>
@@ -144,91 +140,73 @@ useEffect(() => {
           const position = index - currentIndex - items.length;
           
           let translateX = 0;
-          let width = 220;
-          let height = 340;
+          let scale = 0.6;
           let zIndex = 0;
-          let opacity = 0.3;
+          let opacity = 0.4;
 
           // Center card - Biggest
           if (position === 0) {
             translateX = 0;
-            width = 520;
-            height = 560;
+            scale = 1;
             zIndex = 20;
             opacity = 1;
           }
-          // Immediate sides - Medium
+          // Immediate left/right - Medium
           else if (position === -1) {
-            translateX = -450;
-            width = 340;
-            height = 480;
+            translateX = -420;
+            scale = 0.75;
             zIndex = 15;
-            opacity = 0.85;
+            opacity = 0.7;
           }
           else if (position === 1) {
-            translateX = 450;
-            width = 340;
-            height = 480;
+            translateX = 420;
+            scale = 0.75;
             zIndex = 15;
-            opacity = 0.85;
+            opacity = 0.7;
           }
-          // Second sides - Small
+          // Second layer left/right - Smaller
           else if (position === -2) {
-            translateX = -720;
-            width = 280;
-            height = 420;
+            translateX = -700;
+            scale = 0.65;
             zIndex = 10;
-            opacity = 0.6;
+            opacity = 0.5;
           }
           else if (position === 2) {
-            translateX = 720;
-            width = 280;
-            height = 420;
+            translateX = 700;
+            scale = 0.65;
             zIndex = 10;
-            opacity = 0.6;
-          }
-          // Third sides - Very small
-          else if (position === -3) {
-            translateX = -940;
-            width = 220;
-            height = 360;
-            zIndex = 5;
-            opacity = 0.4;
-          }
-          else if (position === 3) {
-            translateX = 940;
-            width = 220;
-            height = 360;
-            zIndex = 5;
-            opacity = 0.4;
+            opacity = 0.5;
           }
           // Far cards
           else {
-            translateX = position > 0 ? 1200 : -1200;
-            width = 180;
-            height = 300;
+            translateX = position > 0 ? 1000 : -1000;
+            scale = 0.5;
             zIndex = 1;
-            opacity = 0.2;
+            opacity = 0.3;
           }
 
           return (
-  <a
-    key={index}
-    href={item.link}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="absolute cursor-pointer"
-    style={{
-      transform: `translateX(${translateX}px)`,
-      width: `${width}px`,
-      height: `${height}px`,
-      zIndex,
-      opacity,
-      transition: "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
-    }}
-    onClick={() => setCurrentIndex(index - items.length)}
-  >
-
+            <a
+              key={index}
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute cursor-pointer"
+              style={{
+                transform: `translateX(${translateX}px) scale(${scale})`,
+                width: '480px',
+                height: '560px',
+                zIndex,
+                opacity,
+                transition: "all 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
+              }}
+              onClick={(e) => {
+                if (position !== 0) {
+                  e.preventDefault();
+                  setCurrentIndex(index - items.length);
+                }
+              }}
+            >
               <div className="relative h-full rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow">
                 {/* Image */}
                 <img
@@ -277,25 +255,47 @@ useEffect(() => {
         })}
       </div>
 
-      {/* Navigation Buttons */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 z-30 w-12 h-12 rounded-full border-2 border-blue-900 text-blue-900 bg-white flex items-center justify-center hover:bg-blue-900 hover:text-white transition-colors"
-        aria-label="Previous slide"
-      >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 z-30 w-12 h-12 rounded-full border-2 border-blue-900 text-blue-900 bg-white flex items-center justify-center hover:bg-blue-900 hover:text-white transition-colors"
-        aria-label="Next slide"
-      >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
+      {/* Control Buttons - Bottom Left */}
+      <div className="absolute left-8 -bottom-20 z-30 flex items-center gap-3">
+        {/* Pause/Play Button */}
+        <button
+          onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+          className="w-14 h-14 rounded-xl bg-white border-2 border-gray-200 text-gray-800 flex items-center justify-center hover:bg-blue-900 hover:text-white hover:border-blue-900 transition-all shadow-lg"
+          aria-label={isAutoPlaying ? "Pause" : "Play"}
+        >
+          {isAutoPlaying ? (
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+            </svg>
+          ) : (
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          )}
+        </button>
+
+        {/* Previous Button */}
+        <button
+          onClick={prevSlide}
+          className="w-14 h-14 rounded-xl bg-white border-2 border-gray-200 text-gray-800 flex items-center justify-center hover:bg-blue-900 hover:text-white hover:border-blue-900 transition-all shadow-lg"
+          aria-label="Previous slide"
+        >
+          <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        {/* Next Button */}
+        <button
+          onClick={nextSlide}
+          className="w-14 h-14 rounded-xl bg-white border-2 border-gray-200 text-gray-800 flex items-center justify-center hover:bg-blue-900 hover:text-white hover:border-blue-900 transition-all shadow-lg"
+          aria-label="Next slide"
+        >
+          <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
     </div>
 
     {/* Dots Indicator */}
@@ -304,10 +304,10 @@ useEffect(() => {
         <button
           key={index}
           onClick={() => setCurrentIndex(index)}
-          className={`w-3 h-3 rounded-full transition-all ${
+          className={`h-2 rounded-full transition-all ${
             currentIndex === index
               ? "bg-blue-900 w-8"
-              : "bg-gray-300 hover:bg-gray-400"
+              : "bg-gray-300 hover:bg-gray-400 w-2"
           }`}
           aria-label={`Go to slide ${index + 1}`}
         />
@@ -849,4 +849,3 @@ useEffect(() => {
     </main>
   );
 }
-   
