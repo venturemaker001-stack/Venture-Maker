@@ -104,116 +104,134 @@ export default function MainbizPage() {
       </section>
 
       {/* ================= BENEFITS ================= */}
-      <section className="bg-white py-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-12">메인비즈 인증 혜택</h2>
+<section className="bg-white py-24">
+  <div className="max-w-7xl mx-auto px-6">
+    <h2 className="text-3xl font-bold mb-12">메인비즈 인증 혜택</h2>
 
-          <div className="grid lg:grid-cols-[1.4fr_1fr] gap-16 items-start mb-16">
-            <div className="space-y-5 text-gray-700 leading-relaxed">
-              <p>
-                메인비즈 인증을 취득한 중소기업은
-                수도권 소재기업은 2년,
-                지방 소재기업은 3년간
-                정기세무조사를 유예합니다.
-              </p>
+    <div className="grid lg:grid-cols-[1.3fr_1fr] gap-20 items-start mb-16">
+      {/* LEFT TEXT */}
+      <div className="space-y-6 text-gray-700 leading-relaxed text-[17px]">
+        <p>
+          메인비즈 인증을 취득한 중소기업은 수도권 소재기업은 2년,
+          <br />
+          지방 소재기업은 3년간 정기세무조사를 유예합니다.
+        </p>
 
-              <p>
-                또한 수입실적 1억 달러 이하의 기업은
-                관세조사를 1년 유예합니다.
-              </p>
+        <p>
+          또한 수입실적 1억 달러 이하의 기업은
+          <br />
+          관세조사를 1년 유예합니다.
+        </p>
 
-              <p>
-                신용보증기금과 기술보증기금의 보증료율 차감,
-                각종 금리우대, 한도 상승,
-                자금지원 및 평가 시 가점 부여 등의
-                혜택을 받을 수 있습니다.
-              </p>
+        <p>
+          신용보증기금과 기술보증기금의 보증료율 차감,
+          <br />
+          각종 금리우대, 한도 상승,
+          <br />
+          자금지원 및 평가 시 가점 부여 등의 혜택을 받을 수 있습니다.
+        </p>
 
-              <p>그 외 다양한 혜택은 요약표를 참고해 주시기 바랍니다.</p>
-            </div>
+        <p className="pt-2">
+          그 외 다양한 혜택은 요약표를 참고해 주시기 바랍니다.
+        </p>
+      </div>
 
-            <div className="flex justify-center">
-              <div className="bg-white rounded-2xl shadow-lg p-6">
-                <img
-                  src="/mainbiz-benefit.jpg"
-                  alt="메인비즈 인증 혜택"
-                  className="w-[300px] max-w-full object-contain"
-                />
-              </div>
-            </div>
-          </div>
+      {/* RIGHT IMAGE – BIG, NO FRAME */}
+      <div className="flex justify-center">
+        <img
+          src="/mainbiz-benefit.jpg"
+          alt="메인비즈 인증 혜택"
+          className="w-full max-w-[560px] object-cover rounded-xl"
+        />
+      </div>
+    </div>
 
-          {/* TABS */}
-          <div className="flex border-b border-gray-300">
-            {[
-              "금융 혜택",
-              "세제 혜택",
-              "수출 및 판매",
-              "연구개발 관련 혜택",
-              "인력 관련 혜택",
-              "기타 혜택",
-            ].map((tab, idx) => (
-              <button
-                key={tab}
-                onClick={() => setActiveBenefitTab(idx)}
-                className={`px-8 py-4 text-sm font-semibold border border-b-0 transition
-                  ${
-                    activeBenefitTab === idx
-                      ? "bg-white text-gray-900 border-gray-300"
-                      : "bg-gray-50 text-gray-400 border-gray-200 hover:text-gray-600"
-                  }`}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
+    {/* ================= TABS ================= */}
+    <div className="flex border-b border-gray-300">
+      {[
+        "금융 혜택",
+        "세제 혜택",
+        "수출 및 판매",
+        "연구개발 관련 혜택",
+        "인력 관련 혜택",
+        "기타 혜택",
+      ].map((tab, idx) => (
+        <button
+          key={tab}
+          onClick={() => setActiveBenefitTab(idx)}
+          className={`px-8 py-4 text-sm font-semibold border border-b-0 transition
+            ${
+              activeBenefitTab === idx
+                ? "bg-white text-gray-900 border-gray-300"
+                : "bg-gray-50 text-gray-400 border-gray-200 hover:text-gray-600"
+            }`}
+        >
+          {tab}
+        </button>
+      ))}
+    </div>
 
-          {/* TABLE */}
-          <div className="border border-gray-300 p-16 text-gray-700 text-lg leading-relaxed">
-            {activeBenefitTab === 0 && (
-              <ol className="list-decimal pl-6 space-y-6">
-                <li>신용보증기금 보증료율 차감 우대</li>
-                <li>신용보증기금 매출채권 보험료 15% 할인</li>
-                <li>SGI서울보증 보증한도 확대 및 보증보험료 10% 할인</li>
-                <li>한국은행, 농협, 신한금융투자 연계 금리 우대</li>
-                <li>무역보증료 20% 할인 및 한도 우대</li>
-                <li>혁신창업사업화 자금지원</li>
-              </ol>
-            )}
+    {/* ================= TABLE ================= */}
+    <div className="border border-gray-300 p-16 text-gray-700 text-lg leading-relaxed">
+      {/* 금융 혜택 */}
+      {activeBenefitTab === 0 && (
+        <ol className="list-decimal pl-6 space-y-8">
+          <li>신용보증기금 보증료율 차감 우대</li>
+          <li>신용보증기금 매출채권 보험료 15% 할인</li>
+          <li>SGI서울보증 보증한도 확대 및 보증보험료 10% 할인</li>
+          <li>한국은행, 농협, 신한금융투자 연계 금리 우대</li>
+          <li>무역 보증료 20% 할인, 한도 우대 및 이용절차의 간소화 지원</li>
+          <li>혁신창업사업화 자금지원</li>
+        </ol>
+      )}
 
-            {activeBenefitTab === 1 && (
-              <ol className="list-decimal pl-6 space-y-6">
-                <li>정기세무조사 유예</li>
-                <li>관세조사 1년 유예</li>
-              </ol>
-            )}
+      {/* 세제 혜택 */}
+      {activeBenefitTab === 1 && (
+        <ol className="list-decimal pl-6 space-y-8">
+          <li>수도권 소재 기업 2년, 지방 소재 기업 3년간 정기 세무조사 유예</li>
+          <li>세금포인트 적립제도 우대 점수 부여</li>
+          <li>관세 조사 유예</li>
+        </ol>
+      )}
 
-            {activeBenefitTab === 2 && (
-              <ol className="list-decimal pl-6 space-y-6">
-                <li>공공 및 민간 판로 개척 지원</li>
-              </ol>
-            )}
+      {/* 수출 및 판매 */}
+      {activeBenefitTab === 2 && (
+        <ol className="list-decimal pl-6 space-y-8">
+          <li>글로벌 강소기업 육성사업 지원 시 우대</li>
+          <li>방송 광고비의 일부 감면</li>
+          <li>물품구매적격심사 지원 시 우대 가점 부여</li>
+          <li>수출바우처 신청 시 우대 가점 부여</li>
+        </ol>
+      )}
 
-            {activeBenefitTab === 3 && (
-              <ol className="list-decimal pl-6 space-y-6">
-                <li>정부 연구개발 사업 신청 시 가점</li>
-              </ol>
-            )}
+      {/* 연구개발 관련 혜택 */}
+      {activeBenefitTab === 3 && (
+        <ol className="list-decimal pl-6 space-y-8">
+          <li>각종 중소벤처기업부 사업 신청 시 가점 부여</li>
+          <li>방위사업청의 글로벌 방산 육성사업 신청 시 우대 가점 부여</li>
+        </ol>
+      )}
 
-            {activeBenefitTab === 4 && (
-              <ol className="list-decimal pl-6 space-y-6">
-                <li>경영 인력 및 조직관리 관련 지원</li>
-              </ol>
-            )}
+      {/* 인력 관련 혜택 */}
+      {activeBenefitTab === 4 && (
+        <ol className="list-decimal pl-6 space-y-8">
+          <li>공공연구기관의 연구인력을 중소기업에 파견하여 역량 제고를 지원</li>
+          <li>일학습병행제 참여 시 심사 우대 및 상시 근로자수 5명 이상으로 조건 완화</li>
+        </ol>
+      )}
 
-            {activeBenefitTab === 5 && (
-              <ol className="list-decimal pl-6 space-y-6">
-                <li>기타 정책자금 및 평가 우대</li>
-              </ol>
-            )}
-          </div>
-        </div>
-      </section>
+      {/* 기타 혜택 */}
+      {activeBenefitTab === 5 && (
+        <ol className="list-decimal pl-6 space-y-8">
+          <li>취업 포털사이트 사람인과 인크루트에 구인 공고 시 메인비즈 인증기업으로 배치</li>
+          <li>중소기업 임직원을 위한 모바일 교육플랫폼 구축 및 임직원 교육 무상 지원</li>
+          <li>기업 핵심 기술자료 및 영업비밀을 기술자료 임치센터 보관 시 수수료 1/3 감면</li>
+        </ol>
+      )}
+    </div>
+  </div>
+</section>
+
 
       {/* ================= PROCESS ================= */}
       <section className="py-24">

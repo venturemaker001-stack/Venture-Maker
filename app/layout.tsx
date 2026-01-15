@@ -5,6 +5,9 @@ import Header from "@/app/components/Header";
 export const metadata = {
   title: "Venture Maker",
   description: "Total Business Growth Strategy",
+  icons: {
+    icon: "/venture.ico,"
+  },
 };
 
 export default function RootLayout({
