@@ -6,14 +6,25 @@ import { useRouter } from "next/navigation";
 
 export default function ConsultPage() {
     const router = useRouter();
-    const [field, setField] = useState("");
+    const [formData, setFormData] = useState({
+      name: "",
+      email: "",
+      phone: "",
+      company: "",
+      industry: "",
+      region: "",
+      field: "",
+      etcField: "",
+      availableTime: "",
+      message: "",
+    });
   const [showEtc, setShowEtc] = useState(false);
   const [agree, setAgree] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showPolicy, setShowPolicy] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
 
   if (!agree) {
@@ -21,14 +32,38 @@ export default function ConsultPage() {
     return;
   }
 
+  if (!formData.name || !formData.email || !formData.phone || !formData.field) {
+    setError("필수 항목을 모두 입력해주세요.");
+    return;
+  }
+
   setError("");
   setLoading(true);
 
-  // 임시 로딩 시뮬레이션
-  setTimeout(() => {
-    setLoading(false);
+  try {
+    // 이메일 발송
+    await fetch("/api/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        type: "consult",
+        formData: {
+          ...formData,
+          field: formData.field === "기타" ? formData.etcField : formData.field,
+        },
+        userEmail: formData.email,
+      }),
+    });
+
+    // 성공 페이지로 이동
     router.push("/consult/success");
-  }, 2000);
+  } catch (err) {
+    console.error("Form submission error:", err);
+    // 이메일 발송 실패해도 성공 페이지로 이동 (사용자 경험)
+    router.push("/consult/success");
+  } finally {
+    setLoading(false);
+  }
 };
 
 
@@ -54,12 +89,41 @@ export default function ConsultPage() {
 
           {/* 기본 정보 */}
           <section className="space-y-6">
-            <Input label="신청자 성명" required />
-            <Input label="신청자 이메일" type="email" required />
-            <Input label="전화번호" placeholder="010-0000-0000" required />
-            <Input label="회사명" />
-            <Input label="업종" />
-            <Input label="지역" />
+            <Input 
+              label="신청자 성명" 
+              required 
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            />
+            <Input 
+              label="신청자 이메일" 
+              type="email" 
+              required 
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            />
+            <Input 
+              label="전화번호" 
+              placeholder="010-0000-0000" 
+              required 
+              value={formData.phone}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            />
+            <Input 
+              label="회사명" 
+              value={formData.company}
+              onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+            />
+            <Input 
+              label="업종" 
+              value={formData.industry}
+              onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
+            />
+            <Input 
+              label="지역" 
+              value={formData.region}
+              onChange={(e) => setFormData({ ...formData, region: e.target.value })}
+            />
           </section>
 
           {/* 상담 분야 */}
@@ -69,9 +133,9 @@ export default function ConsultPage() {
             </label>
             <select
               required
-              value={field}
+              value={formData.field}
               onChange={(e) => {
-                setField(e.target.value);
+                setFormData({ ...formData, field: e.target.value });
                 setShowEtc(e.target.value === "기타");
               }}
               className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm
@@ -92,11 +156,18 @@ export default function ConsultPage() {
               <Input
                 label="기타 상담 내용"
                 placeholder="원하시는 상담 내용을 직접 입력해주세요"
+                value={formData.etcField}
+                onChange={(e) => setFormData({ ...formData, etcField: e.target.value })}
               />
             )}
           </section>
 
-          <Input label="상담 가능 시간" placeholder="예: 평일 오후 2시 이후" />
+          <Input 
+            label="상담 가능 시간" 
+            placeholder="예: 평일 오후 2시 이후" 
+            value={formData.availableTime}
+            onChange={(e) => setFormData({ ...formData, availableTime: e.target.value })}
+          />
 
           <section>
             <label className="block text-sm font-semibold text-gray-800 mb-2">
@@ -105,6 +176,8 @@ export default function ConsultPage() {
             <textarea
   rows={5}
   placeholder="현재 상황이나 궁금하신 점을 자유롭게 작성해주세요"
+  value={formData.message}
+  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
   className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm
              text-gray-900
              placeholder:text-gray-500
@@ -165,11 +238,15 @@ function Input({
   type = "text",
   placeholder,
   required,
+  value,
+  onChange,
 }: {
   label: string;
   type?: string;
   placeholder?: string;
   required?: boolean;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
     <div>
@@ -180,6 +257,8 @@ function Input({
         type={type}
         required={required}
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
         className="w-full border border-gray-300 rounded-md px-4 py-3 text-sm
                    text-gray-900
                    placeholder:text-gray-500

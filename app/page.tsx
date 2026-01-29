@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Footer from "./components/Footer";
+import { marked } from "marked";
 
 
 const items = [
@@ -81,6 +82,31 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<"strategy" | "rnd" | "swot">("swot");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  
+  // AI 폼 상태 관리
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  
+  // 폼 데이터 상태
+  const [formData, setFormData] = useState({
+    // 공통
+    name: "",
+    company: "",
+    // Strategy
+    industry: "",
+    year: "",
+    revenue: "",
+    concerns: "",
+    // R&D
+    rndItem: "",
+    rndTech: "",
+    rndPhone: "",
+    // SWOT
+    swotItem: "",
+    swotStrength: "",
+    swotPhone: "",
+  });
 
   // Auto-slide functionality
   useEffect(() => {
@@ -100,6 +126,169 @@ export default function Home() {
 
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
+  };
+
+  // AI API 호출 함수
+  const callChatGPT = async (type: "strategy" | "rnd" | "swot") => {
+    setLoading(true);
+    setResult(null);
+    setError(null);
+
+    try {
+      let requestData: any = {};
+
+      if (type === "strategy") {
+        if (!formData.industry) {
+          setError("업종을 입력해주세요.");
+          setLoading(false);
+          return;
+        }
+        // 원본 규칙: industry만 전송
+        requestData = {
+          industry: formData.industry,
+        };
+      } else if (type === "rnd") {
+        if (!formData.rndItem) {
+          setError("주력 제품/서비스를 입력해주세요.");
+          setLoading(false);
+          return;
+        }
+        if (!formData.rndPhone) {
+          setError("연락처를 입력해주세요.");
+          setLoading(false);
+          return;
+        }
+        // 원본 규칙: item만 전송
+        requestData = {
+          item: formData.rndItem,
+        };
+      } else if (type === "swot") {
+        if (!formData.swotItem) {
+          setError("업종/아이템을 입력해주세요.");
+          setLoading(false);
+          return;
+        }
+        if (!formData.swotPhone) {
+          setError("연락처를 입력해주세요.");
+          setLoading(false);
+          return;
+        }
+        // 원본 규칙: item만 전송
+        requestData = {
+          item: formData.swotItem,
+        };
+      }
+
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          type,
+          data: requestData,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // 더 자세한 에러 메시지 표시
+        const errorMsg = data.error || "API 호출에 실패했습니다.";
+        const details = data.details ? `\n\n상세 정보: ${JSON.stringify(data.details, null, 2)}` : "";
+        throw new Error(errorMsg + details);
+      }
+
+      // 원본 규칙: marked.parse() 사용
+      let finalText = marked.parse(data.content);
+      
+      // 모의 응답인 경우 표시
+      if (data.mock) {
+        finalText = marked.parse(`🧪 **테스트 모드**: 모의 응답입니다.\n\n---\n\n${data.content}`);
+      }
+
+      // R&D와 SWOT의 경우 접수 완료 박스 추가 (원본 HTML과 동일)
+      if (type === "rnd" || type === "swot") {
+        const phone = type === "rnd" ? formData.rndPhone : formData.swotPhone;
+        // 원본 HTML 코드와 동일한 접수 완료 박스
+        finalText += `<br><div class="mt-4 p-3 bg-blue-50 rounded border border-blue-100 text-sm">
+          <p class="font-bold text-blue-600 mb-1"><i class="fa-solid fa-check-circle mr-1"></i> 접수 완료</p>
+          <p class="text-slate-600 mb-1">* 요청하신 연락처(<span class="font-bold">${phone}</span>)로 상세한 리포트가 발송될 예정입니다.</p>
+          <p class="text-xs text-slate-400 mt-2">
+            [System Log]<br>
+            - 분석 요청 사항 구글 시트 등록 완료<br>
+            - 카카오톡 알림 발송 요청 완료
+          </p>
+        </div>`;
+      }
+
+      setResult(finalText);
+
+      // 이메일 발송: 종합 진단 / R&D / SWOT 모두 관리자(koreanting1104@gmail.com)에게 발송
+      try {
+        console.log(`[Email] Sending ${type} form data to admin`);
+        const userEmailForApi =
+          type === "strategy"
+            ? "no-email@temp.com"
+            : type === "rnd"
+              ? formData.rndPhone + "@kakao.talk"
+              : formData.swotPhone + "@kakao.talk";
+
+        const emailResponse = await fetch("/api/send-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type,
+            formData: {
+              name: formData.name,
+              company: formData.company,
+              industry: formData.industry || formData.swotItem || formData.rndItem,
+              year: formData.year,
+              revenue: formData.revenue,
+              concerns: formData.concerns,
+              rndItem: formData.rndItem,
+              rndTech: formData.rndTech,
+              rndPhone: formData.rndPhone,
+              swotItem: formData.swotItem,
+              swotStrength: formData.swotStrength,
+              swotPhone: formData.swotPhone,
+            },
+            userEmail: userEmailForApi,
+          }),
+        });
+
+        if (emailResponse.ok) {
+          const result = await emailResponse.json();
+          console.log(`[Email] Successfully sent ${type} email to admin:`, result);
+        } else {
+          const errorText = await emailResponse.text();
+          let errorData;
+          try {
+            errorData = JSON.parse(errorText);
+          } catch {
+            errorData = { rawError: errorText, status: emailResponse.status, statusText: emailResponse.statusText };
+          }
+          console.error(`[Email] Failed to send email:`, {
+            status: emailResponse.status,
+            statusText: emailResponse.statusText,
+            error: errorData,
+          });
+        }
+      } catch (emailError) {
+        console.error("[Email] Email sending error:", emailError);
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "오류가 발생했습니다.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // 탭 변경 시 결과 초기화
+  const handleTabChange = (tab: "strategy" | "rnd" | "swot") => {
+    setActiveTab(tab);
+    setResult(null);
+    setError(null);
   };
 
   return (
@@ -619,7 +808,7 @@ export default function Home() {
       {/* Tabs */}
       <div className="grid grid-cols-3 text-sm font-bold border-b">
         <button
-          onClick={() => setActiveTab("strategy")}
+          onClick={() => handleTabChange("strategy")}
           className={`py-4 ${
             activeTab === "strategy"
               ? "bg-orange-50 text-orange-600 border-b-2 border-orange-500"
@@ -629,7 +818,7 @@ export default function Home() {
           종합 진단
         </button>
         <button
-          onClick={() => setActiveTab("rnd")}
+          onClick={() => handleTabChange("rnd")}
           className={`py-4 ${
             activeTab === "rnd"
               ? "bg-orange-50 text-orange-600 border-b-2 border-orange-500"
@@ -639,7 +828,7 @@ export default function Home() {
           R&D 테마
         </button>
         <button
-          onClick={() => setActiveTab("swot")}
+          onClick={() => handleTabChange("swot")}
           className={`py-4 ${
             activeTab === "swot"
               ? "bg-orange-50 text-orange-600 border-b-2 border-orange-500"
@@ -655,10 +844,16 @@ export default function Home() {
         {/* 공통 기본 정보 */}
         <div className="grid grid-cols-2 gap-4">
           <input
+            type="text"
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
             placeholder="신청자 성명"
           />
           <input
+            type="text"
+            value={formData.company}
+            onChange={(e) => setFormData({ ...formData, company: e.target.value })}
             className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
             placeholder="회사명"
           />
@@ -676,20 +871,33 @@ export default function Home() {
             </div>
 
             <input
+              type="text"
+              value={formData.swotItem}
+              onChange={(e) => setFormData({ ...formData, swotItem: e.target.value })}
               className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
               placeholder="업종 / 아이템"
             />
             <input
+              type="text"
+              value={formData.swotStrength}
+              onChange={(e) => setFormData({ ...formData, swotStrength: e.target.value })}
               className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
               placeholder="우리만의 강점 (핵심 경쟁력)"
             />
             <input
+              type="tel"
+              value={formData.swotPhone}
+              onChange={(e) => setFormData({ ...formData, swotPhone: e.target.value })}
               className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
               placeholder="전화번호 (예: 010-0000-0000)"
             />
 
-            <button className="w-full bg-purple-600 text-white py-4 rounded font-bold mt-2">
-              SWOT 분석표 생성하기
+            <button
+              onClick={() => callChatGPT("swot")}
+              disabled={loading}
+              className="w-full bg-purple-600 text-white py-4 rounded font-bold mt-2 hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              {loading ? "분석 중..." : "SWOT 분석표 생성하기"}
             </button>
           </>
         )}
@@ -706,20 +914,33 @@ export default function Home() {
             </div>
 
             <input
+              type="text"
+              value={formData.rndItem}
+              onChange={(e) => setFormData({ ...formData, rndItem: e.target.value })}
               className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
               placeholder="주력 제품 / 서비스"
             />
             <input
+              type="text"
+              value={formData.rndTech}
+              onChange={(e) => setFormData({ ...formData, rndTech: e.target.value })}
               className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
               placeholder="기술적 특징 (선택)"
             />
             <input
+              type="tel"
+              value={formData.rndPhone}
+              onChange={(e) => setFormData({ ...formData, rndPhone: e.target.value })}
               className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
               placeholder="전화번호"
             />
 
-            <button className="w-full bg-blue-600 text-white py-4 rounded font-bold mt-2">
-              연구 과제명 생성하기
+            <button
+              onClick={() => callChatGPT("rnd")}
+              disabled={loading}
+              className="w-full bg-blue-600 text-white py-4 rounded font-bold mt-2 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              {loading ? "생성 중..." : "연구 과제명 생성하기"}
             </button>
           </>
         )}
@@ -736,34 +957,98 @@ export default function Home() {
             </div>
 
             <input
+              type="text"
+              value={formData.industry}
+              onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
               className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
               placeholder="업종 / 아이템"
             />
 
             <div className="grid grid-cols-2 gap-4">
-              <select className="border rounded px-4 py-3 text-gray-900">
-                <option>기업 단계 선택</option>
-                <option>예비창업</option>
-                <option>초기기업</option>
-                <option>성장기업</option>
+              <select
+                value={formData.year}
+                onChange={(e) => setFormData({ ...formData, year: e.target.value })}
+                className="border rounded px-4 py-3 text-gray-900"
+              >
+                <option value="">기업 단계 선택</option>
+                <option value="예비창업">예비창업</option>
+                <option value="1년 미만">1년 미만</option>
+                <option value="1~3년">1~3년</option>
+                <option value="3~7년">3~7년</option>
+                <option value="7년 이상">7년 이상</option>
               </select>
-              <select className="border rounded px-4 py-3 text-gray-900">
-                <option>연 매출 규모</option>
-                <option>1억 미만</option>
-                <option>1억 ~ 10억</option>
-                <option>10억 이상</option>
+              <select
+                value={formData.revenue}
+                onChange={(e) => setFormData({ ...formData, revenue: e.target.value })}
+                className="border rounded px-4 py-3 text-gray-900"
+              >
+                <option value="">연 매출 규모</option>
+                <option value="1억 미만">1억 미만</option>
+                <option value="1억~10억">1억 ~ 10억</option>
+                <option value="10억~50억">10억 ~ 50억</option>
+                <option value="50억 이상">50억 이상</option>
               </select>
             </div>
 
             <input
+              type="text"
+              value={formData.concerns}
+              onChange={(e) => setFormData({ ...formData, concerns: e.target.value })}
               className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
               placeholder="현재 가장 큰 고민"
             />
 
-            <button className="w-full bg-blue-900 text-white py-4 rounded font-bold mt-2">
-              무료 전략 리포트 생성
+            <button
+              onClick={() => callChatGPT("strategy")}
+              disabled={loading}
+              className="w-full bg-blue-900 text-white py-4 rounded font-bold mt-2 hover:bg-blue-950 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              {loading ? "분석 중..." : "무료 전략 리포트 생성"}
             </button>
           </>
+        )}
+
+        {/* 결과 표시 영역 */}
+        {(loading || result || error) && (
+          <div className="mt-6 border-t border-gray-200 pt-6">
+            {loading && (
+              <div className="flex flex-col items-center py-8">
+                <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-3"></div>
+                <p className="text-sm font-bold text-gray-400 animate-pulse">
+                  VentureMaker AI가 분석 중입니다...
+                </p>
+              </div>
+            )}
+
+            {error && (
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                <p className="text-red-600 text-sm font-semibold mb-2">
+                  {error.split('\n')[0]}
+                </p>
+                {error.includes('상세 정보') && (
+                  <details className="mt-2">
+                    <summary className="text-red-500 text-xs cursor-pointer hover:underline">
+                      상세 에러 정보 보기
+                    </summary>
+                    <pre className="mt-2 text-xs text-red-700 bg-red-100 p-2 rounded overflow-auto max-h-40">
+                      {error}
+                    </pre>
+                  </details>
+                )}
+              </div>
+            )}
+
+            {result && !loading && (
+              <div className="bg-slate-50 border-l-4 border-blue-600 rounded p-4 max-h-96 overflow-y-auto">
+                <div
+                  className="prose prose-sm prose-slate max-w-none text-sm text-gray-700 leading-relaxed"
+                  dangerouslySetInnerHTML={{
+                    __html: result, // 이미 marked.parse()로 변환된 HTML
+                  }}
+                />
+              </div>
+            )}
+          </div>
         )}
       </div>
     </div>

@@ -66,12 +66,19 @@ export default function Header() {
             <Link href="/insights" className="hover:text-gray-900">
               경영 인사이트
             </Link>
-            <Link
-              href="/ai"
-              className="font-semibold text-orange-500 hover:opacity-80"
+            <a
+              href="#ai-consulting"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById("ai-consulting");
+                if (element) {
+                  element.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+              }}
+              className="font-semibold text-orange-500 hover:opacity-80 cursor-pointer"
             >
               벤처메이커 AI
-            </Link>
+            </a>
           </nav>
 
           {/* 상담 신청 버튼 */}
