@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // 관리자 이메일
 const ADMIN_EMAIL = 'hivrometric@gmail.com';
 
@@ -15,6 +13,9 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    // Resend 초기화를 함수 내부로 이동 (빌드 시 에러 방지)
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     const body = await request.json();
     const { type, formData, userEmail } = body;
