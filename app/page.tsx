@@ -4,6 +4,20 @@ import { useState, useEffect } from "react";
 import Footer from "./components/Footer";
 import { marked } from "marked";
 
+interface FormData {
+  name: string;
+  company: string;
+  industry: string;
+  year: string;
+  revenue: string;
+  concerns: string;
+  rndItem: string;
+  rndTech: string;
+  rndPhone: string;
+  swotItem: string;
+  swotStrength: string;
+  swotPhone: string;
+}
 
 const items = [
   {
@@ -26,7 +40,7 @@ const items = [
     title: "Franchise Expansion",
     category: "FRANCHISE",
     description:
-      "외식업 프랜차이즈 ‘고기명작’ 성공 사례.\n메뉴 개발 전담부서 설립으로 가맹점 확장",
+      "외식업 프랜차이즈 '고기명작' 성공 사례.\n메뉴 개발 전담부서 설립으로 가맹점 확장",
     image: "/franchise-mainpage.jpg",
     link: "https://blog.naver.com/YOUR_LINK_3",
   },
@@ -67,7 +81,7 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   
   // 폼 데이터 상태
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     // 공통
     name: "",
     company: "",
@@ -113,7 +127,7 @@ export default function Home() {
     setError(null);
 
     try {
-      let requestData: any = {};
+      let requestData: Record<string, string> = {};
 
       if (type === "strategy") {
         if (!formData.industry) {
@@ -178,11 +192,11 @@ export default function Home() {
       }
 
       // 원본 규칙: marked.parse() 사용
-      let finalText = marked.parse(data.content);
+      let finalText: string = marked.parse(data.content) as string;
       
       // 모의 응답인 경우 표시
       if (data.mock) {
-        finalText = marked.parse(`🧪 **테스트 모드**: 모의 응답입니다.\n\n---\n\n${data.content}`);
+        finalText = marked.parse(`🧪 **테스트 모드**: 모의 응답입니다.\n\n---\n\n${data.content}`) as string;
       }
 
       // R&D와 SWOT의 경우 접수 완료 박스 추가 (원본 HTML과 동일)
@@ -292,8 +306,6 @@ export default function Home() {
           </p>
         </div>
       </section>
-
-      
 
      {/* ================= SECTION 2 : 3D CAROUSEL ================= */}
 <section className="relative py-16 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
@@ -505,7 +517,6 @@ export default function Home() {
   </div>
 </section>
 
-
  {/* ================= SECTION 3 : KNOWLEDGE HUB ================= */}
 <section className="py-24 bg-white">
   <div className="max-w-7xl mx-auto px-6">
@@ -652,7 +663,7 @@ export default function Home() {
         className="md:col-span-2 relative rounded-2xl overflow-hidden text-white p-12 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300"
         style={{ background: "linear-gradient(135deg, #1E2A8A 0%, #1B1E6D 100%)" }}
       >
-        <div className="absolute top-10 right-10 text-white/20 text-[120px] font-extrabold">"</div>
+        <div className="absolute top-10 right-10 text-white/20 text-[120px] font-extrabold">&quot;</div>
 
         <div>
           <p className="text-sm font-semibold tracking-widest text-blue-200 mb-6">
@@ -759,8 +770,6 @@ export default function Home() {
     </div>
   </div>
 </section>
-
-
 
       {/* ================= SECTION 4 : AI CONSULTING ================= */}
 <section
@@ -1042,7 +1051,6 @@ export default function Home() {
     </div>
   </div>
 </section>
-
 
       {/* ================= SECTION 5 : TRUSTED BY ================= */}
 <section className="py-24 bg-white overflow-hidden">

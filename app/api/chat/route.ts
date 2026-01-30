@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
 // 테스트용 모의 응답 생성 함수 (원본 규칙: 100자 헤드라인 + 꿀팁 3가지)
-function generateMockResponse(type: string, data: any): string {
+function generateMockResponse(type: string, data: Record<string, unknown>): string {
   if (type === 'strategy') {
     return `**${data.industry} 기업의 혁신성장형 벤처인증을 통한 정책자금 확보와 세제 혜택 극대화 전략**
 

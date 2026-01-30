@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 import Footer from "../../components/Footer";
 
 
-export default function VentureCertificationPage() {
+export default function VentureCertificationPage()
+ {
   const steps = [
     {
       title: "벤처신청",
@@ -45,28 +46,40 @@ export default function VentureCertificationPage() {
       ),
       icon: "🏆",
     },
+    {
+  title: "...",
+  category: "VENTURE",
+  description: "...",
+  image: "...",
+  link: "..."
+}
+
   ];
   const ventureCases = [
-    {
-      title: "AI Tech Transformation",
-      description:
-        "AI 챗봇 기업의 연구소 설립 전략,\n법인세 50% 감면과 벤처인증 동시 획득 노하우",
-      image: "/certification-venture(1).jpg",
-      link: "https://blog.naver.com/YOUR_LINK_1",
-    },
-    {
-      title: "한의원 기반 건강기능식품 제조 기술 벤처 재신청 사례",
-      description: "한의원 기반 건강기능식품 제조 기술 벤처 재신청 사례",
-      image: "/certification-venture(2).jpg",
-      link: "https://blog.naver.com/YOUR_LINK_2",
-    },
-    {
-      title: "인재를 부르는 비상장 벤처기업 스톡옵션의 마법",
-      description: "인재를 부르는 비상장 벤처기업 스톡옵션의 마법",
-      image: "/certification-venture(3).jpg",
-      link: "https://blog.naver.com/YOUR_LINK_3",
-    },
-  ];
+  {
+    category: "VENTURE CERTIFICATION",
+    title: "AI Tech Transformation",
+    description:
+      "AI 챗봇 기업의 연구소 설립 전략,\n법인세 50% 감면과 벤처인증 동시 획득 노하우",
+    image: "/certification-venture(1).jpg",
+    link: "https://blog.naver.com/YOUR_LINK_1",
+  },
+  {
+    category: "VENTURE CERTIFICATION",
+    title: "한의원 기반 건강기능식품 제조 기술 벤처 재신청 사례",
+    description: "한의원 기반 건강기능식품 제조 기술 벤처 재신청 사례",
+    image: "/certification-venture(2).jpg",
+    link: "https://blog.naver.com/YOUR_LINK_2",
+  },
+  {
+    category: "VENTURE CERTIFICATION",
+    title: "인재를 부르는 비상장 벤처기업 스톡옵션의 마법",
+    description: "인재를 부르는 비상장 벤처기업 스톡옵션의 마법",
+    image: "/certification-venture(3).jpg",
+    link: "https://blog.naver.com/YOUR_LINK_3",
+  },
+];
+
 const [activeBenefitTab, setActiveBenefitTab] = useState(0);
 
   return (

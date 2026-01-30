@@ -154,7 +154,7 @@ export default function InsightsPage() {
               }}
             >
               <div className="absolute top-10 right-10 text-white/20 text-[120px] font-extrabold">
-                "
+                &quot;
               </div>
 
               <div>

@@ -1,3 +1,7 @@
+"use client";
+
+import Link from "next/link";
+
 export default function ConsultSuccessPage() {
   return (
     <main className="min-h-screen bg-white flex items-center justify-center px-6">
@@ -42,23 +46,23 @@ export default function ConsultSuccessPage() {
 
         {/* Actions */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
+          <Link
             href="/"
             className="inline-flex items-center justify-center rounded-md
                        border border-gray-300 px-8 py-3 text-sm font-semibold
                        text-gray-700 hover:bg-gray-50 transition"
           >
             메인으로 돌아가기
-          </a>
+          </Link>
 
-          <a
+          <Link
             href="/insights"
             className="inline-flex items-center justify-center rounded-md
                        bg-[#FF6A00] px-8 py-3 text-sm font-semibold text-white
                        hover:bg-[#E85F00] transition"
           >
             경영 인사이트 보기
-          </a>
+          </Link>
         </div>
       </div>
     </main>
