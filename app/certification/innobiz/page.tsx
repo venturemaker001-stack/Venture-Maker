@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import Footer from "../../components/Footer";
 
 export default function InnobizPage() {
@@ -281,10 +282,18 @@ export default function InnobizPage() {
               기술 증빙 자료에 대한 체계적인 준비가 필요합니다.
             </p>
 
-            <p className="font-semibold text-gray-900">
-              이노비즈 인증을 빠르고 효율적으로 받고 싶다면
-              언제든지 상담을 신청해 주세요.
-            </p>
+            <div className="flex items-center gap-4">
+              <p className="font-semibold text-gray-900 whitespace-nowrap">
+                이노비즈 인증을 빠르고 효율적으로 받고 싶다면
+                언제든지 상담을 신청해 주세요.
+              </p>
+              <Link
+                href="/consult"
+                className="inline-flex items-center rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
+              >
+                상담신청
+              </Link>
+            </div>
           </div>
         </div>
       </section>

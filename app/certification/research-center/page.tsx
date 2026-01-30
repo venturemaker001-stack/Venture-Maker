@@ -17,11 +17,13 @@ export default function ResearchLabPage() {
 
         <div className="grid lg:grid-cols-[360px_1fr] gap-16 items-start">
           {/* LEFT IMAGE */}
-          <img
-            src="/research-lab-certificate.png"
-            alt="기업부설연구소 인증서"
-            className="rounded-xl w-full object-contain"
-          />
+          <div className="w-full flex justify-end">
+            <img
+              src="/research-lab-certificate.png"
+              alt="기업부설연구소 인증서"
+              className="w-full max-w-[320px] h-[420px] rounded-xl object-contain"
+            />
+          </div>
 
           {/* RIGHT TEXT */}
           <div className="space-y-6 leading-relaxed text-[17px] text-gray-700">
@@ -180,7 +182,7 @@ export default function ResearchLabPage() {
     <div className="hidden lg:flex items-start">
       <div className="w-full h-full overflow-hidden rounded-[48px]">
         <img
-          src="/research-lab.jpg"
+          src="/certificationpage-research.jpg"
           alt="연구소 이미지"
           className="w-full h-full object-cover"
         />

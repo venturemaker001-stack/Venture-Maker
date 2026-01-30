@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";   // ✅ 이 줄 추가
+import Link from "next/link";
 import { motion } from "framer-motion";
 import Footer from "../../components/Footer";
 
@@ -43,6 +44,27 @@ export default function VentureCertificationPage() {
         </>
       ),
       icon: "🏆",
+    },
+  ];
+  const ventureCases = [
+    {
+      title: "AI Tech Transformation",
+      description:
+        "AI 챗봇 기업의 연구소 설립 전략,\n법인세 50% 감면과 벤처인증 동시 획득 노하우",
+      image: "/certification-venture(1).jpg",
+      link: "https://blog.naver.com/YOUR_LINK_1",
+    },
+    {
+      title: "한의원 기반 건강기능식품 제조 기술 벤처 재신청 사례",
+      description: "한의원 기반 건강기능식품 제조 기술 벤처 재신청 사례",
+      image: "/certification-venture(2).jpg",
+      link: "https://blog.naver.com/YOUR_LINK_2",
+    },
+    {
+      title: "인재를 부르는 비상장 벤처기업 스톡옵션의 마법",
+      description: "인재를 부르는 비상장 벤처기업 스톡옵션의 마법",
+      image: "/certification-venture(3).jpg",
+      link: "https://blog.naver.com/YOUR_LINK_3",
     },
   ];
 const [activeBenefitTab, setActiveBenefitTab] = useState(0);
@@ -114,10 +136,53 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
   </div>
 </section>
 
+      {/* ================= CASES ================= */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">벤처인증 사례</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {ventureCases.map((item, index) => (
+              <a
+                key={index}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative h-[420px] rounded-2xl overflow-hidden shadow-lg transition-all hover:-translate-y-2 hover:shadow-2xl"
+              >
+                <div className="absolute inset-0">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-7 text-white">
+                  <p className="text-xs font-semibold tracking-wider text-blue-200 mb-3">
+                    {item.category}
+                  </p>
+                  <h3 className="text-2xl font-extrabold mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed whitespace-pre-line opacity-90 mb-5">
+                    {item.description}
+                  </p>
+                  <div className="h-4" />
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
 
       {/* ================= BENEFITS SECTION ================= */}
-<section className="bg-white py-24">
+<section className="bg-gray-50 py-24">
   <div className="max-w-7xl mx-auto px-6">
     <h2 className="text-3xl font-bold mb-12">벤처기업 인증 혜택</h2>
 
@@ -173,11 +238,11 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
       </div>
 
       {/* RIGHT IMAGE */}
-      <div className="w-full">
+      <div className="w-full flex justify-end">
         <img
-          src="/venture-benefit.jpg"
-          alt="Venture certification benefits"
-          className="w-full rounded-2xl shadow-lg object-cover"
+          src="/certification-venture.jpg"
+          alt="벤처기업 인증 혜택"
+          className="w-full max-w-[360px] h-[360px] rounded-2xl shadow-lg object-cover"
         />
       </div>
     </div>
@@ -203,7 +268,7 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
     {/* FULL WIDTH TABLE */}
     <div className="border border-gray-300 p-16 text-gray-700 text-lg leading-relaxed">
       {activeBenefitTab === 0 && (
-        <ol className="list-decimal pl-6 space-y-10">
+        <ol className="list-decimal pl-6 space-y-5">
           <li>법인세 및 소득세 50% 감면 (창업벤처중소기업에 한함)</li>
           <li>취득세 75% 감면 (창업벤처중소기업에 한함)</li>
           <li>재산세 3년간 면제 및 이후 2년간 50% 감면 (창업벤처중소기업에 한함)</li>
@@ -213,7 +278,7 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
       )}
 
       {activeBenefitTab === 1 && (
-        <ol className="list-decimal pl-6 space-y-10">
+        <ol className="list-decimal pl-6 space-y-5">
           <li>기술보증기금 보증한도 확대</li>
           <li>코스닥 상장 심사기준 완화 및 우대</li>
           <li>정책자금 및 정부 지원사업 가점 부여</li>
@@ -221,7 +286,7 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
       )}
 
       {activeBenefitTab === 2 && (
-        <ol className="list-decimal pl-6 space-y-10">
+        <ol className="list-decimal pl-6 space-y-5">
           <li>기업부설연구소 연구전담요원 최소 2인 완화</li>
           <li>기업부설창작연구소 연구전담요원 최소 3인 완화</li>
           <li>스톡옵션 부여 대상 확대</li>
@@ -230,7 +295,7 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
       )}
 
       {activeBenefitTab === 3 && (
-        <ol className="list-decimal pl-6 space-y-10">
+        <ol className="list-decimal pl-6 space-y-5">
           <li>대기업 인수합병 시 상호출자제한기업집단 편입 7년 유예</li>
           <li>TV·라디오 광고비 3년간 최대 70% 할인</li>
         </ol>
@@ -296,9 +361,17 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
         취득할 수 있습니다.
       </p>
 
-      <p>
-        언제든지 상담을 신청해 주세요.
-      </p>
+      <div className="flex items-center gap-4">
+        <p className="whitespace-nowrap">
+          언제든지 상담을 신청해 주세요.
+        </p>
+        <Link
+          href="/consult"
+          className="inline-flex items-center rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
+        >
+          상담신청
+        </Link>
+      </div>
     </div>
   </div>
 </section>

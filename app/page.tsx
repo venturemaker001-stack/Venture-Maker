@@ -7,74 +7,52 @@ import { marked } from "marked";
 
 const items = [
   {
-    title: "Fund Optimization",
-    category: "FINANCE & TAX",
-    description: "정책자금 100% 승인을 위한 로드맵.\n재무제표 개선을 통한 신용등급 상향 전략.",
-    image: "/slide1.jpg",
+    title: "AI Tech Transformation",
+    category: "AI & R&D",
+    description:
+      "AI 챗봇 기업의 연구소 설립 전략.\n법인세 50% 감면과 벤처인증 동시 획득 노하우",
+    image: "/aitechtransformation-mainpage.jpg",
     link: "https://blog.naver.com/YOUR_LINK_1",
   },
   {
-    title: "R&D Certification",
-    category: "GOVERNMENT",
-    description: "벤처·이노비즈 인증을 통한\n세제 혜택 및 정부 지원 극대화.",
-    image: "/slide2.jpg",
+    title: "Fund Optimization",
+    category: "FINANCE & TAX",
+    description:
+      "정책자금 100% 승인을 위한 로드맵.\n재무제표 개선을 통한 신용등급 상향 전략",
+    image: "/fundoptimization-mainpage.jpg",
     link: "https://blog.naver.com/YOUR_LINK_2",
   },
   {
-    title: "Space & Brand",
-    category: "BRANDING",
-    description: "공간 기획을 통한 브랜드 가치 상승.\n투자 유치에 최적화된 구조 설계.",
-    image: "/slide3.jpg",
+    title: "Franchise Expansion",
+    category: "FRANCHISE",
+    description:
+      "외식업 프랜차이즈 ‘고기명작’ 성공 사례.\n메뉴 개발 전담부서 설립으로 가맹점 확장",
+    image: "/franchise-mainpage.jpg",
     link: "https://blog.naver.com/YOUR_LINK_3",
   },
   {
-    title: "HR Structure",
-    category: "ORGANIZATION",
-    description: "조직 구조 개선을 통한\n지속 가능한 성장 기반 구축.",
-    image: "/slide4.jpg",
+    title: "Smart Factory",
+    category: "MANUFACTURING",
+    description:
+      "제조업 혁신성장형 벤처인증.\n스마트공장 구축 자금 5억 확보 및 기술평가 우수 사례",
+    image: "/smartfactory-mainpage.jpg",
     link: "https://blog.naver.com/YOUR_LINK_4",
   },
   {
-    title: "IP Strategy",
-    category: "LEGAL",
-    description: "지식재산 보호 및 활용 전략으로\n기업가치 극대화.",
-    image: "/slide5.jpg",
+    title: "MAIN-BIZ Certification",
+    category: "MANAGEMENT",
+    description:
+      "기술이 없어도 경영 혁신으로 인증 획득.\n메인비즈를 통한 세무조사 유예 및 금리 우대",
+    image: "/mainbiz-mainpage.jpg",
     link: "https://blog.naver.com/YOUR_LINK_5",
   },
   {
-    title: "Global Expansion",
-    category: "GLOBAL",
-    description: "해외 진출을 위한\n시장 분석 및 실행 전략.",
-    image: "/slide6.jpg",
+    title: "AR & Big Data",
+    category: "TECH CONTENT",
+    description:
+      "빅데이터와 증강현실(AR) 기술을 결합한 콘텐츠 창작.\n벤처와 연구소인증 성공 사례",
+    image: "/arbigdata-mainpage.jpg",
     link: "https://blog.naver.com/YOUR_LINK_6",
-  },
-  {
-    title: "Digital Transformation",
-    category: "TECHNOLOGY",
-    description: "디지털 전환을 통한\n비즈니스 혁신 전략.",
-    image: "/slide7.jpg",
-    link: "https://blog.naver.com/YOUR_LINK_7",
-  },
-  {
-    title: "ESG Management",
-    category: "SUSTAINABILITY",
-    description: "지속가능경영을 위한\nESG 전략 수립 및 실행.",
-    image: "/slide8.jpg",
-    link: "https://blog.naver.com/YOUR_LINK_8",
-  },
-  {
-    title: "Market Entry",
-    category: "STRATEGY",
-    description: "신규 시장 진입을 위한\n전략적 접근 방법.",
-    image: "/slide9.jpg",
-    link: "https://blog.naver.com/YOUR_LINK_9",
-  },
-  {
-    title: "Investment Ready",
-    category: "FUNDING",
-    description: "투자 유치 성공을 위한\n완벽한 준비 전략.",
-    image: "/slide10.jpg",
-    link: "https://blog.naver.com/YOUR_LINK_10",
   },
 ];
 
@@ -294,7 +272,7 @@ export default function Home() {
   return (
     <main>
       {/* ================= SECTION 1 : HERO ================= */}
-      <section className="w-full bg-white pt-24 pb-20">
+      <section className="w-full bg-white pt-24 pb-12">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <p className="text-sm font-semibold tracking-widest text-orange-500 mb-6">
             TOTAL BUSINESS GROWTH STRATEGY
@@ -318,60 +296,52 @@ export default function Home() {
       
 
      {/* ================= SECTION 2 : 3D CAROUSEL ================= */}
-<section className="relative py-24 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+<section className="relative py-16 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
   <div className="max-w-7xl mx-auto px-6">
 
-    {/* Carousel Container */}
-    <div className="relative h-[600px] flex items-center justify-center">
-      {/* Cards */}
+    {/* Carousel Stage */}
+    <div className="relative h-[620px] flex items-center justify-center">
       <div className="relative w-full flex items-center justify-center">
+
         {[...items, ...items, ...items].map((item, index) => {
           const position = index - currentIndex - items.length;
-          
+
           let translateX = 0;
           let scale = 0.6;
           let zIndex = 0;
-          let opacity = 0.4;
+          let opacity = 0.35;
 
-          // Center card - Biggest
+          // ===== POSITIONING (NO OVERLAP) =====
           if (position === 0) {
             translateX = 0;
             scale = 1;
-            zIndex = 20;
+            zIndex = 30;
             opacity = 1;
-          }
-          // Immediate left/right - Medium
-          else if (position === -1) {
-            translateX = -420;
-            scale = 0.75;
-            zIndex = 15;
-            opacity = 0.7;
-          }
-          else if (position === 1) {
-            translateX = 420;
-            scale = 0.75;
-            zIndex = 15;
-            opacity = 0.7;
-          }
-          // Second layer left/right - Smaller
-          else if (position === -2) {
-            translateX = -700;
+          } else if (position === -1) {
+            translateX = -520;
+            scale = 0.78;
+            zIndex = 20;
+            opacity = 0.75;
+          } else if (position === 1) {
+            translateX = 520;
+            scale = 0.78;
+            zIndex = 20;
+            opacity = 0.75;
+          } else if (position === -2) {
+            translateX = -860;
             scale = 0.65;
             zIndex = 10;
-            opacity = 0.5;
-          }
-          else if (position === 2) {
-            translateX = 700;
+            opacity = 0.55;
+          } else if (position === 2) {
+            translateX = 860;
             scale = 0.65;
             zIndex = 10;
-            opacity = 0.5;
-          }
-          // Far cards
-          else {
-            translateX = position > 0 ? 1000 : -1000;
+            opacity = 0.55;
+          } else {
+            translateX = position > 0 ? 1200 : -1200;
             scale = 0.5;
             zIndex = 1;
-            opacity = 0.3;
+            opacity = 0;
           }
 
           return (
@@ -383,11 +353,12 @@ export default function Home() {
               className="absolute cursor-pointer"
               style={{
                 transform: `translateX(${translateX}px) scale(${scale})`,
-                width: '480px',
-                height: '560px',
+                width: "460px",
+                height: "560px",
                 zIndex,
                 opacity,
                 transition: "all 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
+                pointerEvents: opacity < 0.5 ? "none" : "auto",
               }}
               onClick={(e) => {
                 if (position !== 0) {
@@ -397,6 +368,7 @@ export default function Home() {
               }}
             >
               <div className="relative h-full rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow">
+
                 {/* Image */}
                 <img
                   src={item.image}
@@ -404,7 +376,7 @@ export default function Home() {
                   className="absolute inset-0 w-full h-full object-cover"
                 />
 
-                {/* Gradient Overlay */}
+                {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
                 {/* Content */}
@@ -421,7 +393,7 @@ export default function Home() {
                     {item.description}
                   </p>
 
-                  <span className="inline-flex items-center text-sm font-semibold text-white group">
+                  <span className="inline-flex items-center text-sm font-semibold">
                     Read Case Study
                     <svg
                       className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1"
@@ -444,12 +416,22 @@ export default function Home() {
         })}
       </div>
 
-      {/* Control Buttons - Bottom Left */}
-      <div className="absolute left-8 -bottom-20 z-30 flex items-center gap-3">
-        {/* Pause/Play Button */}
+      {/* ================= CONTROLS ================= */}
+      <div className="absolute left-8 -bottom-20 z-30 flex items-center gap-4">
+
+        {/* Pause / Play */}
         <button
           onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-          className="w-14 h-14 rounded-xl bg-white border-2 border-gray-200 text-gray-800 flex items-center justify-center hover:bg-blue-900 hover:text-white hover:border-blue-900 transition-all shadow-lg"
+          className="
+            w-14 h-14 rounded-xl
+            bg-white/90 backdrop-blur
+            border border-gray-300
+            text-gray-800
+            flex items-center justify-center
+            shadow-xl
+            hover:bg-blue-900 hover:text-white hover:border-blue-900
+            transition-all
+          "
           aria-label={isAutoPlaying ? "Pause" : "Play"}
         >
           {isAutoPlaying ? (
@@ -463,10 +445,19 @@ export default function Home() {
           )}
         </button>
 
-        {/* Previous Button */}
+        {/* Prev */}
         <button
           onClick={prevSlide}
-          className="w-14 h-14 rounded-xl bg-white border-2 border-gray-200 text-gray-800 flex items-center justify-center hover:bg-blue-900 hover:text-white hover:border-blue-900 transition-all shadow-lg"
+          className="
+            w-14 h-14 rounded-xl
+            bg-white/90 backdrop-blur
+            border border-gray-300
+            text-gray-800
+            flex items-center justify-center
+            shadow-xl
+            hover:bg-blue-900 hover:text-white hover:border-blue-900
+            transition-all
+          "
           aria-label="Previous slide"
         >
           <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
@@ -474,10 +465,19 @@ export default function Home() {
           </svg>
         </button>
 
-        {/* Next Button */}
+        {/* Next */}
         <button
           onClick={nextSlide}
-          className="w-14 h-14 rounded-xl bg-white border-2 border-gray-200 text-gray-800 flex items-center justify-center hover:bg-blue-900 hover:text-white hover:border-blue-900 transition-all shadow-lg"
+          className="
+            w-14 h-14 rounded-xl
+            bg-white/90 backdrop-blur
+            border border-gray-300
+            text-gray-800
+            flex items-center justify-center
+            shadow-xl
+            hover:bg-blue-900 hover:text-white hover:border-blue-900
+            transition-all
+          "
           aria-label="Next slide"
         >
           <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
@@ -487,8 +487,8 @@ export default function Home() {
       </div>
     </div>
 
-    {/* Dots Indicator */}
-    <div className="flex justify-center gap-2 mt-12">
+    {/* ================= DOT INDICATOR ================= */}
+    <div className="flex justify-center gap-2 mt-14">
       {items.map((_, index) => (
         <button
           key={index}
@@ -511,23 +511,13 @@ export default function Home() {
   <div className="max-w-7xl mx-auto px-6">
 
     {/* Header */}
-    <div className="flex items-end justify-between mb-12">
-      <div>
-        <p className="text-sm font-semibold tracking-widest text-orange-500 mb-2">
-          KNOWLEDGE HUB
-        </p>
-        <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900">
-          Management Insights
-        </h2>
-      </div>
-
-      <div className="flex gap-6 text-sm font-semibold text-gray-500">
-        <button className="text-blue-900 border-b-2 border-blue-900 pb-1">All</button>
-        <button>벤처/이노비즈</button>
-        <button>기업부설연구소</button>
-        <button>정책자금</button>
-        <button>성공사례</button>
-      </div>
+    <div className="mb-12">
+      <p className="text-sm font-semibold tracking-widest text-orange-500 mb-2">
+        KNOWLEDGE HUB
+      </p>
+      <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900">
+        Management Insights
+      </h2>
     </div>
 
     {/* ================= ROW 1 : 4 SAME CARDS ================= */}
@@ -537,37 +527,37 @@ export default function Home() {
           tag: "BEST", 
           color: "bg-yellow-400", 
           date: "2025. 06. 23", 
-          title: "디지털 전환 컨설팅으로 AI 벤처 인증까지 이끈 실전 사례", 
-          desc: "인증 통과로 이어진 디지털 전략",
+          title: "기술이 없어도 경영 혁신으로 인증 획득, 메인비즈를 통한 세무조사 유예 및 금리 우대", 
+          desc: "",
           url: "https://blog.naver.com/eum63/223598143019",
-          image: "/blog-card-1.jpg"
+          image: "/mainbiz-mainpage.jpg"
         },
         { 
           tag: "R&D", 
           color: "bg-blue-500 text-white", 
           date: "2024. 12. 01", 
-          title: "혁신성장 벤처인증 기술 스타트업 성공 사례", 
-          desc: "인증을 통과한 핵심 전략과 실행 포인트",
+          title: "한의원기반 건강기능식품제조 벤처 재신청 사례", 
+          desc: "",
           url: "https://blog.naver.com/eum63/223905700120",
-          image: "/blog-card-2.jpg"
+          image: "/certification-venture(2).jpg"
         },
         { 
           tag: "MAINBIZ", 
           color: "bg-purple-500 text-white", 
           date: "2025. 04. 07", 
-          title: "외식 프랜차이즈, 혁신성장 벤처인증에 성공하다", 
-          desc: "사업성과 시스템으로 인증을 통과한 전략",
+          title: "AI 챗봇 기업의 연구소 설립 전략. 법인세 50% 감면과 벤처인증 동시 획득 노하우", 
+          desc: "",
           url: "https://blog.naver.com/eum63/223573977275",
-          image: "/blog-card-3.jpg"
+          image: "/aitechtransformation-mainpage.jpg"
         },
         { 
           tag: "INSIGHT", 
           color: "bg-gray-800 text-white", 
           date: "2025. 03. 11", 
-          title: "벤처기업이 반드시 준비해야 할 핵심 서류", 
-          desc: "심사 기준에서 가장 많이 보는 항목",
+          title: "향기 화장품제조 ISO와 벤처인증", 
+          desc: "",
           url: "https://blog.naver.com/eum63/223812866952",
-          image: "/blog-card-4.jpg"
+          image: "/insights-perfume.jpg"
         },
       ].map((item, i) => (
         <a
@@ -593,9 +583,11 @@ export default function Home() {
             <h3 className="font-bold text-blue-900 mb-3 leading-snug">
               {item.title}
             </h3>
-            <p className="text-sm text-gray-500 mt-auto">
-              {item.desc}
-            </p>
+            {item.desc && (
+              <p className="text-sm text-gray-500 mt-auto">
+                {item.desc}
+              </p>
+            )}
           </div>
         </a>
       ))}
@@ -613,8 +605,8 @@ export default function Home() {
       >
         <div className="relative h-56 bg-gray-100 overflow-hidden">
           <img 
-            src="/blog-card-5.jpg" 
-            alt="[혁신성장형] 의류 쇼핑몰 벤처 인증 성공 사례"
+            src="/insights-mainbiz.jpg" 
+            alt="메인비즈 인증 평가지표 알고 세무조사 유예 받자"
             className="w-full h-full object-cover"
           />
           <span className="absolute top-4 left-4 text-xs font-bold bg-red-500 text-white px-3 py-1 rounded">
@@ -625,11 +617,8 @@ export default function Home() {
         <div className="p-6 flex flex-col min-h-[170px]">
           <p className="text-sm text-gray-400 mb-2">2024. 08. 19</p>
           <h3 className="font-bold text-blue-900 mb-3 leading-snug">
-            [혁신성장형] 의류 쇼핑몰 벤처 인증 성공 사례
+            메인비즈 인증 평가지표 알고 세무조사 유예 받자
           </h3>
-          <p className="text-sm text-gray-500 mt-auto">
-            강남 의류 브랜드의 실제 인증 스토리
-          </p>
         </div>
       </a>
 
@@ -642,19 +631,16 @@ export default function Home() {
       >
         <div className="h-56 bg-gray-100 overflow-hidden">
           <img 
-            src="/blog-card-6.jpg" 
-            alt="벤처 인증 후 실제 혜택 정리"
+            src="/insights-food.jpg" 
+            alt="요식업계 설렙과 콜라보: 혁신 벤처인증으로 브랜드 강화"
             className="w-full h-full object-cover"
           />
         </div>
         <div className="p-6 flex flex-col min-h-[170px]">
           <p className="text-sm text-gray-400 mb-2">2024. 09. 02</p>
           <h3 className="font-bold text-blue-900 mb-3 leading-snug">
-            벤처 인증 후 실제 혜택 정리
+            요식업계 설렙과 콜라보: 혁신 벤처인증으로 브랜드 강화
           </h3>
-          <p className="text-sm text-gray-500 mt-auto">
-            기업 운영에 바로 적용되는 혜택
-          </p>
         </div>
       </a>
 
@@ -706,31 +692,31 @@ export default function Home() {
       {[
         {
           date: "2024. 10. 10",
-          title: "기업부설연구소 설립 요건 한 번에 정리",
-          desc: "실무 기준으로 정리한 핵심 포인트",
+          title: "AR + BIG DATA 콘텐츠 미디어 제작: 기술적 혁신벤처 인증으로 인한 기업가치 창출",
+          desc: "",
           url: "https://blog.naver.com/eum63/223547687068",
-          image: "/blog-card-7.jpg"
+          image: "/insights-arbigdata.jpg"
         },
         {
           date: "2024. 10. 11",
-          title: "정책자금 심사에서 탈락하는 5가지 이유",
-          desc: "실무 기준으로 정리한 핵심 포인트",
+          title: "인재를 부르는 비상장 벤처기업 스톡옵션의 마법",
+          desc: "",
           url: "https://blog.naver.com/eum63/223618110844",
-          image: "/blog-card-8.jpg"
+          image: "/certification-venture(3).jpg"
         },
         {
           date: "2024. 10. 12",
-          title: "스타트업 재무제표, 이것만은 꼭 보세요",
-          desc: "실무 기준으로 정리한 핵심 포인트",
+          title: "소프트웨어 개발 및 컴퓨터 정보기기 도소매: 보완 솔루션 기술 개발 혁신 벤처 인증",
+          desc: "",
           url: "https://blog.naver.com/eum63/223571498802",
-          image: "/blog-card-9.jpg"
+          image: "/insights-software.jpg"
         },
         {
           date: "2024. 10. 13",
-          title: "벤처 인증 후 유지 관리 체크리스트",
-          desc: "실무 기준으로 정리한 핵심 포인트",
+          title: "외식업체 자동화 기술 도입과 특허 확보와 혁신벤처 인증",
+          desc: "",
           url: "https://blog.naver.com/eum63/223630048870",
-          image: "/blog-card-10.jpg"
+          image: "/insights-eatingout.jpg"
         },
       ].map((item, i) => (
         <a
@@ -752,9 +738,11 @@ export default function Home() {
             <h3 className="font-bold text-blue-900 mb-3 leading-snug">
               {item.title}
             </h3>
-            <p className="text-sm text-gray-500 mt-auto">
-              {item.desc}
-            </p>
+            {item.desc && (
+              <p className="text-sm text-gray-500 mt-auto">
+                {item.desc}
+              </p>
+            )}
           </div>
         </a>
       ))}

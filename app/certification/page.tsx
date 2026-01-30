@@ -4,19 +4,13 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import Footer from "../components/Footer";
 
-
-export default function CertificationPage() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-
-  const certifications = [
+const certifications = [
     {
       title: "벤처기업인증",
       category: "VENTURE CERTIFICATION",
       description: "기술성과 성장성을 인정받아 정부 지원 혜택을 받을 수 있는 벤처기업 인증",
       detailedInfo: "벤처기업 인증을 통해 세제 혜택, 정책자금 지원, 인력 채용 우대 등 다양한 혜택을 받을 수 있습니다. 기술평가보증, 연구개발비 세액공제, 스톡옵션 부여 등의 특별한 지원이 제공됩니다.",
-      image: "/venture-benefit.jpg",
+      image: "/certificationpage-venture.jpg",
       gradient: "from-emerald-400 via-teal-500 to-cyan-600",
       href: "/certification/venture",
     },
@@ -25,7 +19,7 @@ export default function CertificationPage() {
       category: "INNOBIZ CERTIFICATION",
       description: "기술혁신형 중소기업 인증으로 경쟁력 있는 기업임을 증명",
       detailedInfo: "기술혁신형 중소기업(INNO-BIZ)은 기술 우위를 바탕으로 경쟁력을 확보한 기업을 인증합니다. R&D 투자 지원, 기술개발 자금 융자, 해외 마케팅 지원 등의 혜택이 제공됩니다.",
-      image: "/innobiz-cert.jpg",
+      image: "/certificationpage-inobiz.jpg",
       gradient: "from-blue-400 via-indigo-500 to-purple-600",
       href: "/certification/innobiz",
     },
@@ -34,7 +28,7 @@ export default function CertificationPage() {
       category: "MAINBIZ CERTIFICATION",
       description: "경영혁신형 중소기업 인증으로 우수한 경영 시스템 보유 증명",
       detailedInfo: "경영혁신형 중소기업(MAIN-BIZ)은 우수한 경영시스템을 갖춘 기업을 인증합니다. 정책자금 지원, 경영 컨설팅, 해외 진출 지원, 신용보증 우대 등의 혜택을 받을 수 있습니다.",
-      image: "/mainbiz-benefit.jpg",
+      image: "/certificationpage-mainbiz.jpg",
       gradient: "from-orange-400 via-amber-500 to-yellow-600",
       href: "/certification/mainbiz",
     },
@@ -43,7 +37,7 @@ export default function CertificationPage() {
       category: "ISO CERTIFICATION",
       description: "국제 표준 품질경영시스템 인증으로 글로벌 신뢰도 확보",
       detailedInfo: "ISO 인증은 국제표준화기구가 정한 품질경영시스템 인증입니다. ISO 9001(품질경영), ISO 14001(환경경영), ISO 45001(안전보건경영) 등을 통해 글로벌 경쟁력을 확보할 수 있습니다.",
-      image: "/iso-logo.png",
+      image: "/certificationpage-iso.jpg",
       gradient: "from-cyan-400 via-sky-500 to-blue-600",
       href: "/certification/iso",
     },
@@ -52,7 +46,7 @@ export default function CertificationPage() {
       category: "RESEARCH CENTER",
       description: "연구개발 전담 조직 설립으로 기술 개발 및 세제 혜택 확보",
       detailedInfo: "기업부설연구소 인정을 받으면 연구개발비 세액공제, 연구전담요원 병역특례, 국가연구개발사업 참여 자격, 우수인력 채용 지원 등 다양한 혜택이 제공됩니다.",
-      image: "/research-activity.png",
+      image: "/certificationpage-research.jpg",
       gradient: "from-violet-400 via-purple-500 to-fuchsia-600",
       href: "/certification/research-center",
     },
@@ -61,13 +55,13 @@ export default function CertificationPage() {
       category: "MATERIALS & PARTS",
       description: "소재·부품·장비 분야 전문기업 지정으로 특별 지원 수혜",
       detailedInfo: "소재·부품·장비 전문기업으로 지정되면 R&D 자금 지원 확대, 세액 감면 혜택, 수출 지원, 공공구매 우선 구매 대상 지정 등의 특별한 혜택을 받을 수 있습니다.",
-      image: "/sobujang-benefits.jpg",
+      image: "/certificationpage-professional.jpg",
       gradient: "from-green-400 via-emerald-500 to-teal-600",
       href: "/certification/materials-parts",
     },
-  ];
+];
 
-  const clientReviews = [
+const clientReviews = [
     {
       type: "VIDEO",
       category: "CLIENT TESTIMONIAL",
@@ -104,7 +98,12 @@ export default function CertificationPage() {
       image: "/review-4.jpg",
       videoIcon: false,
     },
-  ];
+];
+
+export default function CertificationPage() {
+  const [activeIndex, setActiveIndex] = useState(certifications.length);
+  const [isPaused, setIsPaused] = useState(false);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   // Create infinite loop by duplicating items
   const extendedCertifications = [...certifications, ...certifications, ...certifications];
@@ -118,11 +117,18 @@ export default function CertificationPage() {
     }
   }, [isPaused]);
 
-  // Reset position when reaching end
+  // Reset position when reaching ends
   useEffect(() => {
     if (activeIndex >= certifications.length * 2) {
       setTimeout(() => {
         setActiveIndex(certifications.length);
+      }, 500);
+      return;
+    }
+
+    if (activeIndex < 0) {
+      setTimeout(() => {
+        setActiveIndex(certifications.length * 2 - 1);
       }, 500);
     }
   }, [activeIndex, certifications.length]);
@@ -166,7 +172,7 @@ export default function CertificationPage() {
     }
     // Immediate left card - Medium
     else if (position === -1) {
-      translateX = -450;
+      translateX = -500;
       scale = 1;
       width = 340;
       height = 480;
@@ -175,7 +181,7 @@ export default function CertificationPage() {
     }
     // Immediate right card - Medium
     else if (position === 1) {
-      translateX = 450;
+      translateX = 500;
       scale = 1;
       width = 340;
       height = 480;
@@ -184,7 +190,7 @@ export default function CertificationPage() {
     }
     // Second left card - Small
     else if (position === -2) {
-      translateX = -720;
+      translateX = -800;
       scale = 1;
       width = 280;
       height = 420;
@@ -193,7 +199,7 @@ export default function CertificationPage() {
     }
     // Second right card - Small
     else if (position === 2) {
-      translateX = 720;
+      translateX = 800;
       scale = 1;
       width = 280;
       height = 420;
@@ -202,7 +208,7 @@ export default function CertificationPage() {
     }
     // Third left card - Very small
     else if (position === -3) {
-      translateX = -940;
+      translateX = -1080;
       scale = 1;
       width = 220;
       height = 360;
@@ -211,7 +217,7 @@ export default function CertificationPage() {
     }
     // Third right card - Very small
     else if (position === 3) {
-      translateX = 940;
+      translateX = 1080;
       scale = 1;
       width = 220;
       height = 360;

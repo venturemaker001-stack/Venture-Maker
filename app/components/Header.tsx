@@ -24,7 +24,7 @@ export default function Header() {
           <img
   src="/venture-maker-logo.png"
   alt="Venture Maker Logo"
-  className="h-10 lg:h-12 object-contain"
+  className="h-16 lg:h-20 object-contain"
 />
 
         </Link>

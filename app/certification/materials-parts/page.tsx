@@ -3,6 +3,27 @@
 import Link from "next/link";
 
 export default function MaterialsPartPage() {
+  const materialsPartsCases = [
+    {
+      title: "소부장전문기업 사례 1",
+      description: "사례 설명을 입력하세요.",
+      image: "/sobujang-benefits.jpg",
+      link: "https://blog.naver.com/YOUR_LINK_1",
+    },
+    {
+      title: "소부장전문기업 사례 2",
+      description: "사례 설명을 입력하세요.",
+      image: "/certificationpage-professional.jpg",
+      link: "https://blog.naver.com/YOUR_LINK_2",
+    },
+    {
+      title: "소부장전문기업 사례 3",
+      description: "사례 설명을 입력하세요.",
+      image: "/certificationpage-materials-parts.jpg",
+      link: "https://blog.naver.com/YOUR_LINK_3",
+    },
+  ];
+
   return (
     <main className="bg-white">
       <div className="max-w-7xl mx-auto px-6 py-24 space-y-32">
@@ -16,12 +37,12 @@ export default function MaterialsPartPage() {
             <div className="flex-1 ml-8 h-px bg-gray-200" />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-16 items-center">
             {/* LEFT IMAGE */}
             <div className="flex justify-center">
               <img
-                src="/sobujang-korea.png"
-                alt="소부장 강국 KOREA"
+                src="/materialsparts-certification.jpg"
+                alt="소부장 전문기업 인증"
                 className="w-64 object-contain"
               />
             </div>
@@ -68,6 +89,46 @@ export default function MaterialsPartPage() {
                 신규발급됩니다.
               </p>
             </div>
+          </div>
+        </section>
+
+        {/* ================= CASES ================= */}
+        <section>
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">
+              소부장전문기업 사례
+            </h2>
+            <div className="flex-1 ml-8 h-px bg-gray-200" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {materialsPartsCases.map((item, index) => (
+              <a
+                key={index}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative h-[420px] rounded-2xl overflow-hidden shadow-lg transition-all hover:-translate-y-2 hover:shadow-2xl"
+              >
+                <div className="absolute inset-0">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-7 text-white">
+                  <h3 className="text-2xl font-extrabold mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed whitespace-pre-line opacity-90">
+                    {item.description}
+                  </p>
+                </div>
+              </a>
+            ))}
           </div>
         </section>
 
