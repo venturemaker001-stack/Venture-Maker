@@ -38,7 +38,7 @@ export default function InsightsPage() {
                 title: "한의원기반 건강기능식품제조 벤처 재신청 사례",
                 desc: "",
                 url: "https://blog.naver.com/eum63/223905700120",
-                image: "/certification-venture(2).jpg",
+                image: "/koreanmedicine-new.jpg",
               },
               {
                 tag: "MAINBIZ",
@@ -64,81 +64,84 @@ export default function InsightsPage() {
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-2xl border bg-white overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300"
+                className="relative h-[320px] rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
               >
-                <div className="relative h-56 bg-gray-100 overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <span
-                    className={`absolute top-4 left-4 text-xs font-bold px-3 py-1 rounded ${item.color}`}
-                  >
-                    {item.tag}
-                  </span>
-                </div>
-
-                <div className="p-6 flex flex-col min-h-[170px]">
-                  <p className="text-sm text-gray-400 mb-2">{item.date}</p>
-                  <h3 className="font-bold text-blue-900 mb-3 leading-snug">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                <span
+                  className={`absolute top-4 left-4 text-xs font-bold px-3 py-1 rounded ${item.color}`}
+                >
+                  {item.tag}
+                </span>
+                <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                  <h3 className="text-base md:text-lg font-extrabold leading-snug">
                     {item.title}
                   </h3>
                   {item.desc && (
-                    <p className="text-sm text-gray-500 mt-auto">{item.desc}</p>
+                    <p className="text-sm text-white/80 mt-2 line-clamp-2">
+                      {item.desc}
+                    </p>
                   )}
+                  <span className="inline-flex items-center text-sm font-semibold mt-4">
+                    Read Case Study →
+                  </span>
                 </div>
               </a>
             ))}
           </div>
 
           {/* ================= ROW 2 ================= */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12 items-stretch">
             {/* Small card 1 */}
             <a
               href="https://blog.naver.com/eum63/223908474692"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-2xl border bg-white overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300"
+              className="relative h-[320px] rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
             >
-              <div className="relative h-56 bg-gray-100 overflow-hidden">
-                <img
-                  src="/insights-mainbiz.jpg"
-                  alt="메인비즈 인증 평가지표 알고 세무조사 유예 받자"
-                  className="w-full h-full object-cover"
-                />
-                <span className="absolute top-4 left-4 text-xs font-bold bg-red-500 text-white px-3 py-1 rounded">
-                  SUCCESS
-                </span>
-              </div>
-
-              <div className="p-6 flex flex-col min-h-[170px]">
-                <p className="text-sm text-gray-400 mb-2">2024. 08. 19</p>
-                <h3 className="font-bold text-blue-900 mb-3 leading-snug">
+              <img
+                src="/insights-mainbiz.jpg"
+                alt="메인비즈 인증 평가지표 알고 세무조사 유예 받자"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+              <span className="absolute top-4 left-4 text-xs font-bold bg-red-500 text-white px-3 py-1 rounded">
+                SUCCESS
+              </span>
+              <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                <h3 className="text-base md:text-lg font-extrabold leading-snug">
                   메인비즈 인증 평가지표 알고 세무조사 유예 받자
                 </h3>
+                <span className="inline-flex items-center text-sm font-semibold mt-4">
+                  Read Case Study →
+                </span>
               </div>
             </a>
 
             {/* Small card 2 */}
             <a
-              href="https://blog.naver.com/eum63/223678577702"
+              href="https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223564772199&redirect=Dlog"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-2xl border bg-white overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300"
+              className="relative h-[320px] rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
             >
-              <div className="h-56 bg-gray-100 overflow-hidden">
-                <img
-                  src="/insights-food.jpg"
-                  alt="요식업계 설렙과 콜라보: 혁신 벤처인증으로 브랜드 강화"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-6 flex flex-col min-h-[170px]">
-                <p className="text-sm text-gray-400 mb-2">2024. 09. 02</p>
-                <h3 className="font-bold text-blue-900 mb-3 leading-snug">
+              <img
+                src="/insights-food.jpg"
+                alt="요식업계 설렙과 콜라보: 혁신 벤처인증으로 브랜드 강화"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                <h3 className="text-base md:text-lg font-extrabold leading-snug">
                   요식업계 설렙과 콜라보: 혁신 벤처인증으로 브랜드 강화
                 </h3>
+                <span className="inline-flex items-center text-sm font-semibold mt-4">
+                  Read Case Study →
+                </span>
               </div>
             </a>
 
@@ -147,7 +150,7 @@ export default function InsightsPage() {
               href="https://blog.naver.com/eum63/223821907774"
               target="_blank"
               rel="noopener noreferrer"
-              className="md:col-span-2 relative rounded-2xl overflow-hidden text-white p-12 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300"
+              className="md:col-span-2 relative h-[320px] rounded-2xl overflow-hidden text-white p-12 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300"
               style={{
                 background:
                   "linear-gradient(135deg, #1E2A8A 0%, #1B1E6D 100%)",
@@ -188,9 +191,6 @@ export default function InsightsPage() {
                 </div>
               </div>
 
-              <div className="text-sm font-semibold mt-6">
-                Read Column →
-              </div>
             </a>
           </div>
 
@@ -209,7 +209,8 @@ export default function InsightsPage() {
                 title: "인재를 부르는 비상장 벤처기업 스톡옵션의 마법",
                 desc: "",
                 url: "https://blog.naver.com/eum63/223618110844",
-                image: "/certification-venture(3).jpg",
+                image: "/stockoption-new.jpg",
+                zoom: true,
               },
               {
                 date: "2024. 10. 12",
@@ -231,23 +232,28 @@ export default function InsightsPage() {
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-2xl border bg-white overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300"
+                className="relative h-[320px] rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
               >
-                <div className="h-56 bg-gray-100 overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-6 flex flex-col min-h-[170px]">
-                  <p className="text-sm text-gray-400 mb-2">{item.date}</p>
-                  <h3 className="font-bold text-blue-900 mb-3 leading-snug">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className={`absolute inset-0 w-full h-full object-cover ${
+                    item.zoom ? "scale-110" : ""
+                  }`}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                  <h3 className="text-base md:text-lg font-extrabold leading-snug">
                     {item.title}
                   </h3>
-                {item.desc && (
-                  <p className="text-sm text-gray-500 mt-auto">{item.desc}</p>
-                )}
+                  {item.desc && (
+                    <p className="text-sm text-white/80 mt-2 line-clamp-2">
+                      {item.desc}
+                    </p>
+                  )}
+                  <span className="inline-flex items-center text-sm font-semibold mt-4">
+                    Read Case Study →
+                  </span>
                 </div>
               </a>
             ))}

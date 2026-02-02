@@ -46,39 +46,31 @@ export default function VentureCertificationPage()
       ),
       icon: "🏆",
     },
-    {
-  title: "...",
-  category: "VENTURE",
-  description: "...",
-  image: "...",
-  link: "..."
-}
-
   ];
   const ventureCases = [
-  {
-    category: "VENTURE CERTIFICATION",
-    title: "AI Tech Transformation",
-    description:
-      "AI 챗봇 기업의 연구소 설립 전략,\n법인세 50% 감면과 벤처인증 동시 획득 노하우",
-    image: "/certification-venture(1).jpg",
-    link: "https://blog.naver.com/YOUR_LINK_1",
-  },
-  {
-    category: "VENTURE CERTIFICATION",
-    title: "한의원 기반 건강기능식품 제조 기술 벤처 재신청 사례",
-    description: "한의원 기반 건강기능식품 제조 기술 벤처 재신청 사례",
-    image: "/certification-venture(2).jpg",
-    link: "https://blog.naver.com/YOUR_LINK_2",
-  },
-  {
-    category: "VENTURE CERTIFICATION",
-    title: "인재를 부르는 비상장 벤처기업 스톡옵션의 마법",
-    description: "인재를 부르는 비상장 벤처기업 스톡옵션의 마법",
-    image: "/certification-venture(3).jpg",
-    link: "https://blog.naver.com/YOUR_LINK_3",
-  },
-];
+    {
+      category: "VENTURE CERTIFICATION",
+      title: "인재를 부르는 비상장 벤처기업 스톡옵션의 마법",
+      description: "인재를 부르는 비상장 벤처기업 스톡옵션의 마법",
+      image: "/certification-venture(3).jpg",
+      link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223557926232&redirect=Dlog",
+    },
+    {
+      category: "VENTURE CERTIFICATION",
+      title: "한의원 기반 건강기능식품 제조 기술 벤처 재신청 사례",
+      description: "한의원 기반 건강기능식품 제조 기술 벤처 재신청 사례",
+      image: "/insights-koreanmedicine.jpg",
+      link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223591654433&redirect=Dlog",
+    },
+    {
+      category: "VENTURE CERTIFICATION",
+      title: "AI Tech Transformation",
+      description:
+        "AI 챗봇 기업의 연구소 설립 전략,\n법인세 50% 감면과 벤처인증 동시 획득 노하우",
+      image: "/certification-venture(1).jpg",
+      link: "https://blog.naver.com/eum63/223598143019",
+    },
+  ];
 
 const [activeBenefitTab, setActiveBenefitTab] = useState(0);
 
@@ -114,20 +106,24 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
     <div className="space-y-6 leading-relaxed text-gray-700 text-[17px]">
       <p>
         벤처기업 인증이란 새로운 기술과 아이디어를 개발하여 신사업을
-        성장시키는 기업에게 내수를 넘어 글로벌 확산과 경제성장 및
-        일자리 창출의 역할을 수행할 수 있도록 발굴하여 성장시키기 위한
-        인증제도입니다.
+        성장시키는 기업에게 내수를 넘어
+        <br />
+        글로벌 확산과 경제성장 및 일자리 창출의 역할을 수행할 수 있도록
+        발굴하여 성장시키기 위한 인증제도입니다.
       </p>
 
       <p>
         벤처기업의 경쟁력을 확보하여 기업가치를 높이고 혁신 역량을
-        강화시키는 등의 환경을 조성하고 이에 따른 정책적인 지원을
-        제공하고 있습니다.
+        강화시키는 등의 환경을 조성하고
+        <br />
+        이에 따른 정책적인 지원을 제공하고 있습니다.
       </p>
 
       <p>
         법인세 및 소득세 50% 감면, 취득세 75% 감면, 재산세 면제 및 감면
-        등의 다양한 세제혜택과 금융, M&A 등의 혜택을 받을 수 있습니다.
+        등의 다양한 세제혜택과 금융, M&A 등의
+        <br />
+        혜택을 받을 수 있습니다.
       </p>
 
       <div className="border-l-4 border-blue-600 pl-6 py-5 bg-blue-50 rounded-md">
@@ -136,7 +132,9 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
         </p>
         <p className="text-sm text-gray-700">
           창업 후 3년 이내에 벤처기업으로 확인받은 기업은 최초 소득 발생
-          과세연도부터 4년간 소득세 또는 법인세의 50%를 감면받을 수 있습니다.
+          과세연도부터 4년간
+          <br />
+          소득세 또는 법인세의 50%를 감면받을 수 있습니다.
         </p>
       </div>
 
@@ -148,51 +146,6 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
     </div>
   </div>
 </section>
-
-      {/* ================= CASES ================= */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">벤처인증 사례</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {ventureCases.map((item, index) => (
-              <a
-                key={index}
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative h-[420px] rounded-2xl overflow-hidden shadow-lg transition-all hover:-translate-y-2 hover:shadow-2xl"
-              >
-                <div className="absolute inset-0">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                </div>
-
-                <div className="absolute bottom-0 left-0 right-0 p-7 text-white">
-                  <p className="text-xs font-semibold tracking-wider text-blue-200 mb-3">
-                    {item.category}
-                  </p>
-                  <h3 className="text-2xl font-extrabold mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed whitespace-pre-line opacity-90 mb-5">
-                    {item.description}
-                  </p>
-                  <div className="h-4" />
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-
 
       {/* ================= BENEFITS SECTION ================= */}
 <section className="bg-gray-50 py-24">
@@ -255,7 +208,7 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
         <img
           src="/certification-venture.jpg"
           alt="벤처기업 인증 혜택"
-          className="w-full max-w-[360px] h-[360px] rounded-2xl shadow-lg object-cover"
+          className="w-full max-w-[460px] h-[360px] rounded-2xl shadow-lg object-cover"
         />
       </div>
     </div>
@@ -344,6 +297,46 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
                   <span className="hidden md:block absolute top-1/2 right-[-40px] w-8 h-px bg-gray-300" />
                 )}
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================= CASES ================= */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">벤처인증 사례</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {ventureCases.map((item, index) => (
+              <a
+                key={index}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative h-[420px] rounded-2xl overflow-hidden shadow-lg transition-all hover:-translate-y-2 hover:shadow-2xl"
+              >
+                <div className="absolute inset-0">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-7 text-white">
+                  <h3 className="text-2xl font-extrabold mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed whitespace-pre-line opacity-90 mb-5">
+                    {item.description}
+                  </p>
+                  <div className="h-4" />
+                </div>
+              </a>
             ))}
           </div>
         </div>

@@ -5,12 +5,11 @@ import Footer from "./components/Footer";
 import { marked } from "marked";
 
 interface FormData {
-  name: string;
-  company: string;
   industry: string;
   year: string;
   revenue: string;
   concerns: string;
+  strategyPhone: string;
   rndItem: string;
   rndTech: string;
   rndPhone: string;
@@ -82,14 +81,12 @@ export default function Home() {
   
   // 폼 데이터 상태
   const [formData, setFormData] = useState<FormData>({
-    // 공통
-    name: "",
-    company: "",
     // Strategy
     industry: "",
     year: "",
     revenue: "",
     concerns: "",
+    strategyPhone: "",
     // R&D
     rndItem: "",
     rndTech: "",
@@ -135,6 +132,11 @@ export default function Home() {
           setLoading(false);
           return;
         }
+      if (!formData.strategyPhone) {
+        setError("연락처를 입력해주세요.");
+        setLoading(false);
+        return;
+      }
         // 원본 규칙: industry만 전송
         requestData = {
           industry: formData.industry,
@@ -221,7 +223,7 @@ export default function Home() {
         console.log(`[Email] Sending ${type} form data to admin`);
         const userEmailForApi =
           type === "strategy"
-            ? "no-email@temp.com"
+            ? formData.strategyPhone + "@kakao.talk"
             : type === "rnd"
               ? formData.rndPhone + "@kakao.talk"
               : formData.swotPhone + "@kakao.talk";
@@ -232,12 +234,11 @@ export default function Home() {
           body: JSON.stringify({
             type,
             formData: {
-              name: formData.name,
-              company: formData.company,
               industry: formData.industry || formData.swotItem || formData.rndItem,
               year: formData.year,
               revenue: formData.revenue,
               concerns: formData.concerns,
+              strategyPhone: formData.strategyPhone,
               rndItem: formData.rndItem,
               rndTech: formData.rndTech,
               rndPhone: formData.rndPhone,
@@ -308,51 +309,47 @@ export default function Home() {
       </section>
 
      {/* ================= SECTION 2 : 3D CAROUSEL ================= */}
-<section className="relative py-16 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+<section className="relative pt-6 pb-16 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
   <div className="max-w-7xl mx-auto px-6">
 
     {/* Carousel Stage */}
-    <div className="relative h-[620px] flex items-center justify-center">
+    <div className="relative h-[700px] flex items-center justify-center">
       <div className="relative w-full flex items-center justify-center">
 
         {[...items, ...items, ...items].map((item, index) => {
           const position = index - currentIndex - items.length;
 
           let translateX = 0;
-          let scale = 0.6;
           let zIndex = 0;
-          let opacity = 0.35;
+          let opacity = 1;
+          let width = 240;
+          let height = 360;
 
-          // ===== POSITIONING (NO OVERLAP) =====
+          // ===== POSITIONING (2D, fixed sizes) =====
           if (position === 0) {
             translateX = 0;
-            scale = 1;
-            zIndex = 30;
-            opacity = 1;
+            width = 400;
+            height = 600;
           } else if (position === -1) {
-            translateX = -520;
-            scale = 0.78;
-            zIndex = 20;
-            opacity = 0.75;
+            translateX = -340;
+            width = 240;
+            height = 360;
           } else if (position === 1) {
-            translateX = 520;
-            scale = 0.78;
-            zIndex = 20;
-            opacity = 0.75;
+            translateX = 340;
+            width = 240;
+            height = 360;
           } else if (position === -2) {
-            translateX = -860;
-            scale = 0.65;
-            zIndex = 10;
-            opacity = 0.55;
+            translateX = -680;
+            width = 320;
+            height = 480;
           } else if (position === 2) {
-            translateX = 860;
-            scale = 0.65;
-            zIndex = 10;
-            opacity = 0.55;
+            translateX = 680;
+            width = 320;
+            height = 480;
           } else {
             translateX = position > 0 ? 1200 : -1200;
-            scale = 0.5;
-            zIndex = 1;
+            width = 240;
+            height = 360;
             opacity = 0;
           }
 
@@ -362,15 +359,15 @@ export default function Home() {
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute cursor-pointer"
+              className="absolute cursor-pointer flex-shrink-0"
               style={{
-                transform: `translateX(${translateX}px) scale(${scale})`,
-                width: "460px",
-                height: "560px",
+                transform: `translateX(${translateX}px)`,
+                width: `${width}px`,
+                height: `${height}px`,
                 zIndex,
                 opacity,
                 transition: "all 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
-                pointerEvents: opacity < 0.5 ? "none" : "auto",
+                pointerEvents: opacity === 0 ? "none" : "auto",
               }}
               onClick={(e) => {
                 if (position !== 0) {
@@ -379,7 +376,7 @@ export default function Home() {
                 }
               }}
             >
-              <div className="relative h-full rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow">
+              <div className="relative h-full rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
 
                 {/* Image */}
                 <img
@@ -393,10 +390,6 @@ export default function Home() {
 
                 {/* Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                  <p className="text-xs font-bold tracking-wider text-orange-400 mb-3">
-                    {item.category}
-                  </p>
-
                   <h3 className="text-2xl font-extrabold mb-4">
                     {item.title}
                   </h3>
@@ -406,7 +399,7 @@ export default function Home() {
                   </p>
 
                   <span className="inline-flex items-center text-sm font-semibold">
-                    Read Case Study
+                    Read More
                     <svg
                       className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1"
                       fill="none"
@@ -534,40 +527,41 @@ export default function Home() {
     {/* ================= ROW 1 : 4 SAME CARDS ================= */}
     <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
       {[
-        { 
-          tag: "BEST", 
-          color: "bg-yellow-400", 
-          date: "2025. 06. 23", 
-          title: "기술이 없어도 경영 혁신으로 인증 획득, 메인비즈를 통한 세무조사 유예 및 금리 우대", 
-          desc: "",
-          url: "https://blog.naver.com/eum63/223598143019",
-          image: "/mainbiz-mainpage.jpg"
-        },
-        { 
-          tag: "R&D", 
-          color: "bg-blue-500 text-white", 
-          date: "2024. 12. 01", 
-          title: "한의원기반 건강기능식품제조 벤처 재신청 사례", 
-          desc: "",
-          url: "https://blog.naver.com/eum63/223905700120",
-          image: "/certification-venture(2).jpg"
-        },
-        { 
-          tag: "MAINBIZ", 
-          color: "bg-purple-500 text-white", 
-          date: "2025. 04. 07", 
-          title: "AI 챗봇 기업의 연구소 설립 전략. 법인세 50% 감면과 벤처인증 동시 획득 노하우", 
-          desc: "",
-          url: "https://blog.naver.com/eum63/223573977275",
-          image: "/aitechtransformation-mainpage.jpg"
-        },
-        { 
-          tag: "INSIGHT", 
-          color: "bg-gray-800 text-white", 
-          date: "2025. 03. 11", 
-          title: "향기 화장품제조 ISO와 벤처인증", 
+        {
+          tag: "BEST",
+          color: "bg-yellow-400",
+          date: "2025. 06. 23",
+          title:
+            "MainBiz Innovation :\n기술이 없어도 경영 혁신으로 인증 획득. 메인비즈를 통한 세무조사 유예 및 금리 우대.",
           desc: "",
           url: "https://blog.naver.com/eum63/223812866952",
+          image: "/mainbiz-mainpage.jpg"
+        },
+        {
+          tag: "R&D",
+          color: "bg-blue-500 text-white",
+          date: "2024. 12. 01",
+          title: "한의원기반 건강기능식품제조 벤처 재신청 사례",
+          desc: "",
+          url: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223591654433&redirect=Dlog",
+          image: "/koreanmedicine-new.jpg"
+        },
+        {
+          tag: "MAINBIZ",
+          color: "bg-purple-500 text-white",
+          date: "2025. 04. 07",
+          title: "AI 챗봇 기업의 연구소 설립 전략. 법인세 50% 감면과 벤처인증 동시 획득 노하우",
+          desc: "",
+          url: "https://blog.naver.com/eum63/223598143019",
+          image: "/aitechtransformation-mainpage.jpg"
+        },
+        {
+          tag: "INSIGHT",
+          color: "bg-gray-800 text-white",
+          date: "2025. 03. 11",
+          title: "향기 화장품제조 ISO와 벤처인증",
+          desc: "",
+          url: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223908474692&redirect=Dlog",
           image: "/insights-perfume.jpg"
         },
       ].map((item, i) => (
@@ -576,91 +570,90 @@ export default function Home() {
           href={item.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-2xl border bg-white overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300"
+          className="relative h-[320px] rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
         >
-          <div className="relative h-56 bg-gray-100 overflow-hidden">
-            <img 
-              src={item.image} 
-              alt={item.title}
-              className="w-full h-full object-cover"
-            />
-            <span className={`absolute top-4 left-4 text-xs font-bold px-3 py-1 rounded ${item.color}`}>
-              {item.tag}
-            </span>
-          </div>
-
-          <div className="p-6 flex flex-col min-h-[170px]">
-            <p className="text-sm text-gray-400 mb-2">{item.date}</p>
-            <h3 className="font-bold text-blue-900 mb-3 leading-snug">
+          <img
+            src={item.image}
+            alt={item.title}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+            <h3 className="text-base md:text-lg font-extrabold leading-snug">
               {item.title}
             </h3>
             {item.desc && (
-              <p className="text-sm text-gray-500 mt-auto">
+              <p className="text-sm text-white/80 mt-2 line-clamp-2">
                 {item.desc}
               </p>
             )}
+            <span className="inline-flex items-center text-sm font-semibold mt-4">
+              Read More
+            </span>
           </div>
         </a>
       ))}
     </div>
 
     {/* ================= ROW 2 : 2 SAME + BIG ================= */}
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12 items-stretch">
 
       {/* Small card 1 */}
       <a
-        href="https://blog.naver.com/eum63/223908474692"
+        href="https://blog.naver.com/eum63/223821907774"
         target="_blank"
         rel="noopener noreferrer"
-        className="rounded-2xl border bg-white overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300"
+        className="relative h-[320px] rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
       >
-        <div className="relative h-56 bg-gray-100 overflow-hidden">
-          <img 
-            src="/insights-mainbiz.jpg" 
-            alt="메인비즈 인증 평가지표 알고 세무조사 유예 받자"
-            className="w-full h-full object-cover"
-          />
-          <span className="absolute top-4 left-4 text-xs font-bold bg-red-500 text-white px-3 py-1 rounded">
-            SUCCESS
-          </span>
-        </div>
-
-        <div className="p-6 flex flex-col min-h-[170px]">
-          <p className="text-sm text-gray-400 mb-2">2024. 08. 19</p>
-          <h3 className="font-bold text-blue-900 mb-3 leading-snug">
-            메인비즈 인증 평가지표 알고 세무조사 유예 받자
+        <img
+          src="/insights-mainbiz.jpg"
+          alt="메인비즈 인증 평가지표 알고 세무조사 유예 받자"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+          <h3 className="text-base md:text-lg font-extrabold leading-snug">
+            메인비즈 인증 평가지표 알고
+            <br />
+            세무조사 유예 받자
           </h3>
+          <span className="inline-flex items-center text-sm font-semibold mt-4">
+            Read More
+          </span>
         </div>
       </a>
 
       {/* Small card 2 */}
       <a
-        href="https://blog.naver.com/eum63/223678577702"
+        href="https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223564772199&redirect=Dlog"
         target="_blank"
         rel="noopener noreferrer"
-        className="rounded-2xl border bg-white overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300"
+        className="relative h-[320px] rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
       >
-        <div className="h-56 bg-gray-100 overflow-hidden">
-          <img 
-            src="/insights-food.jpg" 
-            alt="요식업계 설렙과 콜라보: 혁신 벤처인증으로 브랜드 강화"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="p-6 flex flex-col min-h-[170px]">
-          <p className="text-sm text-gray-400 mb-2">2024. 09. 02</p>
-          <h3 className="font-bold text-blue-900 mb-3 leading-snug">
-            요식업계 설렙과 콜라보: 혁신 벤처인증으로 브랜드 강화
+        <img
+          src="/insights-food.jpg"
+          alt="요식업계 설렙과 콜라보: 혁신 벤처인증으로 브랜드 강화"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+          <h3 className="text-base md:text-lg font-extrabold leading-snug">
+            요식업계 설렙과 콜라보:
+            <br />
+            혁신 벤처인증으로 브랜드 강화
           </h3>
+          <span className="inline-flex items-center text-sm font-semibold mt-4">
+            Read More
+          </span>
         </div>
       </a>
 
       {/* BIG CARD */}
       <a
-        href="https://blog.naver.com/eum63/223821907774"
+        href="https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223630048870&redirect=Dlog"
         target="_blank"
         rel="noopener noreferrer"
-        className="md:col-span-2 relative rounded-2xl overflow-hidden text-white p-12 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300"
+        className="md:col-span-2 relative h-[320px] rounded-2xl overflow-hidden text-white p-12 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300"
         style={{ background: "linear-gradient(135deg, #1E2A8A 0%, #1B1E6D 100%)" }}
       >
         <div className="absolute top-10 right-10 text-white/20 text-[120px] font-extrabold">&quot;</div>
@@ -694,7 +687,6 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="text-sm font-semibold mt-6">Read Column →</div>
       </a>
     </div>
 
@@ -703,30 +695,31 @@ export default function Home() {
       {[
         {
           date: "2024. 10. 10",
-          title: "AR + BIG DATA 콘텐츠 미디어 제작: 기술적 혁신벤처 인증으로 인한 기업가치 창출",
+          title:
+            "AR + BIG DATA 콘텐츠 미디어 제작: 기술적 혁신벤처 인증으로\n인한 기업가치 창출",
           desc: "",
-          url: "https://blog.naver.com/eum63/223547687068",
+          url: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223597096021&redirect=Dlog",
           image: "/insights-arbigdata.jpg"
         },
         {
           date: "2024. 10. 11",
-          title: "인재를 부르는 비상장 벤처기업 스톡옵션의 마법",
+          title: "인재를 부르는 비상장 벤처기업\n스톡옵션의 마법",
           desc: "",
-          url: "https://blog.naver.com/eum63/223618110844",
-          image: "/certification-venture(3).jpg"
+          url: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223557926232&redirect=Dlog",
+          image: "/stockoption-new.jpg"
         },
         {
           date: "2024. 10. 12",
           title: "소프트웨어 개발 및 컴퓨터 정보기기 도소매: 보완 솔루션 기술 개발 혁신 벤처 인증",
           desc: "",
-          url: "https://blog.naver.com/eum63/223571498802",
+          url: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223541792008&categoryNo=91&parentCategoryNo=&from=thumbnailList",
           image: "/insights-software.jpg"
         },
         {
           date: "2024. 10. 13",
           title: "외식업체 자동화 기술 도입과 특허 확보와 혁신벤처 인증",
           desc: "",
-          url: "https://blog.naver.com/eum63/223630048870",
+          url: "https://blog.naver.com/eum63/223573977275",
           image: "/insights-eatingout.jpg"
         },
       ].map((item, i) => (
@@ -735,25 +728,26 @@ export default function Home() {
           href={item.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-2xl border bg-white overflow-hidden flex flex-col hover:shadow-lg transition-shadow duration-300"
+          className="relative h-[320px] rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
         >
-          <div className="h-56 bg-gray-100 overflow-hidden">
-            <img 
-              src={item.image} 
-              alt={item.title}
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="p-6 flex flex-col min-h-[170px]">
-            <p className="text-sm text-gray-400 mb-2">{item.date}</p>
-            <h3 className="font-bold text-blue-900 mb-3 leading-snug">
+          <img
+            src={item.image}
+            alt={item.title}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+            <h3 className="text-base md:text-lg font-extrabold leading-snug whitespace-pre-line">
               {item.title}
             </h3>
             {item.desc && (
-              <p className="text-sm text-gray-500 mt-auto">
+              <p className="text-sm text-white/80 mt-2 line-clamp-2">
                 {item.desc}
               </p>
             )}
+            <span className="inline-flex items-center text-sm font-semibold mt-4">
+              Read More
+            </span>
           </div>
         </a>
       ))}
@@ -771,360 +765,360 @@ export default function Home() {
   </div>
 </section>
 
-      {/* ================= SECTION 4 : AI CONSULTING ================= */}
-<section
-  id="ai-consulting"
-  className="py-24 bg-[#180D8A] relative overflow-hidden"
->
-  <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-start relative z-10">
-    {/* LEFT COPY */}
-    <div className="pt-10">
-      <p className="text-blue-300 text-xs font-bold tracking-widest mb-4">
-        POWERED BY VENTUREMAKER AI
-      </p>
-      <h2 className="text-4xl font-extrabold text-white mb-6">
-        AI-Driven <br />
-        <span className="text-blue-400">Growth Strategy</span>
-      </h2>
-      <p className="text-slate-300 mb-8 leading-relaxed">
-        내 기업은 어떤 인증이 유리할까?
-        <br />
-        사업계획서 SWOT 분석은 어떻게 써야 할까?
-        <br />
-        <strong className="text-white">벤처메이커 AI</strong>가 즉시 해결합니다.
-      </p>
-      <ul className="space-y-3 text-slate-300">
-        <li>• 기업 맞춤형 자금·인증 전략</li>
-        <li>• R&D 연구 과제명 자동 생성</li>
-        <li>• 전문 컨설턴트급 SWOT 분석</li>
-      </ul>
-    </div>
+    {/* ================= SECTION 4 : AI CONSULTING (OLD GEMINI DESIGN) ================= */}
+      <section id="ai-consulting" className="py-24 bg-[#180D8A] border-t border-white/5 relative overflow-hidden">
+        {/* Background effects */}
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-600/20 to-transparent pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-    {/* RIGHT CARD */}
-    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-      {/* Tabs */}
-      <div className="grid grid-cols-3 text-sm font-bold border-b">
-        <button
-          onClick={() => handleTabChange("strategy")}
-          className={`py-4 ${
-            activeTab === "strategy"
-              ? "bg-orange-50 text-orange-600 border-b-2 border-orange-500"
-              : "text-gray-400"
-          }`}
-        >
-          종합 진단
-        </button>
-        <button
-          onClick={() => handleTabChange("rnd")}
-          className={`py-4 ${
-            activeTab === "rnd"
-              ? "bg-orange-50 text-orange-600 border-b-2 border-orange-500"
-              : "text-gray-400"
-          }`}
-        >
-          R&D 테마
-        </button>
-        <button
-          onClick={() => handleTabChange("swot")}
-          className={`py-4 ${
-            activeTab === "swot"
-              ? "bg-orange-50 text-orange-600 border-b-2 border-orange-500"
-              : "text-gray-400"
-          }`}
-        >
-          SWOT 분석
-        </button>
-      </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row gap-16 items-start">
+            
+            {/* LEFT: Text Area */}
+            <div className="lg:w-[45%] pt-10">
+              <span className="text-blue-400 font-bold text-xs tracking-widest uppercase mb-4 block">
+                <i className="fa-solid fa-robot mr-2"></i>POWERED BY VENTUREMAKER AI
+              </span>
+              <h2 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
+                AI-Driven<br />
+                <span className="text-blue-400">Growth Strategy</span>
+              </h2>
+              <p className="text-slate-300 text-xl leading-relaxed mb-8">
+                내 기업은 어떤 인증이 유리할까?<br />
+                사업계획서 SWOT 분석은 어떻게 써야 할까?<br />
+                <strong className="text-white">벤처메이커 AI</strong>가 즉시 해결합니다.
+              </p>
+              <ul className="space-y-3 text-slate-300 text-lg">
+                <li className="flex items-start">
+                  <i className="fa-solid fa-check text-blue-400 mr-3 mt-1"></i>
+                  <span>기업 맞춤형 자금·인증 전략</span>
+                </li>
+                <li className="flex items-start">
+                  <i className="fa-solid fa-check text-blue-400 mr-3 mt-1"></i>
+                  <span>R&D 연구 과제명 자동 생성</span>
+                </li>
+                <li className="flex items-start">
+                  <i className="fa-solid fa-check text-blue-400 mr-3 mt-1"></i>
+                  <span>전문 컨설턴트급 SWOT 분석</span>
+                </li>
+              </ul>
+            </div>
 
-      {/* Content */}
-      <div className="p-8 space-y-4">
-        {/* 공통 기본 정보 */}
-        <div className="grid grid-cols-2 gap-4">
-          <input
-            type="text"
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
-            placeholder="신청자 성명"
-          />
-          <input
-            type="text"
-            value={formData.company}
-            onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-            className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
-            placeholder="회사명"
-          />
+            {/* RIGHT: Interface Card */}
+            <div className="lg:w-[55%] w-full">
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-white/10 relative">
+                
+                {/* Tabs */}
+                <div className="grid grid-cols-3 border-b border-slate-200 text-xs md:text-base">
+                  <button
+                    onClick={() => handleTabChange("strategy")}
+                    className={`py-4 px-2 text-center cursor-pointer font-semibold transition-all ${
+                      activeTab === "strategy"
+                        ? "bg-orange-50 text-orange-600 border-b-2 border-orange-500"
+                        : "text-gray-400 hover:text-orange-600 hover:bg-orange-50"
+                    }`}
+                  >
+                    <i className="fa-solid fa-chart-pie block md:inline mb-1 md:mb-0 mr-0 md:mr-2"></i>
+                    종합 진단
+                  </button>
+                  <button
+                    onClick={() => handleTabChange("rnd")}
+                    className={`py-4 px-2 text-center cursor-pointer font-semibold transition-all ${
+                      activeTab === "rnd"
+                        ? "bg-orange-50 text-orange-600 border-b-2 border-orange-500"
+                        : "text-gray-400 hover:text-orange-600 hover:bg-orange-50"
+                    }`}
+                  >
+                    <i className="fa-solid fa-microscope block md:inline mb-1 md:mb-0 mr-0 md:mr-2"></i>
+                    R&D 테마
+                  </button>
+                  <button
+                    onClick={() => handleTabChange("swot")}
+                    className={`py-4 px-2 text-center cursor-pointer font-semibold transition-all ${
+                      activeTab === "swot"
+                        ? "bg-orange-50 text-orange-600 border-b-2 border-orange-500"
+                        : "text-gray-400 hover:text-orange-600 hover:bg-orange-50"
+                    }`}
+                  >
+                    <i className="fa-solid fa-table-cells-large block md:inline mb-1 md:mb-0 mr-0 md:mr-2"></i>
+                    SWOT 분석
+                  </button>
+                </div>
+
+                {/* Form Content */}
+                <div className="p-8">
+                  
+                  {/* Strategy Form */}
+                  {activeTab === "strategy" && (
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between pt-2">
+                        <h3 className="font-bold text-base md:text-lg text-blue-900">
+                          기업 성장 종합 진단
+                        </h3>
+                        <span className="bg-white border border-orange-500 text-orange-500 text-xs px-2 py-1 rounded font-bold">
+                          POPULAR
+                        </span>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-slate-500 uppercase mb-1">
+                          업종 / 아이템
+                        </label>
+                        <input
+                          type="text"
+                          value={formData.industry}
+                          onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
+                          className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-blue-600 text-sm"
+                          placeholder="예: 화장품 제조, AI 소프트웨어"
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-xs font-bold text-slate-500 uppercase mb-1">
+                            설립 연차
+                          </label>
+                          <select
+                            value={formData.year}
+                            onChange={(e) => setFormData({ ...formData, year: e.target.value })}
+                            className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3 text-gray-900 focus:outline-none focus:border-blue-600 text-sm"
+                          >
+                            <option value="">기업 단계 선택</option>
+                            <option value="예비창업">예비창업</option>
+                            <option value="1년 미만">1년 미만</option>
+                            <option value="1~3년">1~3년</option>
+                            <option value="3~7년">3~7년</option>
+                            <option value="7년 이상">7년 이상</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label className="block text-xs font-bold text-slate-500 uppercase mb-1">
+                            매출 규모
+                          </label>
+                          <select
+                            value={formData.revenue}
+                            onChange={(e) => setFormData({ ...formData, revenue: e.target.value })}
+                            className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3 text-gray-900 focus:outline-none focus:border-blue-600 text-sm"
+                          >
+                            <option value="">연 매출 규모</option>
+                            <option value="1억 미만">1억 미만</option>
+                            <option value="1억~10억">1억 ~ 10억</option>
+                            <option value="10억~50억">10억 ~ 50억</option>
+                            <option value="50억 이상">50억 이상</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-slate-500 uppercase mb-1">
+                          주요 고민
+                        </label>
+                        <input
+                          type="text"
+                          value={formData.concerns}
+                          onChange={(e) => setFormData({ ...formData, concerns: e.target.value })}
+                          className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-blue-600 text-sm"
+                          placeholder="예: 운전자금 확보, 연구소 설립"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold text-slate-500 uppercase mb-1">
+                          결과 리포트를 받을 수 있는 상담을 위한 연락처
+                        </label>
+                        <input
+                          type="tel"
+                          value={formData.strategyPhone}
+                          onChange={(e) => setFormData({ ...formData, strategyPhone: e.target.value })}
+                          className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-blue-600 text-sm"
+                          placeholder="010-0000-0000"
+                        />
+                      </div>
+
+                      <button
+                        onClick={() => callChatGPT("strategy")}
+                        disabled={loading}
+                        className="w-full bg-[#180D8A] text-white font-bold py-4 rounded hover:bg-slate-800 transition-all shadow-lg flex justify-center items-center gap-2 mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <i className="fa-solid fa-bolt text-blue-400"></i>
+                        {loading ? "분석 중..." : "무료 전략 리포트 생성"}
+                      </button>
+                    </div>
+                  )}
+
+                  {/* R&D Form */}
+                  {activeTab === "rnd" && (
+                    <div className="space-y-4 text-[0.8rem]">
+                      <div className="flex items-center justify-between pt-2">
+                        <h3 className="font-bold text-base md:text-lg text-blue-900">
+                          AI R&D 연구 과제 생성기
+                        </h3>
+                        <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded font-bold">
+                          R&D
+                        </span>
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-500 uppercase mb-1">
+                          주력 제품/서비스
+                        </label>
+                        <input
+                          type="text"
+                          value={formData.rndItem}
+                          onChange={(e) => setFormData({ ...formData, rndItem: e.target.value })}
+                          className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-blue-600 text-[0.8rem]"
+                          placeholder="예: 맛있는 김치, 가벼운 등산화"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-500 uppercase mb-1">
+                          기술적 특징 (선택사항)
+                        </label>
+                        <input
+                          type="text"
+                          value={formData.rndTech}
+                          onChange={(e) => setFormData({ ...formData, rndTech: e.target.value })}
+                          className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-blue-600 text-[0.8rem]"
+                          placeholder="예: 저온 숙성, 탄소 섬유 사용"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-500 uppercase mb-1">
+                          결과 리포트를 받을 수 있는 상담을 위한 연락처
+                        </label>
+                        <input
+                          type="tel"
+                          value={formData.rndPhone}
+                          onChange={(e) => setFormData({ ...formData, rndPhone: e.target.value })}
+                          className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-blue-600 text-[0.8rem]"
+                          placeholder="010-0000-0000"
+                        />
+                      </div>
+
+                      <button
+                        onClick={() => callChatGPT("rnd")}
+                        disabled={loading}
+                        className="w-full bg-blue-600 text-white font-bold py-4 rounded hover:bg-blue-700 transition-all shadow-lg flex justify-center items-center gap-2 mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <i className="fa-solid fa-microchip"></i>
+                        {loading ? "생성 중..." : "연구 과제명 생성하기"}
+                      </button>
+                    </div>
+                  )}
+
+                  {/* SWOT Form */}
+                  {activeTab === "swot" && (
+                    <div className="space-y-4 text-[0.8rem]">
+                      <div className="flex items-center justify-between pt-2">
+                        <h3 className="font-bold text-base md:text-lg text-blue-900">
+                          AI SWOT 분석 생성기
+                        </h3>
+                        <span className="bg-purple-600 text-white text-xs px-2 py-1 rounded font-bold">
+                          NEW
+                        </span>
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-500 uppercase mb-1">
+                          업종 / 아이템
+                        </label>
+                        <input
+                          type="text"
+                          value={formData.swotItem}
+                          onChange={(e) => setFormData({ ...formData, swotItem: e.target.value })}
+                          className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-purple-600 text-[0.8rem]"
+                          placeholder="예: 비건 베이커리, 반려동물 매칭 플랫폼"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-500 uppercase mb-1">
+                          우리만의 강점 (핵심 경쟁력)
+                        </label>
+                        <input
+                          type="text"
+                          value={formData.swotStrength}
+                          onChange={(e) => setFormData({ ...formData, swotStrength: e.target.value })}
+                          className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-purple-600 text-[0.8rem]"
+                          placeholder="예: 특허 보유, 10만 팔로워, 저렴한 원가"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block font-bold text-slate-500 uppercase mb-1">
+                          결과 리포트를 받을 수 있는 상담을 위한 연락처
+                        </label>
+                        <input
+                          type="tel"
+                          value={formData.swotPhone}
+                          onChange={(e) => setFormData({ ...formData, swotPhone: e.target.value })}
+                          className="w-full bg-slate-50 border border-slate-200 rounded px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-purple-600 text-[0.8rem]"
+                          placeholder="010-0000-0000"
+                        />
+                      </div>
+
+                      <button
+                        onClick={() => callChatGPT("swot")}
+                        disabled={loading}
+                        className="w-full bg-purple-600 text-white font-bold py-4 rounded hover:bg-purple-700 transition-all shadow-lg flex justify-center items-center gap-2 mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <i className="fa-solid fa-table-cells"></i>
+                        {loading ? "분석 중..." : "SWOT 분석표 생성하기"}
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Result Area */}
+                  {(loading || result || error) && (
+                    <div className="mt-6 border-t border-slate-200 pt-6 animate-[fadeIn_0.5s_ease-out]">
+                      {loading && (
+                        <div className="flex flex-col items-center py-4">
+                          <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-3"></div>
+                          <p className="text-xs font-bold text-slate-400 animate-pulse">
+                            VentureMaker AI가 분석 중입니다...
+                          </p>
+                        </div>
+                      )}
+
+                      {error && (
+                        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                          <p className="text-red-600 text-sm font-semibold mb-2">
+                            {error.split('\n')[0]}
+                          </p>
+                          {error.includes('상세 정보') && (
+                            <details className="mt-2">
+                              <summary className="text-red-500 text-xs cursor-pointer hover:underline">
+                                상세 에러 정보 보기
+                              </summary>
+                              <pre className="mt-2 text-xs text-red-700 bg-red-100 p-2 rounded overflow-auto max-h-40">
+                                {error}
+                              </pre>
+                            </details>
+                          )}
+                        </div>
+                      )}
+
+                      {result && !loading && (
+                        <div className="prose prose-sm max-w-none bg-slate-50 p-4 rounded border-l-4 border-blue-600 text-sm overflow-y-auto max-h-60 text-black [&_*]:!text-black">
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: result,
+                            }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        {activeTab === "swot" && (
-          <>
-            <div className="flex justify-between items-center pt-2">
-              <h3 className="font-bold text-lg text-blue-900">
-                AI SWOT 분석 생성기
-              </h3>
-              <span className="bg-purple-600 text-white text-xs px-2 py-1 rounded font-bold">
-                NEW
-              </span>
-            </div>
-
-            <input
-              type="text"
-              value={formData.swotItem}
-              onChange={(e) => setFormData({ ...formData, swotItem: e.target.value })}
-              className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
-              placeholder="업종 / 아이템"
-            />
-            <input
-              type="text"
-              value={formData.swotStrength}
-              onChange={(e) => setFormData({ ...formData, swotStrength: e.target.value })}
-              className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
-              placeholder="우리만의 강점 (핵심 경쟁력)"
-            />
-            <input
-              type="tel"
-              value={formData.swotPhone}
-              onChange={(e) => setFormData({ ...formData, swotPhone: e.target.value })}
-              className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
-              placeholder="전화번호 (예: 010-0000-0000)"
-            />
-
-            <button
-              onClick={() => callChatGPT("swot")}
-              disabled={loading}
-              className="w-full bg-purple-600 text-white py-4 rounded font-bold mt-2 hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              {loading ? "분석 중..." : "SWOT 분석표 생성하기"}
-            </button>
-          </>
-        )}
-
-        {activeTab === "rnd" && (
-          <>
-            <div className="flex justify-between items-center pt-2">
-              <h3 className="font-bold text-lg text-blue-900">
-                AI R&D 연구 과제 생성기
-              </h3>
-              <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded font-bold">
-                R&D
-              </span>
-            </div>
-
-            <input
-              type="text"
-              value={formData.rndItem}
-              onChange={(e) => setFormData({ ...formData, rndItem: e.target.value })}
-              className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
-              placeholder="주력 제품 / 서비스"
-            />
-            <input
-              type="text"
-              value={formData.rndTech}
-              onChange={(e) => setFormData({ ...formData, rndTech: e.target.value })}
-              className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
-              placeholder="기술적 특징 (선택)"
-            />
-            <input
-              type="tel"
-              value={formData.rndPhone}
-              onChange={(e) => setFormData({ ...formData, rndPhone: e.target.value })}
-              className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
-              placeholder="전화번호"
-            />
-
-            <button
-              onClick={() => callChatGPT("rnd")}
-              disabled={loading}
-              className="w-full bg-blue-600 text-white py-4 rounded font-bold mt-2 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              {loading ? "생성 중..." : "연구 과제명 생성하기"}
-            </button>
-          </>
-        )}
-
-        {activeTab === "strategy" && (
-          <>
-            <div className="flex justify-between items-center pt-2">
-              <h3 className="font-bold text-lg text-blue-900">
-                기업 성장 종합 진단
-              </h3>
-              <span className="border border-orange-500 text-orange-500 text-xs px-2 py-1 rounded font-bold">
-                POPULAR
-              </span>
-            </div>
-
-            <input
-              type="text"
-              value={formData.industry}
-              onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
-              className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
-              placeholder="업종 / 아이템"
-            />
-
-            <div className="grid grid-cols-2 gap-4">
-              <select
-                value={formData.year}
-                onChange={(e) => setFormData({ ...formData, year: e.target.value })}
-                className="border rounded px-4 py-3 text-gray-900"
-              >
-                <option value="">기업 단계 선택</option>
-                <option value="예비창업">예비창업</option>
-                <option value="1년 미만">1년 미만</option>
-                <option value="1~3년">1~3년</option>
-                <option value="3~7년">3~7년</option>
-                <option value="7년 이상">7년 이상</option>
-              </select>
-              <select
-                value={formData.revenue}
-                onChange={(e) => setFormData({ ...formData, revenue: e.target.value })}
-                className="border rounded px-4 py-3 text-gray-900"
-              >
-                <option value="">연 매출 규모</option>
-                <option value="1억 미만">1억 미만</option>
-                <option value="1억~10억">1억 ~ 10억</option>
-                <option value="10억~50억">10억 ~ 50억</option>
-                <option value="50억 이상">50억 이상</option>
-              </select>
-            </div>
-
-            <input
-              type="text"
-              value={formData.concerns}
-              onChange={(e) => setFormData({ ...formData, concerns: e.target.value })}
-              className="w-full border rounded px-4 py-3 text-gray-900 placeholder:text-gray-400"
-              placeholder="현재 가장 큰 고민"
-            />
-
-            <button
-              onClick={() => callChatGPT("strategy")}
-              disabled={loading}
-              className="w-full bg-blue-900 text-white py-4 rounded font-bold mt-2 hover:bg-blue-950 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              {loading ? "분석 중..." : "무료 전략 리포트 생성"}
-            </button>
-          </>
-        )}
-
-        {/* 결과 표시 영역 */}
-        {(loading || result || error) && (
-          <div className="mt-6 border-t border-gray-200 pt-6">
-            {loading && (
-              <div className="flex flex-col items-center py-8">
-                <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-3"></div>
-                <p className="text-sm font-bold text-gray-400 animate-pulse">
-                  VentureMaker AI가 분석 중입니다...
-                </p>
-              </div>
-            )}
-
-            {error && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                <p className="text-red-600 text-sm font-semibold mb-2">
-                  {error.split('\n')[0]}
-                </p>
-                {error.includes('상세 정보') && (
-                  <details className="mt-2">
-                    <summary className="text-red-500 text-xs cursor-pointer hover:underline">
-                      상세 에러 정보 보기
-                    </summary>
-                    <pre className="mt-2 text-xs text-red-700 bg-red-100 p-2 rounded overflow-auto max-h-40">
-                      {error}
-                    </pre>
-                  </details>
-                )}
-              </div>
-            )}
-
-            {result && !loading && (
-              <div className="bg-slate-50 border-l-4 border-blue-600 rounded p-4 max-h-96 overflow-y-auto">
-                <div
-                  className="prose prose-sm prose-slate max-w-none text-sm text-gray-700 leading-relaxed"
-                  dangerouslySetInnerHTML={{
-                    __html: result, // 이미 marked.parse()로 변환된 HTML
-                  }}
-                />
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-    </div>
-  </div>
-</section>
-
-      {/* ================= SECTION 5 : TRUSTED BY ================= */}
-<section className="py-24 bg-white overflow-hidden">
-  <div className="max-w-7xl mx-auto px-6">
-    
-    {/* Header */}
-    <div className="text-center mb-14">
-      <p className="text-sm font-semibold tracking-widest text-orange-500 mb-3">
-        TRUSTED PARTNERS
-      </p>
-      <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-4">
-        벤처메이커와 함께한 기업
-      </h2>
-      <p className="text-gray-500 text-sm">
-        다양한 산업의 중소·벤처 기업이 벤처메이커와 함께 성장하고 있습니다.
-      </p>
-    </div>
-
-    {/* Logo Slider */}
-    <div className="relative">
-      {/* Left / Right Fade */}
-      <div className="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white to-transparent z-10" />
-      <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent z-10" />
-
-      {/* Sliding Track */}
-      <div className="flex gap-16 animate-logo-slide whitespace-nowrap">
-        {[...Array(2)].map((_, loopIndex) => (
-          <div key={loopIndex} className="flex gap-16">
-            {[...Array(10)].map((_, i) => (
-              <div
-                key={`${loopIndex}-${i}`}
-                className="flex items-center justify-center min-w-[160px] h-20 grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition"
-              >
-                <img
-                  src={`/client-${i + 1}.png`}
-                  alt={`Partner ${i + 1}`}
-                  className="max-h-12 object-contain"
-                />
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
-
-    {/* CTA */}
-    <div className="mt-16 text-center">
-      <a
-        href="/partners"
-        className="inline-flex items-center gap-2 px-10 py-4 border rounded-md text-sm font-semibold text-gray-700 hover:bg-gray-50 transition"
-      >
-        전체 파트너 보기 →
-      </a>
-    </div>
-  </div>
-
-  {/* Animation */}
-  <style jsx>{`
-    @keyframes logo-slide {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    .animate-logo-slide {
-      animation: logo-slide 30s linear infinite;
-    }
-  `}</style>
-</section>
-
-{/* Footer */}
+      {/* Footer */}
       <Footer />
 
     </main>

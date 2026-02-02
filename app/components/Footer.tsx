@@ -12,15 +12,6 @@ export default function Footer() {
           <Link href="/privacy" className="hover:text-gray-900 transition">
             개인정보처리방침
           </Link>
-          <Link href="/recruitment" className="hover:text-gray-900 transition">
-            채용안내
-          </Link>
-          <Link href="/notice" className="hover:text-gray-900 transition">
-            공지사항
-          </Link>
-          <Link href="/contact" className="hover:text-gray-900 transition">
-            고객센터
-          </Link>
         </div>
 
         {/* Divider */}

@@ -26,12 +26,11 @@ export async function POST(request: NextRequest) {
     let userContent = '';
 
     if (type === 'strategy') {
-      adminSubject = `[벤처메이커] 종합 진단 신청 - ${formData.name || '익명'}`;
+      adminSubject = `[벤처메이커] 종합 진단 신청`;
       adminContent = `
         <h2>종합 진단 신청</h2>
         <ul>
-          <li>성명: ${formData.name || '-'}</li>
-          <li>회사명: ${formData.company || '-'}</li>
+          <li>연락처: ${formData.strategyPhone || '-'}</li>
           <li>이메일: ${userEmail || '-'}</li>
           <li>업종: ${formData.industry || '-'}</li>
           <li>기업 단계: ${formData.year || '-'}</li>
@@ -42,7 +41,6 @@ export async function POST(request: NextRequest) {
 
       userSubject = '[벤처메이커] 종합 진단 신청 접수 완료';
       userContent = `
-        <p>${formData.name || '고객'}님,</p>
         <p>종합 진단 신청이 정상적으로 접수되었습니다.</p>
       `;
     } else if (type === 'rnd') {

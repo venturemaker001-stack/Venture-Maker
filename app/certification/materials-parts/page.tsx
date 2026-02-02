@@ -1,26 +1,28 @@
 "use client";
 
 import Link from "next/link";
+import Footer from "../../components/Footer";
+
 
 export default function MaterialsPartPage() {
   const materialsPartsCases = [
     {
-      title: "소부장전문기업 사례 1",
-      description: "사례 설명을 입력하세요.",
-      image: "/sobujang-benefits.jpg",
-      link: "https://blog.naver.com/YOUR_LINK_1",
+      title: "플라스틱필름제조업",
+      description: "",
+      image: "/certification-materialsparts1.jpg",
+      link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=220851904041&categoryNo=97&parentCategoryNo=&from=thumbnailList",
     },
     {
-      title: "소부장전문기업 사례 2",
-      description: "사례 설명을 입력하세요.",
-      image: "/certificationpage-professional.jpg",
-      link: "https://blog.naver.com/YOUR_LINK_2",
+      title: "기계장치 도금업",
+      description: "",
+      image: "/certification-materialsparts2.jpg",
+      link: "https://m.blog.naver.com/PostView.naver?blogId=eum63&logNo=221037852573&categoryNo=97&proxyReferer=¬rackingCode=true",
     },
     {
-      title: "소부장전문기업 사례 3",
-      description: "사례 설명을 입력하세요.",
-      image: "/certificationpage-materials-parts.jpg",
-      link: "https://blog.naver.com/YOUR_LINK_3",
+      title: "OLED 제조장비 부품제조업",
+      description: "",
+      image: "/certification-materialsparts3.jpg",
+      link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=221069589143&categoryNo=97&parentCategoryNo=&from=thumbnailList",
     },
   ];
 
@@ -50,14 +52,15 @@ export default function MaterialsPartPage() {
             {/* TEXT */}
             <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
               <p>
-                소부장 전문기업 인증이란 이전 소재부품 전문기업에서 더욱 발전되어
-                소재와 부품, 장비를 포함하는 개념으로 소부장 전문기업 인증으로
-                발전하였습니다.
+                소부장 전문기업 인증이란 이전 소재부품 전문기업에서 더욱
+                발전되어 소재와 부품, 장비를 포함하는 개념으로
+                <br />
+                소부장 전문기업 인증으로 발전하였습니다.
               </p>
 
               <p>
                 주로 제조업에 해당하는 인증으로 완제품을 구성하기 위한 부품을
-                제조하거나 부품을 제조는 소재를 다루는 기업, 소재와 부품을
+                제조하거나 부품을 제조하는 소재를 다루는 기업, 소재와 부품을
                 생산하는 장비 및 설비를 제조하는 경우 소부장 전문기업 인증을
                 취득할 수 있습니다.
               </p>
@@ -92,46 +95,6 @@ export default function MaterialsPartPage() {
           </div>
         </section>
 
-        {/* ================= CASES ================= */}
-        <section>
-          <div className="flex items-center justify-between mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">
-              소부장전문기업 사례
-            </h2>
-            <div className="flex-1 ml-8 h-px bg-gray-200" />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {materialsPartsCases.map((item, index) => (
-              <a
-                key={index}
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative h-[420px] rounded-2xl overflow-hidden shadow-lg transition-all hover:-translate-y-2 hover:shadow-2xl"
-              >
-                <div className="absolute inset-0">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                </div>
-
-                <div className="absolute bottom-0 left-0 right-0 p-7 text-white">
-                  <h3 className="text-2xl font-extrabold mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed whitespace-pre-line opacity-90">
-                    {item.description}
-                  </p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </section>
-
         {/* ================= SECTION 2 ================= */}
 <section>
   <div className="flex items-center justify-between mb-12">
@@ -163,6 +126,7 @@ export default function MaterialsPartPage() {
       <p>
         그 외 소재부품기술개발사업, 신뢰성기반활용지원사업,
         해외규격인증획득 지원사업의 우대와
+        <br />
         공공조달상생협력 협력기업 참여자격이 주어집니다.
       </p>
     </div>
@@ -206,7 +170,7 @@ export default function MaterialsPartPage() {
           </div>
 
           {/* PROCESS STEPS */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
             {[
               {
                 title: "온라인 작성",
@@ -231,14 +195,59 @@ export default function MaterialsPartPage() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="bg-white border rounded-2xl p-8 text-center shadow-sm"
+                className="bg-white border rounded-2xl p-8 text-center shadow-sm relative"
               >
                 <div className="text-4xl mb-4">{item.icon}</div>
                 <h3 className="font-semibold text-lg mb-2 text-gray-900">
                   {item.title}
                 </h3>
                 <p className="text-gray-600 text-sm">{item.desc}</p>
+
+                {/* Connector */}
+                {item.title !== "전문기업확인" && (
+                  <span className="hidden md:block absolute top-1/2 right-[-32px] w-6 h-px bg-gray-300" />
+                )}
               </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ================= CASES ================= */}
+        <section>
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">
+              소부장전문기업 사례
+            </h2>
+            <div className="flex-1 ml-8 h-px bg-gray-200" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {materialsPartsCases.map((item, index) => (
+              <a
+                key={index}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative h-[420px] rounded-2xl overflow-hidden shadow-lg transition-all hover:-translate-y-2 hover:shadow-2xl"
+              >
+                <div className="absolute inset-0">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-7 text-white">
+                  <h3 className="text-2xl font-extrabold mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed whitespace-pre-line opacity-90">
+                    {item.description}
+                  </p>
+                </div>
+              </a>
             ))}
           </div>
         </section>
@@ -275,13 +284,23 @@ export default function MaterialsPartPage() {
               얻게 됩니다.
             </p>
 
-            <p className="font-medium text-gray-900">
-              기업경영연구소의 경영컨설팅으로 소부장 인증을 취득하세요.
-            </p>
+            <div className="flex items-center gap-4">
+              <p className="font-medium text-gray-900">
+                기업경영연구소의 경영컨설팅으로 소부장 인증을 취득하세요.
+              </p>
+              <Link
+                href="/consult"
+                className="inline-flex items-center rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
+              >
+                상담신청
+              </Link>
+            </div>
           </div>
         </section>
 
       </div>
+
+      <Footer />
     </main>
   );
 }

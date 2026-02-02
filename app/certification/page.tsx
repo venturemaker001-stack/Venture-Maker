@@ -155,83 +155,54 @@ export default function CertificationPage() {
     const position = index - activeIndex;
     
     let translateX = 0;
-    let scale = 1;
     let zIndex = 0;
     let opacity = 0.3;
     let width = 220;
     let height = 340;
 
-    // Center card (Main) - Biggest
+    // 2D layout: show 5 cards, center is largest
     if (position === 0) {
+      // Center card - Biggest
       translateX = 0;
-      scale = 1;
       width = 520;
-      height = 560;
+      height = 580;
       zIndex = 20;
       opacity = 1;
-    }
-    // Immediate left card - Medium
-    else if (position === -1) {
-      translateX = -500;
-      scale = 1;
-      width = 340;
-      height = 480;
-      zIndex = 15;
-      opacity = 0.85;
-    }
-    // Immediate right card - Medium
-    else if (position === 1) {
-      translateX = 500;
-      scale = 1;
-      width = 340;
-      height = 480;
-      zIndex = 15;
-      opacity = 0.85;
-    }
-    // Second left card - Small
-    else if (position === -2) {
-      translateX = -800;
-      scale = 1;
-      width = 280;
+    } else if (position === -1) {
+      // Left inner
+      translateX = -432;
+      width = 320;
       height = 420;
-      zIndex = 10;
-      opacity = 0.6;
-    }
-    // Second right card - Small
-    else if (position === 2) {
-      translateX = 800;
-      scale = 1;
-      width = 280;
+      zIndex = 15;
+      opacity = 1;
+    } else if (position === 1) {
+      // Right inner
+      translateX = 432;
+      width = 320;
       height = 420;
+      zIndex = 15;
+      opacity = 1;
+    } else if (position === -2) {
+      // Left outer
+      translateX = -734;
+      width = 260;
+      height = 360;
       zIndex = 10;
-      opacity = 0.6;
-    }
-    // Third left card - Very small
-    else if (position === -3) {
-      translateX = -1080;
-      scale = 1;
-      width = 220;
+      opacity = 1;
+    } else if (position === 2) {
+      // Right outer
+      translateX = 734;
+      width = 260;
       height = 360;
-      zIndex = 5;
-      opacity = 0.4;
-    }
-    // Third right card - Very small
-    else if (position === 3) {
-      translateX = 1080;
-      scale = 1;
-      width = 220;
-      height = 360;
-      zIndex = 5;
-      opacity = 0.4;
-    }
-    // Far cards - Hidden
-    else {
+      zIndex = 10;
+      opacity = 1;
+    } else {
+      // Hidden
       translateX = position > 0 ? 1200 : -1200;
-      scale = 1;
-      width = 180;
-      height = 300;
+      width = 240;
+      height = 320;
       zIndex = 1;
-      opacity = 0.2;
+      opacity = 0;
     }
 
     return {
@@ -276,94 +247,37 @@ export default function CertificationPage() {
                 const cardStyle = getCardStyle(index);
                 const originalIndex = index % certifications.length;
                 return (
-                  <div
+                  <Link
                     key={index}
+                    href={cert.href}
                     className="absolute cursor-pointer"
                     style={cardStyle}
-                    onClick={() => handleCardClick(index)}
+                    onClick={(e) => {
+                      if (index !== activeIndex) {
+                        e.preventDefault();
+                        handleCardClick(index);
+                      }
+                    }}
                     onMouseEnter={() => setHoveredCard(index)}
                     onMouseLeave={() => setHoveredCard(null)}
                   >
-                    <div className="relative w-full h-full bg-white rounded-2xl shadow-2xl overflow-hidden">
-                      {/* Background Image - Now uses different image for each card */}
-                      <div className="absolute inset-0">
-                        <img 
-                          src={cert.image}
-                          alt={cert.title}
-                          className="w-full h-full object-cover"
-                        />
-                        {/* Dark overlay for better text readability */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/40"></div>
-                      </div>
-
-                      {/* Category Badge */}
-                      <div className="absolute top-8 left-8 z-10">
-                        <div className="inline-block px-6 py-2 bg-white/20 backdrop-blur-sm border-2 border-white rounded-full">
-                          <span className="text-white text-sm font-semibold tracking-wider">
-                            {cert.category}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Bottom Info Card */}
-                      <div className="absolute bottom-0 left-0 right-0 z-10">
-                        <div 
-                          className={`bg-white/95 backdrop-blur-sm rounded-t-3xl transition-all duration-500 ease-in-out ${
-                            hoveredCard === index && index === activeIndex
-                              ? 'h-[65%]' 
-                              : 'h-[35%]'
-                          }`}
-                        >
-                          <div className="p-6">
-                            {/* Date/Article Label */}
-                            <div className="flex items-center gap-2 mb-3">
-                              <span className="text-xs font-semibold text-gray-500 tracking-wider">
-                                CERTIFICATION
-                              </span>
-                              <span className="text-xs text-gray-400">•</span>
-                              <span className="text-xs text-gray-500">
-                                2025. 12. 22.
-                              </span>
-                            </div>
-
-                            {/* Title */}
-                            <h3 className="text-2xl font-bold text-gray-900 mb-3 leading-tight">
-                              {cert.title}
-                            </h3>
-
-                            {/* Short Description */}
-                            <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                              {cert.description}
-                            </p>
-
-                            {/* Detailed Info - Shows on hover */}
-                            <div 
-                              className={`overflow-hidden transition-all duration-500 ${
-                                hoveredCard === index && index === activeIndex
-                                  ? 'max-h-48 opacity-100' 
-                                  : 'max-h-0 opacity-0'
-                              }`}
-                            >
-                              <div className="pt-4 border-t border-gray-200">
-                                <p className="text-sm text-gray-700 leading-relaxed">
-                                  {cert.detailedInfo}
-                                </p>
-                              </div>
-                            </div>
-
-                            {/* Link */}
-                            <Link
-                              href={cert.href}
-                              className="inline-flex items-center text-blue-600 font-semibold text-sm mt-2 hover:text-blue-700 transition-colors"
-                            >
-                              자세히 보기
-                              <span className="ml-2">→</span>
-                            </Link>
-                          </div>
-                        </div>
+                    <div className="relative w-full h-full rounded-2xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
+                      <img
+                        src={cert.image}
+                        alt={cert.title}
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <h3 className="text-2xl font-extrabold mb-3 leading-tight">
+                          {cert.title}
+                        </h3>
+                        <p className="text-sm leading-relaxed whitespace-pre-line opacity-90 mb-4">
+                          {cert.description}
+                        </p>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
             </div>
@@ -484,13 +398,13 @@ export default function CertificationPage() {
       </section>
 
       {/* Benefits Section */}
-<section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+<section className="py-20 bg-gradient-to-b from-orange-50 via-white to-blue-50">
   <div className="max-w-7xl mx-auto px-6">
     <div className="text-center mb-16">
-      <h2 className="text-4xl font-bold text-gray-900 mb-4">
+      <h2 className="text-4xl font-bold text-blue-900 mb-4">
         왜 기업인증이 필요한가요?
       </h2>
-      <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+      <p className="text-lg text-blue-700 max-w-3xl mx-auto">
         기업인증은 단순한 인증서가 아닙니다. 세제 혜택, 정책자금 지원, 
         입찰 우대 등 실질적인 혜택을 제공하며, 기업의 신뢰도와 경쟁력을 높입니다.
       </p>
@@ -498,8 +412,8 @@ export default function CertificationPage() {
 
     <div className="grid md:grid-cols-3 gap-8">
       {/* Card 1 - 세제 혜택 */}
-      <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-blue-200">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-blue-600 rounded-t-2xl"></div>
+      <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-blue-100 hover:border-blue-200">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-blue-700 rounded-t-2xl"></div>
         
         <div className="flex items-center justify-center w-16 h-16 bg-blue-50 rounded-xl mb-6 group-hover:bg-blue-100 transition-colors">
           <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -507,12 +421,12 @@ export default function CertificationPage() {
           </svg>
         </div>
 
-        <h3 className="text-2xl font-bold text-gray-900 mb-3">세제 혜택</h3>
-        <p className="text-gray-600 leading-relaxed">
+        <h3 className="text-2xl font-bold text-blue-900 mb-3">세제 혜택</h3>
+        <p className="text-blue-700 leading-relaxed">
           법인세 감면, 세액공제 등 다양한 세제 혜택 제공
         </p>
 
-        <div className="mt-6 pt-6 border-t border-gray-100">
+        <div className="mt-6 pt-6 border-t border-blue-100">
           <div className="flex items-center text-blue-600 font-semibold text-sm group-hover:translate-x-2 transition-transform">
             <span>자세히 알아보기</span>
             <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -523,22 +437,22 @@ export default function CertificationPage() {
       </div>
 
       {/* Card 2 - 정책자금 지원 */}
-      <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-green-200">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 to-green-600 rounded-t-2xl"></div>
+      <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-orange-100 hover:border-orange-200">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-orange-600 rounded-t-2xl"></div>
         
-        <div className="flex items-center justify-center w-16 h-16 bg-green-50 rounded-xl mb-6 group-hover:bg-green-100 transition-colors">
-          <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="flex items-center justify-center w-16 h-16 bg-orange-50 rounded-xl mb-6 group-hover:bg-orange-100 transition-colors">
+          <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
           </svg>
         </div>
 
-        <h3 className="text-2xl font-bold text-gray-900 mb-3">정책자금 지원</h3>
-        <p className="text-gray-600 leading-relaxed">
+        <h3 className="text-2xl font-bold text-blue-900 mb-3">정책자금 지원</h3>
+        <p className="text-blue-700 leading-relaxed">
           저금리 융자, R&D 지원금 등 정부 지원 프로그램 접근
         </p>
 
-        <div className="mt-6 pt-6 border-t border-gray-100">
-          <div className="flex items-center text-green-600 font-semibold text-sm group-hover:translate-x-2 transition-transform">
+        <div className="mt-6 pt-6 border-t border-orange-100">
+          <div className="flex items-center text-orange-600 font-semibold text-sm group-hover:translate-x-2 transition-transform">
             <span>자세히 알아보기</span>
             <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -548,22 +462,22 @@ export default function CertificationPage() {
       </div>
 
       {/* Card 3 - 기업 신뢰도 */}
-      <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-purple-200">
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-purple-600 rounded-t-2xl"></div>
+      <div className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-blue-100 hover:border-blue-200">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-blue-700 rounded-t-2xl"></div>
         
-        <div className="flex items-center justify-center w-16 h-16 bg-purple-50 rounded-xl mb-6 group-hover:bg-purple-100 transition-colors">
-          <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="flex items-center justify-center w-16 h-16 bg-blue-50 rounded-xl mb-6 group-hover:bg-blue-100 transition-colors">
+          <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
           </svg>
         </div>
 
-        <h3 className="text-2xl font-bold text-gray-900 mb-3">기업 신뢰도</h3>
-        <p className="text-gray-600 leading-relaxed">
+        <h3 className="text-2xl font-bold text-blue-900 mb-3">기업 신뢰도</h3>
+        <p className="text-blue-700 leading-relaxed">
           공공기관 입찰 우대, 거래처 신뢰도 향상
         </p>
 
-        <div className="mt-6 pt-6 border-t border-gray-100">
-          <div className="flex items-center text-purple-600 font-semibold text-sm group-hover:translate-x-2 transition-transform">
+        <div className="mt-6 pt-6 border-t border-blue-100">
+          <div className="flex items-center text-blue-600 font-semibold text-sm group-hover:translate-x-2 transition-transform">
             <span>자세히 알아보기</span>
             <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

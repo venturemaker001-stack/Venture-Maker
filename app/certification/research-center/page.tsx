@@ -4,6 +4,32 @@ import Footer from "../../components/Footer";
 import Link from "next/link";
 
 export default function ResearchLabPage() {
+  const caseStudies = [
+    {
+      category: "RESEARCH LAB",
+      title: "의류쇼핑몰 기업부설연구소 노하우",
+      description:
+        "신소재 개발 및 트렌드 분석, 패션 아이템 연구에서\n물류시스템 구축",
+      image: "/certification-researchcenter1.jpg",
+      link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223548623447&redirect=Dlog",
+    },
+    {
+      category: "RESEARCH LAB",
+      title: "2차전지 믹싱장비 자동화 제조",
+      description:
+        "기업부설연구소 시작으로 R/D 무상자금, 특허기술 사업화",
+      image: "/certification-researchcenter2.jpg",
+      link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223546238069&redirect=Dlog",
+    },
+    {
+      category: "",
+      title: "",
+      description: "",
+      image: "/certification-researchcenter3.jpg",
+      link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223678577702&redirect=Dlog",
+    },
+  ];
+
   return (
     <main className="bg-white text-gray-800">
       {/* ================= INTRO ================= */}
@@ -33,8 +59,8 @@ export default function ResearchLabPage() {
               </span>
               란 영리를 목적으로 제품이나 서비스 등을
               생산·유통하는 기업들이
-              연구개발활동을 위하여
-              사내에 설치하는 조직입니다.
+              <br />
+              연구개발활동을 위하여 사내에 설치하는 조직입니다.
             </p>
 
             <p>
@@ -43,17 +69,20 @@ export default function ResearchLabPage() {
               <span className="font-semibold text-blue-600">
                 기업부설창작연구소
               </span>
-              와
+              와{" "}
               <span className="font-semibold text-blue-600">
                 기업창작전담부서
               </span>
-              도 조건에 따라 설립이 가능합니다.
+              도
+              <br />
+              조건에 따라 설립이 가능합니다.
             </p>
 
             <p>
               연구소와 전담부서를 설립하고 이를 신고하여
               인정받은 기업은
               연구개발활동 수행에 대한
+              <br />
               <span className="font-semibold text-blue-600">
                 각종 지원 혜택
               </span>
@@ -71,6 +100,7 @@ export default function ResearchLabPage() {
               연구개발활동을 할 준비가 되었다면
               설립 후 신고하여
               각종 지원 혜택을 통해
+              <br />
               기업 성장을 도모하시길 바랍니다.
             </p>
           </div>
@@ -91,15 +121,17 @@ export default function ResearchLabPage() {
         <p>
           기업부설연구소와 연구개발전담부서 등 연구조직에 대한 설립은
           <span className="text-sky-500 font-semibold">
-            {" "}지식기반과 창작, 과학기술분야의 연구개발활동
+            {" "}지식기반과 창작, 과학기술분야의
           </span>
-          을 수행하는 기업이 설립하고 인정이 가능합니다.
+          <br />
+          연구개발활동을 수행하는 기업이 설립하고 인정이 가능합니다.
         </p>
 
         <p>
           또한 영리를 목적으로 운영되지 않는 비영리기관 및 기업, 학교,
-          사단법인, 재단법인, 의료법인 등은 기업부설연구소 설립 인정에서
-          제외됩니다.
+          사단법인, 재단법인, 의료법인 등은
+          <br />
+          기업부설연구소 설립 인정에서 제외됩니다.
         </p>
 
         {/* TOP BUTTON */}
@@ -110,11 +142,8 @@ export default function ResearchLabPage() {
         </Link>
 
         <p className="pt-10">
-          기업부설연구소와 연구개발전담부서
-          <span className="text-sky-500 font-semibold">
-            {" "}설립조건
-          </span>
-          을 간단히 살펴보면 아래와 같습니다.
+          기업부설연구소와 연구개발전담부서 설립조건을
+          간단히 살펴보면 아래와 같습니다.
         </p>
 
         <ul className="space-y-5">
@@ -136,10 +165,11 @@ export default function ResearchLabPage() {
                 {" "}연구전담요원(연구원)
               </span>
               의 수가
+              <br />
               <span className="text-red-500 font-semibold">
                 {" "}3명 이상
               </span>
-              (일반중소기업기준*)
+              {" "}(일반중소기업기준*)
             </span>
           </li>
 
@@ -160,8 +190,9 @@ export default function ResearchLabPage() {
 
         <p className="pt-6">
           연구공간은 조건과 기업규모에 따라 독립된 연구공간이 아니어도
-          가능하며, 연구원 또한 기업규모와 기업구분에 따라 요건이
-          상이합니다.
+          가능하며,
+          <br />
+          연구원 또한 기업규모와 기업구분에 따라 요건이 상이합니다.
         </p>
 
         <p>
@@ -206,7 +237,8 @@ export default function ResearchLabPage() {
             <p>
               기업부설연구소 또는 연구개발전담부서는
               세액공제 등 다양한 혜택이 있으나,
-              설립 이후
+              <br />
+              설립 이후{" "}
               <span className="font-semibold text-blue-600">
                 연구조직의 지속적인 관리
               </span>
@@ -214,28 +246,30 @@ export default function ResearchLabPage() {
             </p>
 
             <p>
-              매년 4월 중
+              매년 4월 중{" "}
               <span className="font-semibold text-blue-600">
                 연구개발활동조사
               </span>
               를 제출해야 하며,
               연구현황, 연구개발인력,
-              연구개발비 등의 내용이 포함됩니다.
+              연구개발비 등의
+              <br />
+              내용이 포함됩니다.
             </p>
 
             <p>
               연구원 퇴사, 기업 내용 변경,
               이전에 따른 소재지 변경 등이
-              발생한 경우에는
-              반드시 변경 신고를 해야 합니다.
+              <br />
+              발생한 경우에는 반드시 변경 신고를 해야 합니다.
             </p>
 
             <p>
               현지확인(현장실사) 결과
               요건 미충족, 허위 또는 부정으로
-              인정된 경우 
+              인정된 경우
               <span className="font-semibold text-blue-600">
-                취소 사유
+                {" "}취소 사유
               </span>
               가 발생할 수 있습니다.
             </p>
@@ -243,7 +277,7 @@ export default function ResearchLabPage() {
             <p>
               취소된 경우
               <span className="font-semibold text-blue-600">
-                1년간 재신고 불가
+                {" "}1년간 재신고 불가
               </span>
               라는 패널티가 부여됩니다.
             </p>
@@ -257,11 +291,62 @@ export default function ResearchLabPage() {
         </div>
       </section>
 
+      {/* ================= CASE STUDIES ================= */}
+      <section className="bg-white py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-3xl font-bold mb-12">
+            기업부설연구소 사례
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {caseStudies.map((item, index) => (
+              <a
+                key={index}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative h-[420px] rounded-2xl overflow-hidden shadow-lg transition-all hover:-translate-y-2 hover:shadow-2xl"
+                aria-label={item.title || "기업부설연구소 사례"}
+              >
+                <div className="absolute inset-0">
+                  <img
+                    src={item.image}
+                    alt={item.title || "기업부설연구소 사례 이미지"}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                </div>
+
+                {(item.title || item.description || item.category) && (
+                  <div className="absolute bottom-0 left-0 right-0 p-7 text-white">
+                    {item.category && (
+                      <p className="text-xs font-semibold tracking-wider text-blue-200 mb-3">
+                        {item.category}
+                      </p>
+                    )}
+                    {item.title && (
+                      <h3 className="text-2xl font-extrabold mb-3">
+                        {item.title}
+                      </h3>
+                    )}
+                    {item.description && (
+                      <p className="text-sm leading-relaxed whitespace-pre-line opacity-90 mb-5">
+                        {item.description}
+                      </p>
+                    )}
+                    <div className="h-4" />
+                  </div>
+                )}
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ================= RESEARCH NOTE WARNING ================= */}
       <section className="bg-gray-50 py-24">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-2xl font-bold mb-10 flex items-center gap-3">
-            <span className="text-red-500">⚠️</span>
             연구노트 작성 주의사항 (해명자료)
           </h2>
 
@@ -333,7 +418,7 @@ export default function ResearchLabPage() {
             연구개발 과제별로
             연구개발계획서,
             연구개발보고서 및 연구노트를 작성하여야 하며,
-            해당 과세연도의 종료일로부터
+            해당 과세연도의 종료일로부터{" "}
             <span className="font-semibold text-blue-600">
               5년간 보관
             </span>

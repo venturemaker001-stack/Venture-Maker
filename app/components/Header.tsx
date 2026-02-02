@@ -2,9 +2,12 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Header() {
   const [showCertDropdown, setShowCertDropdown] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   const certificationCategories = [
     { name: "벤처기업인증", href: "/certification/venture" },
@@ -24,7 +27,7 @@ export default function Header() {
           <img
   src="/venture-maker-logo.png"
   alt="Venture Maker Logo"
-  className="h-16 lg:h-20 object-contain"
+  className="h-5 lg:h-7 object-contain"
 />
 
         </Link>
@@ -66,19 +69,24 @@ export default function Header() {
             <Link href="/insights" className="hover:text-gray-900">
               경영 인사이트
             </Link>
-            <a
-              href="#ai-consulting"
+            <Link
+              href="/#ai-consulting"
               onClick={(e) => {
+                if (pathname !== "/") {
+                  return;
+                }
                 e.preventDefault();
                 const element = document.getElementById("ai-consulting");
                 if (element) {
                   element.scrollIntoView({ behavior: "smooth", block: "start" });
+                } else {
+                  router.push("/#ai-consulting");
                 }
               }}
               className="font-semibold text-orange-500 hover:opacity-80 cursor-pointer"
             >
               벤처메이커 AI
-            </a>
+            </Link>
           </nav>
 
           {/* 상담 신청 버튼 */}

@@ -63,16 +63,18 @@ export default function InnobizPage() {
           {/* RIGHT TEXT */}
           <div className="space-y-6 leading-relaxed text-gray-700 text-[17px]">
             <p>
-              이노비즈 인증이란 업력 3년 이상인 기업 중에서 기술혁신 활동을 통하여
-              기술경쟁력을 이미 확보하였거나 확보할 수 있으면서
-              미래 성장가능성이 높은 기업을 이노비즈 기업으로 선정·발굴하여
-              육성하기 위한 제도입니다.
+              이노비즈 인증이란 업력 3년 이상인 기업 중에서 기술혁신 활동을 통해
+              기술경쟁력을 이미 확보하였거나
+              <br />
+              확보할 수 있으면서 미래 성장 가능성이 높은 기업을
+              이노비즈 기업으로 선정·발굴하여 육성하기 위한 제도입니다.
             </p>
 
             <p>
               혁신조사를 위한 최초의 국제적 기준인 오슬로 매뉴얼을 기반으로 하여
-              평가 및 심사를 통과한 기업은 기술혁신을 보유한 핵심 기업군으로
-              인증됩니다.
+              평가 및 심사를 통과한 기업은
+              <br />
+              기술혁신을 보유한 핵심 기업군으로 인증됩니다.
             </p>
 
             <p>
@@ -86,8 +88,9 @@ export default function InnobizPage() {
               </p>
               <p className="text-sm">
                 중소벤처기업부장관은 기술혁신형 중소기업을 발굴·육성하기 위한
-                사업을 추진할 수 있으며 비수도권 지역의 기술혁신형 중소기업을
-                우선적으로 지원합니다.
+                사업을 추진할 수 있으며
+                <br />
+                비수도권 지역의 기술혁신형 중소기업을 우선적으로 지원합니다.
               </p>
             </div>
 
@@ -130,12 +133,12 @@ export default function InnobizPage() {
       </div>
 
       {/* RIGHT IMAGE */}
-      <div className="flex justify-center">
-        <div className="bg-white rounded-2xl shadow-lg p-6">
+      <div className="flex justify-center items-start">
+        <div className="bg-white rounded-2xl shadow-lg p-6 self-start -mt-6 lg:-mt-20">
           <img
             src="/innobiz-benefit.jpg"
             alt="이노비즈 기술혁신형 중소기업 확인서"
-            className="w-[300px] max-w-full object-contain"
+              className="w-[240px] max-w-full object-contain"
           />
         </div>
       </div>
@@ -246,13 +249,18 @@ export default function InnobizPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: i * 0.15 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-xl shadow-md p-8 text-center"
+                className="bg-white rounded-xl shadow-md p-8 text-center relative"
               >
                 <div className="text-4xl mb-4">{step.icon}</div>
                 <h3 className="text-lg font-bold mb-3">{step.title}</h3>
                 <p className="text-sm text-gray-600 whitespace-pre-line">
                   {step.desc}
                 </p>
+
+                {/* Connector */}
+                {i !== steps.length - 1 && (
+                  <span className="hidden md:block absolute top-1/2 right-[-40px] w-8 h-px bg-gray-300" />
+                )}
               </motion.div>
             ))}
           </div>

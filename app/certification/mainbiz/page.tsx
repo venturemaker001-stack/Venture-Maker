@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import Footer from "../../components/Footer";
 
 export default function MainbizPage() {
@@ -27,6 +28,30 @@ export default function MainbizPage() {
       title: "메인비즈 발급",
       desc: "지방중소벤처기업청\n인증서 승인",
       icon: "🏆",
+    },
+  ];
+
+  const mainbizCases = [
+    {
+      category: "MAINBIZ CERTIFICATION",
+      title: "메인비즈 인증 평가지표 알고 세무조사 유예받자",
+      description: "",
+      image: "/certification-mainbiz1.jpg",
+      link: "https://blog.naver.com/eum63/223821907774",
+    },
+    {
+      category: "MAINBIZ CERTIFICATION",
+      title: "메인비즈인증: 중고차매매업 혁신적인 도약",
+      description: "",
+      image: "/certification-mainbiz2.jpg",
+      link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223812866952&redirect=Dlog",
+    },
+    {
+      category: "MAINBIZ CERTIFICATION",
+      title: "MainBiz Innovation: 온라인 보물창고 쇼핑몰 메인비즈 인증",
+      description: "",
+      image: "/certification-mainbiz3.jpg",
+      link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223804676491&redirect=Dlog",
     },
   ];
 
@@ -60,15 +85,16 @@ export default function MainbizPage() {
           <div className="space-y-6 leading-relaxed text-gray-700 text-[17px]">
             <p>
               메인비즈 인증이란 업력 3년 이상인 기업 중에서
-              기술혁신이 아닌 경영혁신을 통하여
-              성장성이 우수한 기업들을 발굴하고 육성하기 위하여
-              도입된 제도입니다.
+              기술혁신이 아닌 경영혁신을 통해
+              <br />
+              성장성이 우수한 기업을 발굴·육성하기 위해 도입된 제도입니다.
             </p>
 
             <p>
               주된 혜택으로는 메인비즈 인증을 취득한 중소기업에게
-              기술이나 정책자금, 세제혜택을 부여하여
-              경영혁신을 촉진시키고 성장시킬 수 있도록 합니다.
+              기술지원이나 정책자금, 세제혜택을 부여하여
+              <br />
+              경영혁신을 촉진하고 성장을 지원합니다.
             </p>
 
             <div className="border-l-4 border-blue-600 pl-6 py-5 bg-blue-50 rounded-md">
@@ -86,6 +112,7 @@ export default function MainbizPage() {
               평가기관은 신용보증기금, 기술보증기금,
               한국생산성본부이며
               경영혁신형 중소기업(메인비즈) 평가지표에 따라
+              <br />
               <span className="font-semibold text-blue-600">
                 {" "}
                 1,000점 만점 중 700점 이상
@@ -97,6 +124,7 @@ export default function MainbizPage() {
               메인비즈 인증 유효기간은{" "}
               <span className="font-semibold text-blue-600">3년</span>이며,
               유효기간 만료 3개월 전부터 만료 후 1개월 이내에
+              <br />
               재인증을 받아 기간을 연장할 수 있습니다.
             </p>
           </div>
@@ -126,9 +154,9 @@ export default function MainbizPage() {
         <p>
           신용보증기금과 기술보증기금의 보증료율 차감,
           <br />
-          각종 금리우대, 한도 상승,
+          각종 금리우대, 보증한도 확대, 자금지원 및 평가 시
           <br />
-          자금지원 및 평가 시 가점 부여 등의 혜택을 받을 수 있습니다.
+          가점 부여 등의 혜택을 받을 수 있습니다.
         </p>
 
         <p className="pt-2">
@@ -251,7 +279,7 @@ export default function MainbizPage() {
             신중한 접근과 철저한 준비가 필요합니다.
           </p>
 
-          <div className="grid md:grid-cols-4 gap-10">
+          <div className="grid md:grid-cols-4 gap-10 relative">
             {steps.map((step, i) => (
               <motion.div
                 key={i}
@@ -259,15 +287,85 @@ export default function MainbizPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: i * 0.15 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-xl shadow-md p-8 text-center"
+                className="bg-white rounded-xl shadow-md p-8 text-center relative"
               >
                 <div className="text-4xl mb-4">{step.icon}</div>
                 <h3 className="text-lg font-bold mb-3">{step.title}</h3>
                 <p className="text-sm text-gray-600 whitespace-pre-line">
                   {step.desc}
                 </p>
+
+                {/* Connector */}
+                {i !== steps.length - 1 && (
+                  <span className="hidden md:block absolute top-1/2 right-[-40px] w-8 h-px bg-gray-300" />
+                )}
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================= CASES ================= */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">메인비즈 인증 사례</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {mainbizCases.map((item, index) => {
+              const cardContent = (
+                <>
+                  <div className="absolute inset-0">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                  </div>
+
+                  <div className="absolute bottom-0 left-0 right-0 p-7 text-white">
+                    <p className="text-xs font-semibold tracking-wider text-blue-200 mb-3">
+                      {item.category}
+                    </p>
+                    <h3 className="text-2xl font-extrabold mb-3">
+                      {item.title}
+                    </h3>
+                    {item.description && (
+                      <p className="text-sm leading-relaxed whitespace-pre-line opacity-90 mb-5">
+                        {item.description}
+                      </p>
+                    )}
+                    <div className="h-4" />
+                  </div>
+                </>
+              );
+
+              if (item.link) {
+                return (
+                  <a
+                    key={index}
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative h-[420px] rounded-2xl overflow-hidden shadow-lg transition-all hover:-translate-y-2 hover:shadow-2xl"
+                  >
+                    {cardContent}
+                  </a>
+                );
+              }
+
+              return (
+                <div
+                  key={index}
+                  className="group relative h-[420px] rounded-2xl overflow-hidden shadow-lg"
+                  aria-label={item.title}
+                >
+                  {cardContent}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -295,10 +393,18 @@ export default function MainbizPage() {
               포상까지 전반적으로 심사합니다.
             </p>
 
-            <p className="font-semibold text-gray-900">
-              메인비즈 인증 취득을 위해
-              언제든지 상담 신청해 주시기 바랍니다.
-            </p>
+            <div className="flex items-center gap-4">
+              <p className="font-semibold text-gray-900">
+                메인비즈 인증 취득을 위해
+                언제든지 상담 신청해 주시기 바랍니다.
+              </p>
+              <Link
+                href="/consult"
+                className="inline-flex items-center rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
+              >
+                상담신청
+              </Link>
+            </div>
           </div>
         </div>
       </section>
