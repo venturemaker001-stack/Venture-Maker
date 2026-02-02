@@ -155,7 +155,7 @@ export default function CertificationPage() {
     const position = index - activeIndex;
     
     let translateX = 0;
-    const zIndex = 0;
+    let zIndex = 0;
     let opacity = 0.3;
     let width = 220;
     let height = 340;
