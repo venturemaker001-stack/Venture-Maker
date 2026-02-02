@@ -320,7 +320,7 @@ export default function Home() {
           const position = index - currentIndex - items.length;
 
           let translateX = 0;
-          let zIndex = 0;
+          const zIndex = 0;
           let opacity = 1;
           let width = 240;
           let height = 360;
