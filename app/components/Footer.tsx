@@ -20,16 +20,14 @@ export default function Footer() {
         {/* Company Info */}
         <div className="text-center space-y-3 text-sm text-gray-600">
           <p>
-            중소벤처 경영지원단 | 서울특별시 강서구 마곡중앙6로 11, 3층 314-39호 (마곡동, 보타닉파크타워3) | 사업자등록번호: 107-88-38052 | 대표자: 엄현철
+            중소벤처 경영지원단 | 서울특별시 강서구 마곡중앙6로 11, 3층 314-39호 (마곡동, 보타닉파크타워3) | 사업자등록번호: 392-26-01330 | 대표자: 엄현철
           </p>
-          <p>
-            Venture Maker | TEL : 010-4324-2683 | E Mail : eumhc63@gmail.com
-          </p>
+          <p>010-4324-2683 | eumhc63@gmail.com</p>
         </div>
 
         {/* Copyright */}
         <div className="text-center mt-8 text-xs text-gray-500">
-          Copyright 2025, 중소벤처 경영지원단. All Rights Reserved
+          ⓒ 2025 VentureMaker. All rights reserved.
         </div>
       </div>
     </footer>

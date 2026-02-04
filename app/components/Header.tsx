@@ -20,39 +20,44 @@ export default function Header() {
 
   return (
     <header className="w-full bg-white border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-auto sm:h-20 py-3 sm:py-0 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
         
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <img
-  src="/venture-maker-logo.png"
-  alt="Venture Maker Logo"
-  className="h-5 lg:h-7 object-contain"
-/>
+            src="/venture-maker-logo.png"
+            alt="Venture Maker Logo"
+            className="h-5 sm:h-6 object-contain"
+          />
 
         </Link>
 
         {/* Navigation + CTA */}
-        <div className="flex items-center gap-10">
-          <nav className="flex items-center gap-8 text-sm font-semibold text-gray-700">
-            <Link href="/about" className="hover:text-gray-900">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-10 w-full sm:w-auto">
+          <nav className="flex flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-8 text-xs sm:text-sm font-semibold text-gray-700">
+            <Link href="/about" className="hover:text-gray-900 whitespace-nowrap">
               회사소개
             </Link>
             
             {/* 기업인증센터 with Dropdown */}
             <div
-  className="relative"
-  onMouseEnter={() => setShowCertDropdown(true)}
-  onMouseLeave={() => setShowCertDropdown(false)}
->
+              className="relative"
+              onMouseEnter={() => setShowCertDropdown(true)}
+              onMouseLeave={() => setShowCertDropdown(false)}
+            >
 
-              <Link href="/certification" className="hover:text-gray-900">
+              <Link href="/certification" className="hover:text-gray-900 whitespace-nowrap">
                 기업인증센터
               </Link>
               
               {/* Dropdown Menu */}
               {showCertDropdown && (
-                <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50">
+                <>
+                  <span
+                    className="absolute top-full left-0 right-0 h-3"
+                    aria-hidden="true"
+                  />
+                  <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50">
                   {certificationCategories.map((category, index) => (
                     <Link
                       key={index}
@@ -62,11 +67,12 @@ export default function Header() {
                       {category.name}
                     </Link>
                   ))}
-                </div>
+                  </div>
+                </>
               )}
             </div>
 
-            <Link href="/insights" className="hover:text-gray-900">
+            <Link href="/insights" className="hover:text-gray-900 whitespace-nowrap">
               경영 인사이트
             </Link>
             <Link
@@ -83,7 +89,7 @@ export default function Header() {
                   router.push("/#ai-consulting");
                 }
               }}
-              className="font-semibold text-orange-500 hover:opacity-80 cursor-pointer"
+              className="font-semibold text-orange-500 hover:opacity-80 cursor-pointer whitespace-nowrap"
             >
               벤처메이커 AI
             </Link>
@@ -92,7 +98,7 @@ export default function Header() {
           {/* 상담 신청 버튼 */}
           <Link
             href="/consult"
-            className="inline-flex items-center justify-center rounded-md bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700 transition"
+            className="inline-flex items-center justify-center rounded-md bg-blue-600 px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-semibold text-white hover:bg-blue-700 transition w-full sm:w-auto"
           >
             상담 신청
           </Link>

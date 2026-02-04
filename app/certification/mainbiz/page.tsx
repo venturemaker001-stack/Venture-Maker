@@ -175,7 +175,7 @@ export default function MainbizPage() {
     </div>
 
     {/* ================= TABS ================= */}
-    <div className="flex border-b border-gray-300">
+    <div className="flex gap-2 sm:gap-0 border-b border-gray-300 overflow-x-auto">
       {[
         "금융 혜택",
         "세제 혜택",
@@ -187,7 +187,7 @@ export default function MainbizPage() {
         <button
           key={tab}
           onClick={() => setActiveBenefitTab(idx)}
-          className={`px-8 py-4 text-sm font-semibold border border-b-0 transition
+          className={`shrink-0 whitespace-nowrap px-4 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm font-semibold border border-b-0 transition
             ${
               activeBenefitTab === idx
                 ? "bg-white text-gray-900 border-gray-300"
@@ -200,10 +200,10 @@ export default function MainbizPage() {
     </div>
 
     {/* ================= TABLE ================= */}
-    <div className="border border-gray-300 p-16 text-gray-700 text-lg leading-relaxed">
+    <div className="border border-gray-300 p-6 sm:p-16 text-gray-700 text-sm sm:text-lg leading-relaxed">
       {/* 금융 혜택 */}
       {activeBenefitTab === 0 && (
-        <ol className="list-decimal pl-6 space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
           <li>신용보증기금 보증료율 차감 우대</li>
           <li>신용보증기금 매출채권 보험료 15% 할인</li>
           <li>SGI서울보증 보증한도 확대 및 보증보험료 10% 할인</li>
@@ -215,7 +215,7 @@ export default function MainbizPage() {
 
       {/* 세제 혜택 */}
       {activeBenefitTab === 1 && (
-        <ol className="list-decimal pl-6 space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
           <li>수도권 소재 기업 2년, 지방 소재 기업 3년간 정기 세무조사 유예</li>
           <li>세금포인트 적립제도 우대 점수 부여</li>
           <li>관세 조사 유예</li>
@@ -224,7 +224,7 @@ export default function MainbizPage() {
 
       {/* 수출 및 판매 */}
       {activeBenefitTab === 2 && (
-        <ol className="list-decimal pl-6 space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
           <li>글로벌 강소기업 육성사업 지원 시 우대</li>
           <li>방송 광고비의 일부 감면</li>
           <li>물품구매적격심사 지원 시 우대 가점 부여</li>
@@ -234,7 +234,7 @@ export default function MainbizPage() {
 
       {/* 연구개발 관련 혜택 */}
       {activeBenefitTab === 3 && (
-        <ol className="list-decimal pl-6 space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
           <li>각종 중소벤처기업부 사업 신청 시 가점 부여</li>
           <li>방위사업청의 글로벌 방산 육성사업 신청 시 우대 가점 부여</li>
         </ol>
@@ -242,7 +242,7 @@ export default function MainbizPage() {
 
       {/* 인력 관련 혜택 */}
       {activeBenefitTab === 4 && (
-        <ol className="list-decimal pl-6 space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
           <li>공공연구기관의 연구인력을 중소기업에 파견하여 역량 제고를 지원</li>
           <li>일학습병행제 참여 시 심사 우대 및 상시 근로자수 5명 이상으로 조건 완화</li>
         </ol>
@@ -250,7 +250,7 @@ export default function MainbizPage() {
 
       {/* 기타 혜택 */}
       {activeBenefitTab === 5 && (
-        <ol className="list-decimal pl-6 space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
           <li>취업 포털사이트 사람인과 인크루트에 구인 공고 시 메인비즈 인증기업으로 배치</li>
           <li>중소기업 임직원을 위한 모바일 교육플랫폼 구축 및 임직원 교육 무상 지원</li>
           <li>기업 핵심 기술자료 및 영업비밀을 기술자료 임치센터 보관 시 수수료 1/3 감면</li>

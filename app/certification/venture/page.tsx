@@ -214,12 +214,12 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
     </div>
 
     {/* TAB LABELS */}
-    <div className="flex border-b border-gray-300">
+    <div className="flex gap-2 sm:gap-0 border-b border-gray-300 overflow-x-auto">
       {["세제 혜택", "금융 혜택", "인력 관련 혜택", "기타 혜택"].map((tab, idx) => (
         <button
           key={tab}
           onClick={() => setActiveBenefitTab(idx)}
-          className={`px-10 py-4 text-sm font-semibold border border-b-0 transition
+          className={`shrink-0 whitespace-nowrap px-4 sm:px-10 py-3 sm:py-4 text-xs sm:text-sm font-semibold border border-b-0 transition
             ${
               activeBenefitTab === idx
                 ? "bg-white text-gray-900 border-gray-300"
@@ -232,9 +232,9 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
     </div>
 
     {/* FULL WIDTH TABLE */}
-    <div className="border border-gray-300 p-16 text-gray-700 text-lg leading-relaxed">
+    <div className="border border-gray-300 p-6 sm:p-16 text-gray-700 text-sm sm:text-lg leading-relaxed">
       {activeBenefitTab === 0 && (
-        <ol className="list-decimal pl-6 space-y-5">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-5">
           <li>법인세 및 소득세 50% 감면 (창업벤처중소기업에 한함)</li>
           <li>취득세 75% 감면 (창업벤처중소기업에 한함)</li>
           <li>재산세 3년간 면제 및 이후 2년간 50% 감면 (창업벤처중소기업에 한함)</li>
@@ -244,7 +244,7 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
       )}
 
       {activeBenefitTab === 1 && (
-        <ol className="list-decimal pl-6 space-y-5">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-5">
           <li>기술보증기금 보증한도 확대</li>
           <li>코스닥 상장 심사기준 완화 및 우대</li>
           <li>정책자금 및 정부 지원사업 가점 부여</li>
@@ -252,7 +252,7 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
       )}
 
       {activeBenefitTab === 2 && (
-        <ol className="list-decimal pl-6 space-y-5">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-5">
           <li>기업부설연구소 연구전담요원 최소 2인 완화</li>
           <li>기업부설창작연구소 연구전담요원 최소 3인 완화</li>
           <li>스톡옵션 부여 대상 확대</li>
@@ -261,7 +261,7 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
       )}
 
       {activeBenefitTab === 3 && (
-        <ol className="list-decimal pl-6 space-y-5">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-5">
           <li>대기업 인수합병 시 상호출자제한기업집단 편입 7년 유예</li>
           <li>TV·라디오 광고비 3년간 최대 70% 할인</li>
         </ol>

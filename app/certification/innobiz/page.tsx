@@ -145,7 +145,7 @@ export default function InnobizPage() {
     </div>
 
     {/* TABS */}
-    <div className="flex border-b border-gray-300">
+    <div className="flex gap-2 sm:gap-0 border-b border-gray-300 overflow-x-auto">
       {[
         "금융 혜택",
         "세제 혜택",
@@ -157,7 +157,7 @@ export default function InnobizPage() {
         <button
           key={tab}
           onClick={() => setActiveBenefitTab(idx)}
-          className={`px-8 py-4 text-sm font-semibold border border-b-0 transition
+          className={`shrink-0 whitespace-nowrap px-4 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm font-semibold border border-b-0 transition
             ${
               activeBenefitTab === idx
                 ? "bg-white text-gray-900 border-gray-300"
@@ -170,10 +170,10 @@ export default function InnobizPage() {
     </div>
 
     {/* TABLE */}
-    <div className="border border-gray-300 p-16 text-gray-700 text-lg leading-relaxed">
+    <div className="border border-gray-300 p-6 sm:p-16 text-gray-700 text-sm sm:text-lg leading-relaxed">
       {/* 금융 혜택 */}
       {activeBenefitTab === 0 && (
-        <ol className="list-decimal pl-6 space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
           <li>기술보증기금 보증료율 차감 우대</li>
           <li>기술보증기금 기술보증 보증한도 확대 지원</li>
           <li>기술보증기금 기술보증 보증비율 최대 100% 전액 보증 지원</li>
@@ -184,7 +184,7 @@ export default function InnobizPage() {
 
       {/* 세제 혜택 */}
       {activeBenefitTab === 1 && (
-        <ol className="list-decimal pl-6 space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
           <li>이노비즈 기업 수도권 소재 기업 2년, 지방 소재 기업 3년간 정기 세무조사 유예</li>
           <li>이노비즈 기업 수도권 취득세 중과 면제</li>
           <li>납부기한 연장 및 납부유예</li>
@@ -194,7 +194,7 @@ export default function InnobizPage() {
 
       {/* 수출 및 판매 */}
       {activeBenefitTab === 2 && (
-        <ol className="list-decimal pl-6 space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
           <li>글로벌 강소기업 육성사업 지원 시 우대</li>
           <li>공공쇼핑몰 우수제품 입점 및 판매 홍보 우대</li>
           <li>물품구매적격심사 지원 시 신인도 평가 가점 부여</li>
@@ -205,7 +205,7 @@ export default function InnobizPage() {
 
       {/* 연구개발 관련 혜택 */}
       {activeBenefitTab === 3 && (
-        <ol className="list-decimal pl-6 space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
           <li>각종 중소벤처기업부 사업 신청 시 가점 부여</li>
           <li>스마트 제조혁신, ICT 솔루션, 스케일업, 해외인증규격 등</li>
         </ol>
@@ -213,7 +213,7 @@ export default function InnobizPage() {
 
       {/* 인력 관련 혜택 */}
       {activeBenefitTab === 4 && (
-        <ol className="list-decimal pl-6 space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
           <li>병역특례 전문연구요원제도 우대 가점</li>
           <li>병역특례 산업기능요원제도 우대 가점</li>
           <li>연구개발 기획역량제고사업 우대 가점</li>
@@ -223,7 +223,7 @@ export default function InnobizPage() {
 
       {/* 기타 혜택 */}
       {activeBenefitTab === 5 && (
-        <ol className="list-decimal pl-6 space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
           <li>특허 출원 시 우선심사 지원 대상</li>
           <li>
             핵심 기술자료 및 영업비밀을 기술자료 임치센터에 보관 시
