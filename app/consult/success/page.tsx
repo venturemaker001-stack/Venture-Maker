@@ -25,23 +25,17 @@ export default function ConsultSuccessPage() {
         </div>
 
         {/* Title */}
-        <h1 className="text-2xl md:text-3xl font-extrabold text-blue-900 mb-4">
+        <h1 className="text-2xl md:text-3xl font-extrabold text-blue-900 mb-4 break-keep">
           상담 신청이 정상적으로 접수되었습니다
         </h1>
 
         {/* Description */}
-        <p className="text-gray-600 leading-relaxed mb-6">
-          남겨주신 내용을 바탕으로 담당자가 검토 후
-          <br />
-          <span className="font-semibold text-gray-800">
-            최대 48시간 이내
-          </span>
-          에 연락드릴 예정입니다.
+        <p className="text-gray-600 leading-relaxed mb-6 break-keep">
+          남겨주신 내용을 바탕으로 담당자가 검토 후 <span className="font-semibold text-gray-800">최대 48시간 이내</span>에 연락드릴 예정입니다.
         </p>
 
-        <p className="text-sm text-gray-500 mb-12">
-          문의량이 많은 경우 답변이 다소 지연될 수 있으나,
-          순차적으로 안내드리고 있으니 양해 부탁드립니다.
+        <p className="text-sm text-gray-500 mb-12 break-keep">
+          문의량이 많은 경우 답변이 다소 지연될 수 있으나, 순차적으로 안내드리고 있으니 양해 부탁드립니다.
         </p>
 
         {/* Actions */}

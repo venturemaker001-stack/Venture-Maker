@@ -79,9 +79,8 @@ export default function ConsultPage() {
           <h1 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-6">
             상담 신청
           </h1>
-          <p className="text-gray-600 leading-relaxed">
-            벤처기업 인증부터 정책자금까지.<br />
-            귀사의 상황에 맞는 전략을 전문가가 직접 검토합니다.
+          <p className="text-gray-600 leading-relaxed break-keep">
+            벤처기업 인증부터 정책자금까지. 귀사의 상황에 맞는 전략을 전문가가 직접 검토합니다.
           </p>
         </div>
 
@@ -148,7 +147,7 @@ export default function ConsultPage() {
               <option>이노비즈 인증</option>
               <option>ISO 인증</option>
               <option>기타 지원 사업</option>
-              <option>정책조금조달사업</option>
+              <option>정책자금조달사업</option>
               <option value="기타">기타</option>
             </select>
 
@@ -188,7 +187,7 @@ export default function ConsultPage() {
 
           {/* 개인정보 동의 */}
           <section className="space-y-2">
-            <label className="flex items-start gap-3 text-sm text-gray-700">
+            <label className="flex items-start gap-3 text-sm text-gray-700 break-keep">
               <input
                 type="checkbox"
                 checked={agree}
@@ -285,11 +284,9 @@ function Modal({ onClose }: { onClose: () => void }) {
           개인정보 처리방침
         </h2>
 
-        <div className="space-y-5 text-sm text-gray-700 leading-relaxed">
+        <div className="space-y-5 text-sm text-gray-700 leading-relaxed break-keep">
           <p>
-            중소벤처 경영지원단 Venture Maker(이하 “회사”)는 정보주체의
-            개인정보를 중요시하며, 「개인정보 보호법」 등 관련 법령을
-            준수하고 있습니다.
+            중소벤처 경영지원단 Venture Maker(이하 "회사")는 정보주체의 개인정보를 중요시하며, 「개인정보 보호법」 등 관련 법령을 준수하고 있습니다.
           </p>
 
           <section>
@@ -324,9 +321,7 @@ function Modal({ onClose }: { onClose: () => void }) {
               3. 개인정보의 보유 및 이용 기간
             </h3>
             <p>
-              회사는 개인정보 수집 및 이용 목적이 달성된 후에는 해당 정보를
-              지체 없이 파기합니다. 단, 관계 법령에 따라 보존할 필요가 있는
-              경우 해당 기간 동안 보관합니다.
+              회사는 개인정보 수집 및 이용 목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 단, 관계 법령에 따라 보존할 필요가 있는 경우 해당 기간 동안 보관합니다.
             </p>
             <ul className="list-disc ml-5 mt-2">
               <li>상담 기록: 상담 종료 후 1년간 보관</li>
@@ -338,9 +333,7 @@ function Modal({ onClose }: { onClose: () => void }) {
               4. 개인정보의 제3자 제공
             </h3>
             <p>
-              회사는 원칙적으로 정보주체의 개인정보를 외부에 제공하지
-              않습니다. 다만, 법령에 따라 요구되는 경우에 한하여 제공될 수
-              있습니다.
+              회사는 원칙적으로 정보주체의 개인정보를 외부에 제공하지 않습니다. 다만, 법령에 따라 요구되는 경우에 한하여 제공될 수 있습니다.
             </p>
           </section>
 
@@ -349,12 +342,10 @@ function Modal({ onClose }: { onClose: () => void }) {
               5. 정보주체의 권리
             </h3>
             <p>
-              정보주체는 언제든지 자신의 개인정보에 대해 열람, 정정, 삭제,
-              처리 정지를 요청할 수 있습니다.
+              정보주체는 언제든지 자신의 개인정보에 대해 열람, 정정, 삭제, 처리 정지를 요청할 수 있습니다.
             </p>
             <p className="mt-2">
-              귀하는 개인정보 수집 및 이용에 동의하지 않을 권리가 있으며,
-              동의하지 않을 경우 상담 신청이 제한될 수 있습니다.
+              귀하는 개인정보 수집 및 이용에 동의하지 않을 권리가 있으며, 동의하지 않을 경우 상담 신청이 제한될 수 있습니다.
             </p>
           </section>
 
@@ -372,12 +363,10 @@ function Modal({ onClose }: { onClose: () => void }) {
           </section>
 
           <p className="text-xs text-gray-500 mt-4">
-            본 개인정보 처리방침은 관련 법령 및 내부 정책에 따라 변경될 수
-            있으며, 변경 시 본 페이지를 통해 안내드립니다.
+            본 개인정보 처리방침은 관련 법령 및 내부 정책에 따라 변경될 수 있으며, 변경 시 본 페이지를 통해 안내드립니다.
           </p>
         </div>
       </div>
     </div>
   );
 }
-

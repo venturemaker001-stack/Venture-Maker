@@ -68,17 +68,19 @@ const clientReviews = [
       title: "벤처기업인증으로 세제 혜택 극대화",
       company: "테크스타트업",
       date: "2025년 11월 15일",
-      image: "/review-1.jpg",
+      image: "/certification-card1.jpg",
       videoIcon: true,
+      link: "https://blog.naver.com/eum63/223618110844",
     },
     {
       type: "ARTICLE",
       category: "SUCCESS STORY",
-      title: "이노비즈 인증 성공 사례: R&D 지원금 확보",
+      title: "이노비즈 인증 성공 사례:\nR&D 지원금 확보",
       company: "이노베이션랩",
       date: "2025년 10월 28일",
-      image: "/review-2.jpg",
+      image: "/certification-21new.jpg",
       videoIcon: false,
+      link: "https://blog.naver.com/eum63/224189142462",
     },
     {
       type: "INTERVIEW",
@@ -86,8 +88,9 @@ const clientReviews = [
       title: "ISO 인증으로 글로벌 시장 진출 성공",
       company: "글로벌테크",
       date: "2025년 10월 12일",
-      image: "/review-3.jpg",
+      image: "/certification-card3.jpg",
       videoIcon: false,
+      link: "https://blog.naver.com/eum63/223812866952",
     },
     {
       type: "ARTICLE",
@@ -95,8 +98,9 @@ const clientReviews = [
       title: "기업부설연구소 설립으로 인재 유치 성공",
       company: "리서치프로",
       date: "2025년 9월 20일",
-      image: "/review-4.jpg",
+      image: "/certification-card4.jpg",
       videoIcon: false,
+      link: "https://blog.naver.com/eum63/223598143019",
     },
 ];
 
@@ -229,7 +233,7 @@ export default function CertificationPage() {
             <p className="text-xl md:text-2xl text-gray-800 mb-4 font-semibold">
               기업의 가치를 높이는 확실한 방법
             </p>
-            <p className="text-lg text-gray-600 mx-auto whitespace-nowrap">
+            <p className="text-lg text-gray-600 mx-auto max-w-3xl break-keep">
               벤처메이커가 정책자금 100% 확보 전략까지, 당신의 비즈니스가 멈추지 않도록 가장 확실한 길을 설계합니다.
             </p>
           </div>
@@ -245,7 +249,7 @@ export default function CertificationPage() {
             <div className="relative w-full flex items-center justify-center">
               {extendedCertifications.map((cert, index) => {
                 const cardStyle = getCardStyle(index);
-                const originalIndex = index % certifications.length;
+                const isCenterCard = index === activeIndex;
                 return (
                   <Link
                     key={index}
@@ -269,12 +273,14 @@ export default function CertificationPage() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                       <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                        <h3 className="text-2xl font-extrabold mb-3 leading-tight">
+                        <h3 className={`font-extrabold leading-tight ${isCenterCard ? "text-2xl mb-3" : "text-xl"}`}>
                           {cert.title}
                         </h3>
-                        <p className="text-sm leading-relaxed whitespace-pre-line opacity-90 mb-4">
-                          {cert.description}
-                        </p>
+                        {isCenterCard && (
+                          <p className="text-sm leading-relaxed opacity-90 mb-4 break-keep">
+                            {cert.description}
+                          </p>
+                        )}
                       </div>
                     </div>
                   </Link>
@@ -323,17 +329,20 @@ export default function CertificationPage() {
 
       {/* Client Reviews Section */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-[1600px] mx-auto px-6">
           <div className="mb-12">
             <h2 className="text-4xl font-bold text-gray-900 mb-2">
               고객 성공 사례
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {clientReviews.map((review, index) => (
-              <div
+              <a
                 key={index}
+                href={review.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group relative h-[500px] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer"
               >
                 {/* Background Image */}
@@ -346,42 +355,11 @@ export default function CertificationPage() {
                   <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/60"></div>
                 </div>
 
-                {/* Video Play Button (if applicable) */}
-                {review.videoIcon && (
-                  <div className="absolute top-6 left-6 z-10">
-                    <div className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-colors">
-                      <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z"/>
-                      </svg>
-                    </div>
-                  </div>
-                )}
-
-                {/* Category Badge */}
-                <div className="absolute top-6 right-6 z-10">
-                  <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-sm border border-white/30 rounded-full">
-                    <span className="text-white text-xs font-semibold tracking-wider">
-                      {review.category}
-                    </span>
-                  </div>
-                </div>
-
                 {/* Bottom Info Card */}
                 <div className="absolute bottom-0 left-0 right-0 z-10">
                   <div className="bg-white/95 backdrop-blur-sm rounded-t-3xl p-6">
-                    {/* Type and Date */}
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xs font-semibold text-gray-500 tracking-wider">
-                        {review.type}
-                      </span>
-                      <span className="text-xs text-gray-400">•</span>
-                      <span className="text-xs text-gray-500">
-                        {review.date}
-                      </span>
-                    </div>
-
                     {/* Title */}
-                    <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight line-clamp-2">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight break-keep whitespace-pre-line">
                       {review.title}
                     </h3>
 
@@ -391,7 +369,7 @@ export default function CertificationPage() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -404,9 +382,8 @@ export default function CertificationPage() {
       <h2 className="text-4xl font-bold text-blue-900 mb-4">
         왜 기업인증이 필요한가요?
       </h2>
-      <p className="text-lg text-blue-700 max-w-3xl mx-auto">
-        기업인증은 단순한 인증서가 아닙니다. 세제 혜택, 정책자금 지원, 
-        입찰 우대 등 실질적인 혜택을 제공하며, 기업의 신뢰도와 경쟁력을 높입니다.
+      <p className="text-lg text-blue-700 max-w-3xl mx-auto break-keep">
+        기업인증은 단순한 인증서가 아닙니다. 세제 혜택, 정책자금 지원, 입찰 우대 등 실질적인 혜택을 제공하며, 기업의 신뢰도와 경쟁력을 높입니다.
       </p>
     </div>
 
@@ -422,7 +399,7 @@ export default function CertificationPage() {
         </div>
 
         <h3 className="text-2xl font-bold text-blue-900 mb-3">세제 혜택</h3>
-        <p className="text-blue-700 leading-relaxed">
+        <p className="text-blue-700 leading-relaxed break-keep">
           법인세 감면, 세액공제 등 다양한 세제 혜택 제공
         </p>
 
@@ -447,7 +424,7 @@ export default function CertificationPage() {
         </div>
 
         <h3 className="text-2xl font-bold text-blue-900 mb-3">정책자금 지원</h3>
-        <p className="text-blue-700 leading-relaxed">
+        <p className="text-blue-700 leading-relaxed break-keep">
           저금리 융자, R&D 지원금 등 정부 지원 프로그램 접근
         </p>
 
@@ -472,7 +449,7 @@ export default function CertificationPage() {
         </div>
 
         <h3 className="text-2xl font-bold text-blue-900 mb-3">기업 신뢰도</h3>
-        <p className="text-blue-700 leading-relaxed">
+        <p className="text-blue-700 leading-relaxed break-keep">
           공공기관 입찰 우대, 거래처 신뢰도 향상
         </p>
 

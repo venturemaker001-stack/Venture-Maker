@@ -11,22 +11,22 @@ export default function MainbizPage() {
   const steps = [
     {
       title: "자가진단",
-      desc: "온라인 작성\n자가진단 점수 600점 이상 필요",
+      desc: "온라인 작성 자가진단 점수 600점 이상 필요",
       icon: "🖥️",
     },
     {
       title: "신청접수",
-      desc: "메인비즈 신청\n신규평가 55만원 · 갱신평가 44만원",
+      desc: "메인비즈 신청 신규평가 55만원 · 갱신평가 44만원",
       icon: "📄",
     },
     {
       title: "현장심사",
-      desc: "방문평가\n총 점수 700점 이상 승인",
+      desc: "방문평가 총 점수 700점 이상 승인",
       icon: "👥",
     },
     {
       title: "메인비즈 발급",
-      desc: "지방중소벤처기업청\n인증서 승인",
+      desc: "지방중소벤처기업청 인증서 승인",
       icon: "🏆",
     },
   ];
@@ -34,21 +34,21 @@ export default function MainbizPage() {
   const mainbizCases = [
     {
       category: "MAINBIZ CERTIFICATION",
-      title: "메인비즈 인증 평가지표 알고 세무조사 유예받자",
+      title: "메인비즈 인증 평가지표 알고\n세무조사 유예받자",
       description: "",
       image: "/certification-mainbiz1.jpg",
       link: "https://blog.naver.com/eum63/223821907774",
     },
     {
       category: "MAINBIZ CERTIFICATION",
-      title: "메인비즈인증: 중고차매매업 혁신적인 도약",
+      title: "메인비즈인증\n중고차매매업 혁신적인 도약",
       description: "",
       image: "/certification-mainbiz2.jpg",
       link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223812866952&redirect=Dlog",
     },
     {
       category: "MAINBIZ CERTIFICATION",
-      title: "MainBiz Innovation: 온라인 보물창고 쇼핑몰 메인비즈 인증",
+      title: "MainBiz Innovation\n온라인 보물창고 쇼핑몰 메인비즈인증",
       description: "",
       image: "/certification-mainbiz3.jpg",
       link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223804676491&redirect=Dlog",
@@ -82,25 +82,23 @@ export default function MainbizPage() {
           </div>
 
           {/* RIGHT TEXT */}
-          <div className="space-y-6 leading-relaxed text-gray-700 text-[17px]">
+          <div className="space-y-6 leading-relaxed text-gray-700 text-[17px] break-keep">
             <p>
               메인비즈 인증이란 업력 3년 이상인 기업 중에서
               기술혁신이 아닌 경영혁신을 통해
-              <br />
               성장성이 우수한 기업을 발굴·육성하기 위해 도입된 제도입니다.
             </p>
 
             <p>
               주된 혜택으로는 메인비즈 인증을 취득한 중소기업에게
               기술지원이나 정책자금, 세제혜택을 부여하여
-              <br />
               경영혁신을 촉진하고 성장을 지원합니다.
             </p>
 
             <div className="border-l-4 border-blue-600 pl-6 py-5 bg-blue-50 rounded-md">
               <p className="font-semibold text-blue-700 mb-2">
                 중소기업 기술혁신 촉진법 제15조의3
-                <br />(중소기업 경영혁신 촉진 지원사업)
+                (중소기업 경영혁신 촉진 지원사업)
               </p>
               <p className="text-sm">
                 중소벤처기업부장관은 중소기업의 경영혁신을 촉진하기 위하여
@@ -112,10 +110,8 @@ export default function MainbizPage() {
               평가기관은 신용보증기금, 기술보증기금,
               한국생산성본부이며
               경영혁신형 중소기업(메인비즈) 평가지표에 따라
-              <br />
               <span className="font-semibold text-blue-600">
-                {" "}
-                1,000점 만점 중 700점 이상
+                {" "}1,000점 만점 중 700점 이상
               </span>
               을 받아야 합니다.
             </p>
@@ -124,7 +120,6 @@ export default function MainbizPage() {
               메인비즈 인증 유효기간은{" "}
               <span className="font-semibold text-blue-600">3년</span>이며,
               유효기간 만료 3개월 전부터 만료 후 1개월 이내에
-              <br />
               재인증을 받아 기간을 연장할 수 있습니다.
             </p>
           </div>
@@ -138,24 +133,20 @@ export default function MainbizPage() {
 
     <div className="grid lg:grid-cols-[1.3fr_1fr] gap-20 items-start mb-16">
       {/* LEFT TEXT */}
-      <div className="space-y-6 text-gray-700 leading-relaxed text-[17px]">
+      <div className="space-y-6 text-gray-700 leading-relaxed text-[17px] break-keep">
         <p>
           메인비즈 인증을 취득한 중소기업은 수도권 소재기업은 2년,
-          <br />
           지방 소재기업은 3년간 정기세무조사를 유예합니다.
         </p>
 
         <p>
           또한 수입실적 1억 달러 이하의 기업은
-          <br />
           관세조사를 1년 유예합니다.
         </p>
 
         <p>
           신용보증기금과 기술보증기금의 보증료율 차감,
-          <br />
           각종 금리우대, 보증한도 확대, 자금지원 및 평가 시
-          <br />
           가점 부여 등의 혜택을 받을 수 있습니다.
         </p>
 
@@ -203,7 +194,7 @@ export default function MainbizPage() {
     <div className="border border-gray-300 p-6 sm:p-16 text-gray-700 text-sm sm:text-lg leading-relaxed">
       {/* 금융 혜택 */}
       {activeBenefitTab === 0 && (
-        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8 break-keep">
           <li>신용보증기금 보증료율 차감 우대</li>
           <li>신용보증기금 매출채권 보험료 15% 할인</li>
           <li>SGI서울보증 보증한도 확대 및 보증보험료 10% 할인</li>
@@ -215,7 +206,7 @@ export default function MainbizPage() {
 
       {/* 세제 혜택 */}
       {activeBenefitTab === 1 && (
-        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8 break-keep">
           <li>수도권 소재 기업 2년, 지방 소재 기업 3년간 정기 세무조사 유예</li>
           <li>세금포인트 적립제도 우대 점수 부여</li>
           <li>관세 조사 유예</li>
@@ -224,7 +215,7 @@ export default function MainbizPage() {
 
       {/* 수출 및 판매 */}
       {activeBenefitTab === 2 && (
-        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8 break-keep">
           <li>글로벌 강소기업 육성사업 지원 시 우대</li>
           <li>방송 광고비의 일부 감면</li>
           <li>물품구매적격심사 지원 시 우대 가점 부여</li>
@@ -234,7 +225,7 @@ export default function MainbizPage() {
 
       {/* 연구개발 관련 혜택 */}
       {activeBenefitTab === 3 && (
-        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8 break-keep">
           <li>각종 중소벤처기업부 사업 신청 시 가점 부여</li>
           <li>방위사업청의 글로벌 방산 육성사업 신청 시 우대 가점 부여</li>
         </ol>
@@ -242,7 +233,7 @@ export default function MainbizPage() {
 
       {/* 인력 관련 혜택 */}
       {activeBenefitTab === 4 && (
-        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8 break-keep">
           <li>공공연구기관의 연구인력을 중소기업에 파견하여 역량 제고를 지원</li>
           <li>일학습병행제 참여 시 심사 우대 및 상시 근로자수 5명 이상으로 조건 완화</li>
         </ol>
@@ -250,7 +241,7 @@ export default function MainbizPage() {
 
       {/* 기타 혜택 */}
       {activeBenefitTab === 5 && (
-        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8 break-keep">
           <li>취업 포털사이트 사람인과 인크루트에 구인 공고 시 메인비즈 인증기업으로 배치</li>
           <li>중소기업 임직원을 위한 모바일 교육플랫폼 구축 및 임직원 교육 무상 지원</li>
           <li>기업 핵심 기술자료 및 영업비밀을 기술자료 임치센터 보관 시 수수료 1/3 감면</li>
@@ -266,14 +257,12 @@ export default function MainbizPage() {
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl font-bold mb-16">메인비즈 인증 절차</h2>
 
-          <p className="text-gray-600 max-w-4xl mb-16 leading-relaxed">
+          <p className="text-gray-600 max-w-4xl mb-16 leading-relaxed break-keep">
             메인비즈 인증은 창업 초기 기업은 신청할 수 없으며
             3년이 지난 기업만 신청이 가능합니다.
-            <br />
             자가진단 점수 600점 이상인 경우 신청이 가능하며
             현장평가를 통해 총 점수가 700점 이상일 경우에만
             승인됩니다.
-            <br />
             탈락에 대한 패널티는 없으나
             평가비용은 환불되지 않으므로
             신중한 접근과 철저한 준비가 필요합니다.
@@ -291,7 +280,7 @@ export default function MainbizPage() {
               >
                 <div className="text-4xl mb-4">{step.icon}</div>
                 <h3 className="text-lg font-bold mb-3">{step.title}</h3>
-                <p className="text-sm text-gray-600 whitespace-pre-line">
+                <p className="text-sm text-gray-600 break-keep">
                   {step.desc}
                 </p>
 
@@ -329,11 +318,11 @@ export default function MainbizPage() {
                     <p className="text-xs font-semibold tracking-wider text-blue-200 mb-3">
                       {item.category}
                     </p>
-                    <h3 className="text-2xl font-extrabold mb-3">
+                    <h3 className={`font-extrabold mb-3 break-keep whitespace-pre-line ${index === 2 ? "text-xl" : "text-2xl"}`}>
                       {item.title}
                     </h3>
                     {item.description && (
-                      <p className="text-sm leading-relaxed whitespace-pre-line opacity-90 mb-5">
+                      <p className="text-sm leading-relaxed opacity-90 mb-5 break-keep">
                         {item.description}
                       </p>
                     )}
@@ -373,9 +362,9 @@ export default function MainbizPage() {
       {/* ================= CONSULTING ================= */}
       <section className="bg-gray-50 py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-10">메인비즈 인증 컨설팅</h2>
+          <h2 className="text-3xl font-bold mb-10 text-center">메인비즈 인증 컨설팅</h2>
 
-          <div className="space-y-5 text-gray-700 leading-relaxed max-w-4xl text-lg">
+          <div className="space-y-5 text-gray-700 leading-relaxed max-w-4xl mx-auto text-lg break-keep text-center">
             <p>
               현장 평가는 자가진단을 통해 취득한 점수에 대한
               검증 시간으로 질의응답과 증빙자료를 확인합니다.
@@ -393,17 +382,19 @@ export default function MainbizPage() {
               포상까지 전반적으로 심사합니다.
             </p>
 
-            <div className="flex items-center gap-4">
+            <div className="flex flex-col items-center gap-6 pt-6">
               <p className="font-semibold text-gray-900">
                 메인비즈 인증 취득을 위해
                 언제든지 상담 신청해 주시기 바랍니다.
               </p>
-              <Link
-                href="/consult"
-                className="inline-flex items-center rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
-              >
-                상담신청
-              </Link>
+              <div className="pt-2 w-full">
+                <Link
+                  href="/consult"
+                  className="inline-flex items-center justify-center rounded-full py-3.5 text-base font-semibold text-white shadow-md transition-colors w-full bg-[#2563eb] hover:bg-[#1d4ed8]"
+                >
+                  상담신청
+                </Link>
+              </div>
             </div>
           </div>
         </div>

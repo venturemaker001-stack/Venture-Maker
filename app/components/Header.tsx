@@ -98,7 +98,7 @@ export default function Header() {
           {/* 상담 신청 버튼 */}
           <Link
             href="/consult"
-            className="inline-flex items-center justify-center rounded-md bg-blue-600 px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-semibold text-white hover:bg-blue-700 transition w-full sm:w-auto"
+            className="inline-flex items-center justify-center rounded-md px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm font-semibold text-white transition w-full sm:w-auto bg-[#2563eb] hover:bg-[#1d4ed8]"
           >
             상담 신청
           </Link>

@@ -8,16 +8,14 @@ export default function ResearchLabPage() {
     {
       category: "RESEARCH LAB",
       title: "의류쇼핑몰 기업부설연구소 노하우",
-      description:
-        "신소재 개발 및 트렌드 분석, 패션 아이템 연구에서\n물류시스템 구축",
+      description: "신소재 개발 및 트렌드 분석, 패션 아이템 연구에서 물류시스템 구축",
       image: "/certification-researchcenter1.jpg",
       link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223548623447&redirect=Dlog",
     },
     {
       category: "RESEARCH LAB",
       title: "2차전지 믹싱장비 자동화 제조",
-      description:
-        "기업부설연구소 시작으로 R/D 무상자금, 특허기술 사업화",
+      description: "기업부설연구소 시작으로 R/D 무상자금, 특허기술 사업화",
       image: "/certification-researchcenter2.jpg",
       link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223546238069&redirect=Dlog",
     },
@@ -52,14 +50,13 @@ export default function ResearchLabPage() {
           </div>
 
           {/* RIGHT TEXT */}
-          <div className="space-y-6 leading-relaxed text-[17px] text-gray-700">
+          <div className="space-y-6 leading-relaxed text-[17px] text-gray-700 break-keep">
             <p>
               <span className="font-semibold text-blue-600">
                 기업부설연구소
               </span>
               란 영리를 목적으로 제품이나 서비스 등을
               생산·유통하는 기업들이
-              <br />
               연구개발활동을 위하여 사내에 설치하는 조직입니다.
             </p>
 
@@ -74,7 +71,6 @@ export default function ResearchLabPage() {
                 기업창작전담부서
               </span>
               도
-              <br />
               조건에 따라 설립이 가능합니다.
             </p>
 
@@ -82,7 +78,6 @@ export default function ResearchLabPage() {
               연구소와 전담부서를 설립하고 이를 신고하여
               인정받은 기업은
               연구개발활동 수행에 대한
-              <br />
               <span className="font-semibold text-blue-600">
                 각종 지원 혜택
               </span>
@@ -100,7 +95,6 @@ export default function ResearchLabPage() {
               연구개발활동을 할 준비가 되었다면
               설립 후 신고하여
               각종 지원 혜택을 통해
-              <br />
               기업 성장을 도모하시길 바랍니다.
             </p>
           </div>
@@ -117,20 +111,18 @@ export default function ResearchLabPage() {
         기업부설연구소 설립 조건 및 대상
       </h2>
 
-      <div className="space-y-8 text-gray-700 text-[17px] leading-relaxed">
+      <div className="space-y-8 text-gray-700 text-[17px] leading-relaxed break-keep">
         <p>
           기업부설연구소와 연구개발전담부서 등 연구조직에 대한 설립은
           <span className="text-sky-500 font-semibold">
             {" "}지식기반과 창작, 과학기술분야의
-          </span>
-          <br />
+          </span>{" "}
           연구개발활동을 수행하는 기업이 설립하고 인정이 가능합니다.
         </p>
 
         <p>
           또한 영리를 목적으로 운영되지 않는 비영리기관 및 기업, 학교,
           사단법인, 재단법인, 의료법인 등은
-          <br />
           기업부설연구소 설립 인정에서 제외됩니다.
         </p>
 
@@ -164,8 +156,7 @@ export default function ResearchLabPage() {
               <span className="text-sky-500 font-semibold">
                 {" "}연구전담요원(연구원)
               </span>
-              의 수가
-              <br />
+              의 수가{" "}
               <span className="text-red-500 font-semibold">
                 {" "}3명 이상
               </span>
@@ -191,7 +182,6 @@ export default function ResearchLabPage() {
         <p className="pt-6">
           연구공간은 조건과 기업규모에 따라 독립된 연구공간이 아니어도
           가능하며,
-          <br />
           연구원 또한 기업규모와 기업구분에 따라 요건이 상이합니다.
         </p>
 
@@ -224,8 +214,6 @@ export default function ResearchLabPage() {
 </section>
 
 
-
-
       {/* ================= MAINTENANCE ================= */}
       <section className="max-w-7xl mx-auto px-6 py-24">
         <h2 className="text-3xl font-bold mb-12">
@@ -233,11 +221,10 @@ export default function ResearchLabPage() {
         </h2>
 
         <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-16 items-start">
-          <div className="space-y-6 text-gray-700 text-[17px] leading-relaxed">
+          <div className="space-y-6 text-gray-700 text-[17px] leading-relaxed break-keep">
             <p>
               기업부설연구소 또는 연구개발전담부서는
               세액공제 등 다양한 혜택이 있으나,
-              <br />
               설립 이후{" "}
               <span className="font-semibold text-blue-600">
                 연구조직의 지속적인 관리
@@ -253,14 +240,12 @@ export default function ResearchLabPage() {
               를 제출해야 하며,
               연구현황, 연구개발인력,
               연구개발비 등의
-              <br />
               내용이 포함됩니다.
             </p>
 
             <p>
               연구원 퇴사, 기업 내용 변경,
               이전에 따른 소재지 변경 등이
-              <br />
               발생한 경우에는 반드시 변경 신고를 해야 합니다.
             </p>
 
@@ -325,12 +310,12 @@ export default function ResearchLabPage() {
                       </p>
                     )}
                     {item.title && (
-                      <h3 className="text-2xl font-extrabold mb-3">
+                      <h3 className="text-2xl font-extrabold mb-3 break-keep">
                         {item.title}
                       </h3>
                     )}
                     {item.description && (
-                      <p className="text-sm leading-relaxed whitespace-pre-line opacity-90 mb-5">
+                      <p className="text-sm leading-relaxed opacity-90 mb-5 break-keep">
                         {item.description}
                       </p>
                     )}
@@ -350,7 +335,7 @@ export default function ResearchLabPage() {
             연구노트 작성 주의사항 (해명자료)
           </h2>
 
-          <div className="space-y-6 text-gray-700 text-[17px] leading-relaxed max-w-4xl">
+          <div className="space-y-6 text-gray-700 text-[17px] leading-relaxed max-w-4xl break-keep">
             <p>
               A사는 중소기업으로서
               자체 기술개발을 위해
@@ -407,7 +392,7 @@ export default function ResearchLabPage() {
           연구보고서 관련 법령
         </h2>
 
-        <div className="space-y-6 text-gray-700 text-[17px] leading-relaxed max-w-4xl">
+        <div className="space-y-6 text-gray-700 text-[17px] leading-relaxed max-w-4xl break-keep">
           <p className="font-semibold text-blue-600">
             조세특례제한법 시행규칙 제7조
             (연구 및 인력개발비의 범위)

@@ -11,9 +11,9 @@ export default function TermsPage() {
           <h1 className="mt-4 text-4xl font-extrabold text-slate-900">
             이용약관
           </h1>
-          <p className="mt-4 text-sm text-slate-600 leading-relaxed">
+          <p className="mt-4 text-sm text-slate-600 leading-relaxed break-keep">
             본 이용약관은 중소벤처 경영지원단 Venture Maker 웹사이트 및 관련 서비스
-            (이하 “사이트”)의 이용과 관련하여 회사와 이용자 간의 권리, 의무 및 책임사항을
+            (이하 "사이트")의 이용과 관련하여 회사와 이용자 간의 권리, 의무 및 책임사항을
             규정합니다.
           </p>
 
@@ -166,7 +166,7 @@ function Section({
   return (
     <section className="space-y-4">
       <h2 className="text-xl font-bold text-slate-900">{title}</h2>
-      <div className="text-sm text-slate-600 leading-relaxed space-y-3">
+      <div className="text-sm text-slate-600 leading-relaxed space-y-3 break-keep">
         {children}
       </div>
     </section>

@@ -19,44 +19,44 @@ export default function InsightsPage() {
             </h2>
           </div>
 
-          {/* ================= ROW 1 ================= */}
+          {/* ================= ROW 1 : 4 SAME CARDS ================= */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
               {
                 tag: "BEST",
                 color: "bg-yellow-400",
                 date: "2025. 06. 23",
-                title: "기술이 없어도 경영 혁신으로 인증 획득, 메인비즈를 통한 세무조사 유예 및 금리 우대",
-                desc: "",
-                url: "https://blog.naver.com/eum63/223598143019",
-                image: "/mainbiz-mainpage.jpg",
+                title: "MainBiz Innovation",
+                subtitle: "기술이 없어도 경영 혁신으로 인증 획득.\n메인비즈를 통한 세무조사 유예 및 금리 우대.",
+                url: "https://blog.naver.com/eum63/223812866952",
+                image: "/mainbiz-mainpage.jpg"
               },
               {
                 tag: "R&D",
                 color: "bg-blue-500 text-white",
                 date: "2024. 12. 01",
-                title: "한의원기반 건강기능식품제조 벤처 재신청 사례",
-                desc: "",
-                url: "https://blog.naver.com/eum63/223905700120",
-                image: "/koreanmedicine-new.jpg",
+                title: "한의원기반 건강기능식품 제조",
+                subtitle: "벤처 재신청 사례",
+                url: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223591654433&redirect=Dlog",
+                image: "/koreanmedicine-new.jpg"
               },
               {
                 tag: "MAINBIZ",
                 color: "bg-purple-500 text-white",
                 date: "2025. 04. 07",
-                title: "AI 챗봇 기업의 연구소 설립 전략. 법인세 50% 감면과 벤처인증 동시 획득 노하우",
-                desc: "",
-                url: "https://blog.naver.com/eum63/223573977275",
-                image: "/aitechtransformation-mainpage.jpg",
+                title: "AI챗봇 기업의 연구소 설립 전략",
+                subtitle: "법인세 50%감면과 벤처인증\n동시획득 노하우",
+                url: "https://blog.naver.com/eum63/223598143019",
+                image: "/aitechtransformation-mainpage.jpg"
               },
               {
                 tag: "INSIGHT",
                 color: "bg-gray-800 text-white",
                 date: "2025. 03. 11",
-                title: "향기 화장품제조 ISO와 벤처인증",
-                desc: "",
-                url: "https://blog.naver.com/eum63/223812866952",
-                image: "/insights-perfume.jpg",
+                title: "향기 화장품 제조 ISO와 벤처인증",
+                subtitle: "",
+                url: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223908474692&redirect=Dlog",
+                image: "/insights-perfume.jpg"
               },
             ].map((item, i) => (
               <a
@@ -72,33 +72,27 @@ export default function InsightsPage() {
                   className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                <span
-                  className={`absolute top-4 left-4 text-xs font-bold px-3 py-1 rounded ${item.color}`}
-                >
-                  {item.tag}
-                </span>
                 <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                  <h3 className="text-base md:text-lg font-extrabold leading-snug">
-                    {item.title}
+                  <h3 className="text-base md:text-lg leading-snug">
+                    <span className="font-extrabold">{item.title}</span>
+                    {item.subtitle && (
+                      <span className="font-normal block mt-1 text-xs whitespace-pre-line">{item.subtitle}</span>
+                    )}
                   </h3>
-                  {item.desc && (
-                    <p className="text-sm text-white/80 mt-2 line-clamp-2">
-                      {item.desc}
-                    </p>
-                  )}
-                  <span className="inline-flex items-center text-sm font-semibold mt-4">
-                    Read Case Study →
+                  <span className="inline-flex items-center text-sm font-semibold mt-4 text-white/60">
+                    Read More
                   </span>
                 </div>
               </a>
             ))}
           </div>
 
-          {/* ================= ROW 2 ================= */}
+          {/* ================= ROW 2 : 2 SAME + BIG ================= */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12 items-stretch">
+
             {/* Small card 1 */}
             <a
-              href="https://blog.naver.com/eum63/223908474692"
+              href="https://blog.naver.com/eum63/223821907774"
               target="_blank"
               rel="noopener noreferrer"
               className="relative h-[320px] rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
@@ -109,15 +103,12 @@ export default function InsightsPage() {
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-              <span className="absolute top-4 left-4 text-xs font-bold bg-red-500 text-white px-3 py-1 rounded">
-                SUCCESS
-              </span>
               <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                <h3 className="text-base md:text-lg font-extrabold leading-snug">
-                  메인비즈 인증 평가지표 알고 세무조사 유예 받자
+                <h3 className="text-base md:text-lg leading-snug">
+                  <span className="font-extrabold">메인비즈 인증 평가지표 알고 세무조사 유예 받자</span>
                 </h3>
-                <span className="inline-flex items-center text-sm font-semibold mt-4">
-                  Read Case Study →
+                <span className="inline-flex items-center text-sm font-semibold mt-4 text-white/60">
+                  Read More
                 </span>
               </div>
             </a>
@@ -131,51 +122,42 @@ export default function InsightsPage() {
             >
               <img
                 src="/insights-food.jpg"
-                alt="요식업계 설렙과 콜라보: 혁신 벤처인증으로 브랜드 강화"
+                alt="요식업계 셀럽과 콜라보"
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                <h3 className="text-base md:text-lg font-extrabold leading-snug">
-                  요식업계 설렙과 콜라보: 혁신 벤처인증으로 브랜드 강화
+                <h3 className="text-base md:text-lg leading-snug">
+                  <span className="font-extrabold">요식업계 셀럽과 콜라보</span>
+                  <span className="font-normal block mt-1 text-xs">혁신 벤처인증으로 브랜드 강화</span>
                 </h3>
-                <span className="inline-flex items-center text-sm font-semibold mt-4">
-                  Read Case Study →
+                <span className="inline-flex items-center text-sm font-semibold mt-4 text-white/60">
+                  Read More
                 </span>
               </div>
             </a>
 
             {/* BIG CARD */}
             <a
-              href="https://blog.naver.com/eum63/223821907774"
+              href="https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223630048870&redirect=Dlog"
               target="_blank"
               rel="noopener noreferrer"
               className="md:col-span-2 relative h-[320px] rounded-2xl overflow-hidden text-white p-12 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300"
-              style={{
-                background:
-                  "linear-gradient(135deg, #1E2A8A 0%, #1B1E6D 100%)",
-              }}
+              style={{ background: "linear-gradient(135deg, #1E2A8A 0%, #1B1E6D 100%)" }}
             >
-              <div className="absolute top-10 right-10 text-white/20 text-[120px] font-extrabold">
-                &quot;
-              </div>
+              <div className="absolute top-10 right-10 text-white/20 text-[80px] font-extrabold leading-none select-none pointer-events-none">&quot;</div>
 
-              <div>
+              <div className="pr-20">
                 <p className="text-sm font-semibold tracking-widest text-blue-200 mb-6">
                   EXPERT COLUMN
                 </p>
-                <h3 className="text-2xl md:text-3xl font-extrabold mb-6">
-                  벤처기업 인증심사 평가지표,
-                  <br />
-                  <span className="text-blue-300 underline underline-offset-4">
-                    100% 승인
-                  </span>{" "}
-                  받는 법
+                <h3 className="text-2xl md:text-3xl font-extrabold mb-6 whitespace-pre-line">
+                  {`벤처기업 인증심사 평가지표,\n`}
+                  <span className="text-blue-300 underline underline-offset-4">100% 승인</span>
+                  {" 받는 법"}
                 </h3>
                 <p className="text-sm leading-relaxed text-blue-100">
-                  심사위원이 보는 핵심 포인트는 따로 있습니다.
-                  <br />
-                  수석 컨설턴트가 직접 공개합니다.
+                  심사위원이 보는 핵심 포인트는 따로 있습니다. 수석 컨설턴트가 직접 공개합니다.
                 </p>
               </div>
 
@@ -185,46 +167,43 @@ export default function InsightsPage() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold">엄현철 수석</p>
-                  <p className="text-xs text-blue-200">
-                    벤처메이커 전략기획팀
-                  </p>
+                  <p className="text-xs text-blue-200">벤처메이커 전략기획팀</p>
                 </div>
               </div>
 
             </a>
           </div>
 
-          {/* ================= ROW 3 ================= */}
+          {/* ================= ROW 3 : 4 SAME CARDS ================= */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
             {[
               {
                 date: "2024. 10. 10",
-                title: "AR + BIG DATA 콘텐츠 미디어 제작: 기술적 혁신벤처 인증으로 인한 기업가치 창출",
-                desc: "",
-                url: "https://blog.naver.com/eum63/223547687068",
-                image: "/insights-arbigdata.jpg",
+                title: "AR + BIG DATA 콘텐츠 미디어",
+                subtitle: "기술적 혁신 벤처인증으로 인한\n기업가치 창출",
+                url: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223597096021&redirect=Dlog",
+                image: "/insights-arbigdata.jpg"
               },
               {
                 date: "2024. 10. 11",
                 title: "인재를 부르는 비상장 벤처기업 스톡옵션의 마법",
-                desc: "",
-                url: "https://blog.naver.com/eum63/223618110844",
-                image: "/stockoption-new.jpg",
-                zoom: true,
+                subtitle: "",
+                url: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223557926232&redirect=Dlog",
+                image: "/stockoption-new.jpg"
               },
               {
                 date: "2024. 10. 12",
-                title: "소프트웨어 개발 및 컴퓨터 정보기기 도소매: 보완 솔루션 기술 개발 혁신 벤처 인증",
-                desc: "",
-                url: "https://blog.naver.com/eum63/223571498802",
-                image: "/insights-software.jpg",
+                title: "소프트웨어개발 및 컴퓨터 정보기기 도소매",
+                subtitle: "보안 솔루션 기술개발 혁신 벤처인증",
+                url: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223541792008&categoryNo=91&parentCategoryNo=&from=thumbnailList",
+                image: "/insights-software.jpg"
               },
               {
                 date: "2024. 10. 13",
-                title: "외식업체 자동화 기술 도입과 특허 확보와 혁신벤처 인증",
-                desc: "",
-                url: "https://blog.naver.com/eum63/223630048870",
-                image: "/insights-eatingout.jpg",
+                title: "외식업체 자동화 기술 도입과 특허확보와 혁신 벤처인증",
+                subtitle: "",
+                url: "https://blog.naver.com/eum63/223573977275",
+                image: "/insights-eatingout.jpg"
               },
             ].map((item, i) => (
               <a
@@ -237,22 +216,18 @@ export default function InsightsPage() {
                 <img
                   src={item.image}
                   alt={item.title}
-                  className={`absolute inset-0 w-full h-full object-cover ${
-                    item.zoom ? "scale-110" : ""
-                  }`}
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                  <h3 className="text-base md:text-lg font-extrabold leading-snug">
-                    {item.title}
+                  <h3 className="text-base md:text-lg leading-snug">
+                    <span className="font-extrabold">{item.title}</span>
+                    {item.subtitle && (
+                      <span className="font-normal block mt-1 text-xs whitespace-pre-line">{item.subtitle}</span>
+                    )}
                   </h3>
-                  {item.desc && (
-                    <p className="text-sm text-white/80 mt-2 line-clamp-2">
-                      {item.desc}
-                    </p>
-                  )}
-                  <span className="inline-flex items-center text-sm font-semibold mt-4">
-                    Read Case Study →
+                  <span className="inline-flex items-center text-sm font-semibold mt-4 text-white/60">
+                    Read More
                   </span>
                 </div>
               </a>

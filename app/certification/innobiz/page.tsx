@@ -16,12 +16,12 @@ export default function InnobizPage() {
     },
     {
       title: "신청접수",
-      desc: "이노비즈 신청\n신규평가 77만원 · 갱신평가 44만원",
+      desc: "이노비즈 신청 신규평가 77만원 · 갱신평가 44만원",
       icon: "📄",
     },
     {
       title: "현장심사",
-      desc: "방문평가\n총 점수 700점 이상 승인",
+      desc: "방문평가 총 점수 700점 이상 승인",
       icon: "👥",
     },
     {
@@ -61,20 +61,16 @@ export default function InnobizPage() {
 
 
           {/* RIGHT TEXT */}
-          <div className="space-y-6 leading-relaxed text-gray-700 text-[17px]">
+          <div className="space-y-6 leading-relaxed text-gray-700 text-[17px] break-keep">
             <p>
               이노비즈 인증이란 업력 3년 이상인 기업 중에서 기술혁신 활동을 통해
-              기술경쟁력을 이미 확보하였거나
-              <br />
-              확보할 수 있으면서 미래 성장 가능성이 높은 기업을
+              기술경쟁력을 이미 확보하였거나 확보할 수 있으면서 미래 성장 가능성이 높은 기업을
               이노비즈 기업으로 선정·발굴하여 육성하기 위한 제도입니다.
             </p>
 
             <p>
               혁신조사를 위한 최초의 국제적 기준인 오슬로 매뉴얼을 기반으로 하여
-              평가 및 심사를 통과한 기업은
-              <br />
-              기술혁신을 보유한 핵심 기업군으로 인증됩니다.
+              평가 및 심사를 통과한 기업은 기술혁신을 보유한 핵심 기업군으로 인증됩니다.
             </p>
 
             <p>
@@ -88,9 +84,7 @@ export default function InnobizPage() {
               </p>
               <p className="text-sm">
                 중소벤처기업부장관은 기술혁신형 중소기업을 발굴·육성하기 위한
-                사업을 추진할 수 있으며
-                <br />
-                비수도권 지역의 기술혁신형 중소기업을 우선적으로 지원합니다.
+                사업을 추진할 수 있으며 비수도권 지역의 기술혁신형 중소기업을 우선적으로 지원합니다.
               </p>
             </div>
 
@@ -110,7 +104,7 @@ export default function InnobizPage() {
 
     <div className="grid lg:grid-cols-[1.4fr_1fr] gap-16 items-start mb-16">
       {/* LEFT TEXT */}
-      <div className="space-y-5 text-gray-700 leading-relaxed">
+      <div className="space-y-5 text-gray-700 leading-relaxed break-keep">
         <p>
           이노비즈 인증을 취득한 중소기업은 수도권 취득세 중과를 면제받고,
           수도권 소재 기업은 2년, 지방 소재 기업은 3년간
@@ -173,7 +167,7 @@ export default function InnobizPage() {
     <div className="border border-gray-300 p-6 sm:p-16 text-gray-700 text-sm sm:text-lg leading-relaxed">
       {/* 금융 혜택 */}
       {activeBenefitTab === 0 && (
-        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8 break-keep">
           <li>기술보증기금 보증료율 차감 우대</li>
           <li>기술보증기금 기술보증 보증한도 확대 지원</li>
           <li>기술보증기금 기술보증 보증비율 최대 100% 전액 보증 지원</li>
@@ -184,7 +178,7 @@ export default function InnobizPage() {
 
       {/* 세제 혜택 */}
       {activeBenefitTab === 1 && (
-        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8 break-keep">
           <li>이노비즈 기업 수도권 소재 기업 2년, 지방 소재 기업 3년간 정기 세무조사 유예</li>
           <li>이노비즈 기업 수도권 취득세 중과 면제</li>
           <li>납부기한 연장 및 납부유예</li>
@@ -194,7 +188,7 @@ export default function InnobizPage() {
 
       {/* 수출 및 판매 */}
       {activeBenefitTab === 2 && (
-        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8 break-keep">
           <li>글로벌 강소기업 육성사업 지원 시 우대</li>
           <li>공공쇼핑몰 우수제품 입점 및 판매 홍보 우대</li>
           <li>물품구매적격심사 지원 시 신인도 평가 가점 부여</li>
@@ -205,7 +199,7 @@ export default function InnobizPage() {
 
       {/* 연구개발 관련 혜택 */}
       {activeBenefitTab === 3 && (
-        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8 break-keep">
           <li>각종 중소벤처기업부 사업 신청 시 가점 부여</li>
           <li>스마트 제조혁신, ICT 솔루션, 스케일업, 해외인증규격 등</li>
         </ol>
@@ -213,7 +207,7 @@ export default function InnobizPage() {
 
       {/* 인력 관련 혜택 */}
       {activeBenefitTab === 4 && (
-        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8 break-keep">
           <li>병역특례 전문연구요원제도 우대 가점</li>
           <li>병역특례 산업기능요원제도 우대 가점</li>
           <li>연구개발 기획역량제고사업 우대 가점</li>
@@ -223,7 +217,7 @@ export default function InnobizPage() {
 
       {/* 기타 혜택 */}
       {activeBenefitTab === 5 && (
-        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-8 break-keep">
           <li>특허 출원 시 우선심사 지원 대상</li>
           <li>
             핵심 기술자료 및 영업비밀을 기술자료 임치센터에 보관 시
@@ -253,7 +247,7 @@ export default function InnobizPage() {
               >
                 <div className="text-4xl mb-4">{step.icon}</div>
                 <h3 className="text-lg font-bold mb-3">{step.title}</h3>
-                <p className="text-sm text-gray-600 whitespace-pre-line">
+                <p className="text-sm text-gray-600 break-keep">
                   {step.desc}
                 </p>
 
@@ -270,13 +264,12 @@ export default function InnobizPage() {
       {/* ================= CONSULTING ================= */}
       <section className="bg-gray-50 py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-10">이노비즈 인증 컨설팅</h2>
+          <h2 className="text-3xl font-bold mb-10 text-center">이노비즈 인증 컨설팅</h2>
 
-          <div className="space-y-5 text-gray-700 leading-relaxed max-w-4xl text-lg">
-            <p>
-              이노비즈 인증은 메인비즈보다 난이도가 높으며,
-              약 60개 내외의 평가항목을 통해 기술혁신능력과
-              사업화 역량을 종합적으로 평가합니다.
+          <div className="space-y-5 text-gray-700 leading-relaxed max-w-4xl mx-auto text-lg break-keep text-center">
+            <p className="whitespace-pre-line">
+              {`이노비즈 인증은 메인비즈보다 난이도가 높으며, 약 60개 내외의 평가항목을 통해
+기술혁신능력과 사업화 역량을 종합적으로 평가합니다.`}
             </p>
 
             <p>
@@ -290,17 +283,19 @@ export default function InnobizPage() {
               기술 증빙 자료에 대한 체계적인 준비가 필요합니다.
             </p>
 
-            <div className="flex items-center gap-4">
-              <p className="font-semibold text-gray-900 whitespace-nowrap">
+            <div className="flex flex-col items-center gap-6 pt-6">
+              <p className="font-semibold text-gray-900">
                 이노비즈 인증을 빠르고 효율적으로 받고 싶다면
                 언제든지 상담을 신청해 주세요.
               </p>
-              <Link
-                href="/consult"
-                className="inline-flex items-center rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
-              >
-                상담신청
-              </Link>
+              <div className="pt-2 w-full">
+                <Link
+                  href="/consult"
+                  className="inline-flex items-center justify-center rounded-full py-3.5 text-base font-semibold text-white shadow-md transition-colors w-full bg-[#2563eb] hover:bg-[#1d4ed8]"
+                >
+                  상담신청
+                </Link>
+              </div>
             </div>
           </div>
         </div>

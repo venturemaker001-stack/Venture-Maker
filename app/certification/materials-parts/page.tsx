@@ -50,11 +50,10 @@ export default function MaterialsPartPage() {
             </div>
 
             {/* TEXT */}
-            <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+            <div className="space-y-6 text-gray-700 text-lg leading-relaxed break-keep">
               <p>
                 소부장 전문기업 인증이란 이전 소재부품 전문기업에서 더욱
                 발전되어 소재와 부품, 장비를 포함하는 개념으로
-                <br />
                 소부장 전문기업 인증으로 발전하였습니다.
               </p>
 
@@ -89,7 +88,7 @@ export default function MaterialsPartPage() {
 
               <p>
                 소부장 전문기업 인증의 유효기간은 3년이며 갱신이 아닌 재신청으로
-                신규발급됩니다.
+                신규 발급 됩니다.
               </p>
             </div>
           </div>
@@ -104,10 +103,10 @@ export default function MaterialsPartPage() {
     <div className="flex-1 ml-8 h-px bg-gray-200" />
   </div>
 
-  <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-16 items-start">
+  <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-16 items-end">
 
     {/* TEXT */}
-    <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+    <div className="space-y-6 text-gray-700 text-lg leading-relaxed break-keep">
       <p>
         소부장 전문기업 인증을 취득한 기업은 한국은행의 금융중개지원
         대출제도를 활용할 수 있습니다.
@@ -126,13 +125,12 @@ export default function MaterialsPartPage() {
       <p>
         그 외 소재부품기술개발사업, 신뢰성기반활용지원사업,
         해외규격인증획득 지원사업의 우대와
-        <br />
-        공공조달상생협력 협력기업 참여자격이 주어집니다.
+        공공조달 상생협력 기업 참여 자격이 주어집니다.
       </p>
     </div>
 
-    {/* IMAGE — intentionally smaller */}
-    <div className="hidden lg:flex justify-end self-start">
+    {/* IMAGE — bottom aligned with text */}
+    <div className="hidden lg:flex justify-end">
       <div className="w-[360px] max-h-[280px] overflow-hidden rounded-3xl">
         <img
           src="/sobujang-benefits.jpg"
@@ -155,7 +153,7 @@ export default function MaterialsPartPage() {
             <div className="flex-1 ml-8 h-px bg-gray-200" />
           </div>
 
-          <div className="space-y-6 text-gray-700 text-lg leading-relaxed mb-16">
+          <div className="space-y-6 text-gray-700 text-lg leading-relaxed mb-16 break-keep">
             <p>
               소부장 전문기업 인증의 기본은 기업의 총 매출액에서 소부장
               매출액 비율이 50% 이상이어야 한다는 것이 중요합니다.
@@ -201,7 +199,7 @@ export default function MaterialsPartPage() {
                 <h3 className="font-semibold text-lg mb-2 text-gray-900">
                   {item.title}
                 </h3>
-                <p className="text-gray-600 text-sm">{item.desc}</p>
+                <p className="text-gray-600 text-sm break-keep">{item.desc}</p>
 
                 {/* Connector */}
                 {item.title !== "전문기업확인" && (
@@ -240,10 +238,10 @@ export default function MaterialsPartPage() {
                 </div>
 
                 <div className="absolute bottom-0 left-0 right-0 p-7 text-white">
-                  <h3 className="text-2xl font-extrabold mb-3">
+                  <h3 className="text-2xl font-extrabold mb-3 break-keep">
                     {item.title}
                   </h3>
-                  <p className="text-sm leading-relaxed whitespace-pre-line opacity-90">
+                  <p className="text-sm leading-relaxed opacity-90 break-keep">
                     {item.description}
                   </p>
                 </div>
@@ -252,53 +250,47 @@ export default function MaterialsPartPage() {
           </div>
         </section>
 
-        {/* ================= SECTION 4 ================= */}
-        <section>
-          <div className="flex items-center justify-between mb-12">
-            <h2 className="text-3xl font-bold text-gray-900">
-              소부장 인증 컨설팅
-            </h2>
-            <div className="flex-1 ml-8 h-px bg-gray-200" />
-          </div>
+      </div>
 
-          <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+      {/* ================= CONSULTING ================= */}
+      <section className="bg-gray-50 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-3xl font-bold mb-10 text-center">소부장 인증 컨설팅</h2>
+
+          <div className="space-y-5 text-gray-700 leading-relaxed max-w-4xl mx-auto text-lg break-keep text-center">
             <p>
-              소부장 전문기업 인증은 절차가 간단하여 쉽게 받을 수도 있는
-              인증입니다.
+              소부장 전문기업 인증은 절차가 간단하여 쉽게 받을 수도 있는 인증입니다.
+            </p>
+
+            <p className="whitespace-pre-line">
+              {`하지만 우리 기업이 생산하는 제품이 소부장 산업에 해당하는지를 정확히 판단하고
+매출액 기준이 부합하는지 등을 확실하게 판단하여야 합니다.`}
             </p>
 
             <p>
-              하지만 우리 기업이 생산하는 제품이 소부장 산업에 해당하는지를
-              정확히 판단하고 매출액 기준이 부합하는지 등을 확실하게
-              판단하여야 합니다.
+              확인을 위한 부속자료를 정확하게 작성하고 준비해야 빠르게 소부장 인증을 취득할 수 있습니다.
             </p>
 
-            <p>
-              확인을 위한 부속자료를 정확하게 작성하고 준비해야 빠르게
-              소부장 인증을 취득할 수 있습니다.
+            <p className="whitespace-pre-line">
+              {`제조업 성장의 첫 걸음을 떼는 인증으로 적합하며 각종 혜택이나 소부장 전문기업만을 위한
+지원 사업에 참여할 수 있는 자격을 얻게 됩니다.`}
             </p>
 
-            <p>
-              제조업 성장의 첫 걸음을 떼는 인증으로 적합하며 각종 혜택이나
-              소부장 전문기업만을 위한 지원 사업에 참여할 수 있는 자격을
-              얻게 됩니다.
+            <p className="font-medium text-gray-900">
+              기업경영연구소의 경영컨설팅으로 소부장 인증을 취득하세요.
             </p>
 
-            <div className="flex items-center gap-4">
-              <p className="font-medium text-gray-900">
-                기업경영연구소의 경영컨설팅으로 소부장 인증을 취득하세요.
-              </p>
+            <div className="pt-6 w-full">
               <Link
                 href="/consult"
-                className="inline-flex items-center rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
+                className="inline-flex items-center justify-center rounded-full py-3.5 text-base font-semibold text-white shadow-md transition-colors w-full bg-[#2563eb] hover:bg-[#1d4ed8]"
               >
                 상담신청
               </Link>
             </div>
           </div>
-        </section>
-
-      </div>
+        </div>
+      </section>
 
       <Footer />
     </main>

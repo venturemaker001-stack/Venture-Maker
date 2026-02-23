@@ -85,7 +85,7 @@ export default function Navigation() {
             {/* CTA Button */}
             <Link
               href="/contact"
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+              className="px-6 py-3 text-white rounded-lg font-semibold transition-colors bg-[#2563eb] hover:bg-[#1d4ed8]"
             >
               상담 신청
             </Link>

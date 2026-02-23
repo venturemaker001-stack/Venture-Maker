@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 // 관리자 이메일
-const ADMIN_EMAIL = 'hivrometric@gmail.com';
+const ADMIN_EMAIL = 'eumhc63@gmail.com';
 
 export async function POST(request: NextRequest) {
   try {

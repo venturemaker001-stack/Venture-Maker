@@ -1,13 +1,12 @@
 "use client";
 
-import { useState } from "react";   // ✅ 이 줄 추가
+import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Footer from "../../components/Footer";
 
 
-export default function VentureCertificationPage()
- {
+export default function VentureCertificationPage() {
   const steps = [
     {
       title: "벤처신청",
@@ -16,63 +15,47 @@ export default function VentureCertificationPage()
     },
     {
       title: "신청접수",
-      desc: (
-        <>
-          • 벤처투자유형 15만원<br />
-          • 연구개발유형 35만원<br />
-          • 혁신성장유형 45만원
-        </>
-      ),
+      desc: "벤처투자유형 15만원 • 연구개발유형 35만원 • 혁신성장유형 45만원",
       icon: "📂",
     },
     {
       title: "현장심사",
-      desc: (
-        <>
-          • 벤처투자유형 30일<br />
-          • 연구개발유형 45일<br />
-          • 혁신성장유형 45일
-        </>
-      ),
+      desc: "벤처투자유형 30일 • 연구개발유형 45일 • 혁신성장유형 45일",
       icon: "🏢",
     },
     {
       title: "최종심의 및 발급",
-      desc: (
-        <>
-          • 현장 평가 결과 기반 최종 심의<br />
-          • 통과 후 벤처기업인증서 온라인 출력
-        </>
-      ),
+      desc: "현장 평가 결과 기반 최종 심의 • 통과 후 벤처기업인증서 온라인 출력",
       icon: "🏆",
     },
   ];
+  
   const ventureCases = [
     {
       category: "VENTURE CERTIFICATION",
-      title: "인재를 부르는 비상장 벤처기업 스톡옵션의 마법",
-      description: "인재를 부르는 비상장 벤처기업 스톡옵션의 마법",
+      title: "인재를 부르는 비상장 벤처기업\n스톡옵션의 마법",
+      description: "",
       image: "/certification-venture(3).jpg",
       link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223557926232&redirect=Dlog",
     },
     {
       category: "VENTURE CERTIFICATION",
-      title: "한의원 기반 건강기능식품 제조 기술 벤처 재신청 사례",
-      description: "한의원 기반 건강기능식품 제조 기술 벤처 재신청 사례",
-      image: "/insights-koreanmedicine.jpg",
+      title: "한의원기반 건강기능식품 제조기술",
+      subtitle: "벤처 재신청 사례",
+      description: "",
+      image: "/venturecertification-card2.jpg",
       link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223591654433&redirect=Dlog",
     },
     {
       category: "VENTURE CERTIFICATION",
       title: "AI Tech Transformation",
-      description:
-        "AI 챗봇 기업의 연구소 설립 전략,\n법인세 50% 감면과 벤처인증 동시 획득 노하우",
+      description: "AI 챗봇 기업의 연구소 설립 전략, 법인세 50% 감면과 벤처인증 동시 획득 노하우",
       image: "/certification-venture(1).jpg",
       link: "https://blog.naver.com/eum63/223598143019",
     },
   ];
 
-const [activeBenefitTab, setActiveBenefitTab] = useState(0);
+  const [activeBenefitTab, setActiveBenefitTab] = useState(0);
 
   return (
     <main className="bg-white text-gray-800">
@@ -103,11 +86,10 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
     </div>
 
     {/* RIGHT TEXT */}
-    <div className="space-y-6 leading-relaxed text-gray-700 text-[17px]">
+    <div className="space-y-6 leading-relaxed text-gray-700 text-[17px] break-keep">
       <p>
         벤처기업 인증이란 새로운 기술과 아이디어를 개발하여 신사업을
         성장시키는 기업에게 내수를 넘어
-        <br />
         글로벌 확산과 경제성장 및 일자리 창출의 역할을 수행할 수 있도록
         발굴하여 성장시키기 위한 인증제도입니다.
       </p>
@@ -115,14 +97,12 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
       <p>
         벤처기업의 경쟁력을 확보하여 기업가치를 높이고 혁신 역량을
         강화시키는 등의 환경을 조성하고
-        <br />
         이에 따른 정책적인 지원을 제공하고 있습니다.
       </p>
 
       <p>
         법인세 및 소득세 50% 감면, 취득세 75% 감면, 재산세 면제 및 감면
         등의 다양한 세제혜택과 금융, M&A 등의
-        <br />
         혜택을 받을 수 있습니다.
       </p>
 
@@ -133,7 +113,6 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
         <p className="text-sm text-gray-700">
           창업 후 3년 이내에 벤처기업으로 확인받은 기업은 최초 소득 발생
           과세연도부터 4년간
-          <br />
           소득세 또는 법인세의 50%를 감면받을 수 있습니다.
         </p>
       </div>
@@ -156,7 +135,7 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
     <div className="grid lg:grid-cols-[1.4fr_1fr] gap-16 items-start mb-16">
       
       {/* LEFT TEXT */}
-      <div className="space-y-5 text-gray-700 leading-relaxed">
+      <div className="space-y-5 text-gray-700 leading-relaxed break-keep">
         <p>
           <span className="text-blue-500 font-semibold">벤처기업</span> 인증을 받은
           중소기업은 일반 기업에서 벤처기업으로 전환되는 것과 같습니다.
@@ -234,7 +213,7 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
     {/* FULL WIDTH TABLE */}
     <div className="border border-gray-300 p-6 sm:p-16 text-gray-700 text-sm sm:text-lg leading-relaxed">
       {activeBenefitTab === 0 && (
-        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-5">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-5 break-keep">
           <li>법인세 및 소득세 50% 감면 (창업벤처중소기업에 한함)</li>
           <li>취득세 75% 감면 (창업벤처중소기업에 한함)</li>
           <li>재산세 3년간 면제 및 이후 2년간 50% 감면 (창업벤처중소기업에 한함)</li>
@@ -244,7 +223,7 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
       )}
 
       {activeBenefitTab === 1 && (
-        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-5">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-5 break-keep">
           <li>기술보증기금 보증한도 확대</li>
           <li>코스닥 상장 심사기준 완화 및 우대</li>
           <li>정책자금 및 정부 지원사업 가점 부여</li>
@@ -252,7 +231,7 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
       )}
 
       {activeBenefitTab === 2 && (
-        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-5">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-5 break-keep">
           <li>기업부설연구소 연구전담요원 최소 2인 완화</li>
           <li>기업부설창작연구소 연구전담요원 최소 3인 완화</li>
           <li>스톡옵션 부여 대상 확대</li>
@@ -261,7 +240,7 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
       )}
 
       {activeBenefitTab === 3 && (
-        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-5">
+        <ol className="list-decimal pl-5 sm:pl-6 space-y-3 sm:space-y-5 break-keep">
           <li>대기업 인수합병 시 상호출자제한기업집단 편입 7년 유예</li>
           <li>TV·라디오 광고비 3년간 최대 70% 할인</li>
         </ol>
@@ -288,7 +267,7 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
               >
                 <div className="text-4xl mb-4">{step.icon}</div>
                 <h3 className="text-lg font-bold mb-3">{step.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-sm text-gray-600 leading-relaxed break-keep">
                   {step.desc}
                 </p>
 
@@ -328,12 +307,19 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
                 </div>
 
                 <div className="absolute bottom-0 left-0 right-0 p-7 text-white">
-                  <h3 className="text-2xl font-extrabold mb-3">
+                  <h3 className="text-2xl font-extrabold mb-3 break-keep whitespace-pre-line">
                     {item.title}
                   </h3>
-                  <p className="text-sm leading-relaxed whitespace-pre-line opacity-90 mb-5">
-                    {item.description}
-                  </p>
+                  {item.subtitle && (
+                    <p className="text-sm font-normal opacity-90 mb-3 break-keep">
+                      {item.subtitle}
+                    </p>
+                  )}
+                  {item.description && (
+                    <p className="text-sm leading-relaxed opacity-90 mb-5 break-keep">
+                      {item.description}
+                    </p>
+                  )}
                   <div className="h-4" />
                 </div>
               </a>
@@ -345,35 +331,24 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
       {/* ================= CONSULTING ================= */}
 <section className="bg-gray-50 py-20">
   <div className="max-w-7xl mx-auto px-6">
-    <h2 className="text-3xl font-bold mb-10">벤처기업 인증 컨설팅</h2>
+    <h2 className="text-3xl font-bold mb-10 text-center">벤처기업 인증 컨설팅</h2>
 
-    <div className="space-y-5 text-gray-700 leading-relaxed max-w-4xl text-lg">
-      {/* ONE-LINE SENTENCE */}
-      <p className="whitespace-nowrap">
-        적격투자기관으로부터 5,000만원 이상 투자를 받아 벤처투자유형으로 인증을 받거나 연구개발비 5% 이상 투자 요건을 충족하는 것은 쉽지 않습니다.
+    <div className="space-y-8 text-gray-700 leading-loose max-w-4xl mx-auto text-lg break-keep text-center">
+      <p className="whitespace-pre-line">
+        {`적격투자기관으로부터 5,000만원 이상 투자를 받아 벤처투자유형으로 인증을 받거나
+연구개발비 5% 이상 투자 요건을 충족하는 것은 쉽지 않습니다.`}
       </p>
-
       <p>
-        대부분의 중소기업은 <span className="font-semibold">혁신성장유형</span>으로 접근해야 하며,
-        기술의 혁신성과 사업의 성장성이 요구됩니다.
+        대부분의 중소기업은 혁신성장유형으로 접근해야 하며, 기술의 혁신성과 사업의 성장성이 요구됩니다.
       </p>
-
       <p>
         많은 고객사가 이 입증 과정에서 어려움을 겪고 있습니다.
       </p>
 
-      <p className="font-semibold text-gray-900">
-        벤처메이커와 함께라면 벤처기업 인증을 빠르고 확실하게
-        취득할 수 있습니다.
-      </p>
-
-      <div className="flex items-center gap-4">
-        <p className="whitespace-nowrap">
-          언제든지 상담을 신청해 주세요.
-        </p>
+      <div className="pt-8 w-full">
         <Link
           href="/consult"
-          className="inline-flex items-center rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-blue-700"
+          className="inline-flex items-center justify-center rounded-full py-3.5 text-base font-semibold text-white shadow-md transition-colors w-full bg-[#2563eb] hover:bg-[#1d4ed8]"
         >
           상담신청
         </Link>
@@ -381,7 +356,6 @@ const [activeBenefitTab, setActiveBenefitTab] = useState(0);
     </div>
   </div>
 </section>
-
 
       <Footer />
     </main>
