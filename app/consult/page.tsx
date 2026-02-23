@@ -286,7 +286,7 @@ function Modal({ onClose }: { onClose: () => void }) {
 
         <div className="space-y-5 text-sm text-gray-700 leading-relaxed break-keep">
           <p>
-            중소벤처 경영지원단 Venture Maker(이하 "회사")는 정보주체의 개인정보를 중요시하며, 「개인정보 보호법」 등 관련 법령을 준수하고 있습니다.
+            중소벤처 경영지원단 Venture Maker(이하 &quot;회사&quot;)는 정보주체의 개인정보를 중요시하며, 「개인정보 보호법」 등 관련 법령을 준수하고 있습니다.
           </p>
 
           <section>

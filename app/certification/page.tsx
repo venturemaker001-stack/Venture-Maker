@@ -107,7 +107,7 @@ const clientReviews = [
 export default function CertificationPage() {
   const [activeIndex, setActiveIndex] = useState(certifications.length);
   const [isPaused, setIsPaused] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [, setHoveredCard] = useState<number | null>(null);
 
   // Create infinite loop by duplicating items
   const extendedCertifications = [...certifications, ...certifications, ...certifications];
@@ -135,7 +135,7 @@ export default function CertificationPage() {
         setActiveIndex(certifications.length * 2 - 1);
       }, 500);
     }
-  }, [activeIndex, certifications.length]);
+  }, [activeIndex]);
 
   const handlePrevious = () => {
     setIsPaused(true);

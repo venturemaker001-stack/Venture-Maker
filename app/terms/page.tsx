@@ -13,7 +13,7 @@ export default function TermsPage() {
           </h1>
           <p className="mt-4 text-sm text-slate-600 leading-relaxed break-keep">
             본 이용약관은 중소벤처 경영지원단 Venture Maker 웹사이트 및 관련 서비스
-            (이하 "사이트")의 이용과 관련하여 회사와 이용자 간의 권리, 의무 및 책임사항을
+            (이하 &quot;사이트&quot;)의 이용과 관련하여 회사와 이용자 간의 권리, 의무 및 책임사항을
             규정합니다.
           </p>
 
