@@ -25,7 +25,7 @@
       description:
         "AI 챗봇 기업의 연구소 설립 전략.\n법인세 50% 감면과 벤처인증 동시 획득 노하우",
       image: "/aitechtransformation-mainpage.jpg",
-      link: "https://blog.naver.com/YOUR_LINK_1",
+      link: "https://blog.naver.com/eum63/223598143019",
     },
     {
       title: "Fund Optimization",
@@ -33,7 +33,7 @@
       description:
         "정책자금 100% 승인을 위한 로드맵.\n재무제표 개선을 통한 신용등급 상향 전략",
       image: "/fundoptimization-mainpage.jpg",
-      link: "https://blog.naver.com/YOUR_LINK_2",
+      link: "https://blog.naver.com/eum63/223821907774",
     },
     {
       title: "Franchise Expansion",
@@ -41,7 +41,7 @@
       description:
         "외식업 프랜차이즈 '고기명작' 성공 사례.\n메뉴 개발 전담부서 설립으로 가맹점 확장",
       image: "/franchise-mainpage.jpg",
-      link: "https://blog.naver.com/YOUR_LINK_3",
+      link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223564772199&redirect=Dlog",
     },
     {
       title: "Smart Factory",
@@ -49,7 +49,7 @@
       description:
         "제조업 혁신성장형 벤처인증.\n스마트공장 구축 자금 5억 확보 및 기술평가 우수 사례",
       image: "/smartfactory-mainpage.jpg",
-      link: "https://blog.naver.com/YOUR_LINK_4",
+      link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223541792008&categoryNo=91&parentCategoryNo=&from=thumbnailList",
     },
     {
       title: "MAIN-BIZ Certification",
@@ -57,7 +57,7 @@
       description:
         "기술이 없어도 경영 혁신으로 인증 획득.\n메인비즈를 통한 세무조사 유예 및 금리 우대",
       image: "/mainbiz-mainpage.jpg",
-      link: "https://blog.naver.com/YOUR_LINK_5",
+      link: "https://blog.naver.com/eum63/223812866952",
     },
     {
       title: "AR & Big Data",
@@ -65,7 +65,7 @@
       description:
         "빅데이터와 증강현실(AR) 기술을 결합한 콘텐츠 창작.\n벤처와 연구소인증 성공 사례",
       image: "/arbigdata-mainpage.jpg",
-      link: "https://blog.naver.com/YOUR_LINK_6",
+      link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223597096021&redirect=Dlog",
     },
   ];
 
