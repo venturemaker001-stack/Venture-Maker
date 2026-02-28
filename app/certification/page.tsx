@@ -234,7 +234,9 @@ export default function CertificationPage() {
               기업의 가치를 높이는 확실한 방법
             </p>
             <p className="text-lg text-gray-600 mx-auto max-w-3xl break-keep">
-              벤처메이커가 정책자금 100% 확보 전략까지, 당신의 비즈니스가 멈추지 않도록 가장 확실한 길을 설계합니다.
+              벤처인증부터 정책자금 100% 확보 전략까지.
+              <br />
+              당신의 비즈니스가 멈추지 않도록, 벤처메이커가 가장 확실한 길을 설계합니다.
             </p>
           </div>
         </div>

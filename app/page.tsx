@@ -33,7 +33,7 @@
       description:
         "정책자금 100% 승인을 위한 로드맵.\n재무제표 개선을 통한 신용등급 상향 전략",
       image: "/fundoptimization-mainpage.jpg",
-      link: "https://blog.naver.com/eum63/223821907774",
+      link: "https://blog.naver.com/PostList.nhn?blogId=eum63&from=postList&categoryNo=36",
     },
     {
       title: "Franchise Expansion",
@@ -41,7 +41,7 @@
       description:
         "외식업 프랜차이즈 '고기명작' 성공 사례.\n메뉴 개발 전담부서 설립으로 가맹점 확장",
       image: "/franchise-mainpage.jpg",
-      link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223564772199&redirect=Dlog",
+      link: "https://blog.naver.com/eum63/223573977275",
     },
     {
       title: "Smart Factory",
@@ -49,7 +49,7 @@
       description:
         "제조업 혁신성장형 벤처인증.\n스마트공장 구축 자금 5억 확보 및 기술평가 우수 사례",
       image: "/smartfactory-mainpage.jpg",
-      link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223541792008&categoryNo=91&parentCategoryNo=&from=thumbnailList",
+      link: "https://blog.naver.com/eum63/223905700120",
     },
     {
       title: "MAIN-BIZ Certification",
