@@ -108,6 +108,14 @@ export default function CertificationPage() {
   const [activeIndex, setActiveIndex] = useState(certifications.length);
   const [isPaused, setIsPaused] = useState(false);
   const [, setHoveredCard] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   // Create infinite loop by duplicating items
   const extendedCertifications = [...certifications, ...certifications, ...certifications];
@@ -157,54 +165,48 @@ export default function CertificationPage() {
 
   const getCardStyle = (index: number) => {
     const position = index - activeIndex;
-    
+    const m = isMobile;
+
     let translateX = 0;
     let zIndex = 0;
     let opacity = 0.3;
-    let width = 220;
-    let height = 340;
+    let width = m ? 140 : 220;
+    let height = m ? 220 : 340;
 
-    // 2D layout: show 5 cards, center is largest
     if (position === 0) {
-      // Center card - Biggest
       translateX = 0;
-      width = 520;
-      height = 580;
+      width = m ? 260 : 520;
+      height = m ? 360 : 580;
       zIndex = 20;
       opacity = 1;
     } else if (position === -1) {
-      // Left inner
-      translateX = -432;
-      width = 320;
-      height = 420;
+      translateX = m ? -200 : -432;
+      width = m ? 160 : 320;
+      height = m ? 260 : 420;
       zIndex = 15;
-      opacity = 1;
+      opacity = m ? 0.7 : 1;
     } else if (position === 1) {
-      // Right inner
-      translateX = 432;
-      width = 320;
-      height = 420;
+      translateX = m ? 200 : 432;
+      width = m ? 160 : 320;
+      height = m ? 260 : 420;
       zIndex = 15;
-      opacity = 1;
+      opacity = m ? 0.7 : 1;
     } else if (position === -2) {
-      // Left outer
-      translateX = -734;
-      width = 260;
-      height = 360;
+      translateX = m ? -340 : -734;
+      width = m ? 140 : 260;
+      height = m ? 220 : 360;
       zIndex = 10;
-      opacity = 1;
+      opacity = m ? 0 : 1;
     } else if (position === 2) {
-      // Right outer
-      translateX = 734;
-      width = 260;
-      height = 360;
+      translateX = m ? 340 : 734;
+      width = m ? 140 : 260;
+      height = m ? 220 : 360;
       zIndex = 10;
-      opacity = 1;
+      opacity = m ? 0 : 1;
     } else {
-      // Hidden
       translateX = position > 0 ? 1200 : -1200;
-      width = 240;
-      height = 320;
+      width = m ? 140 : 240;
+      height = m ? 220 : 320;
       zIndex = 1;
       opacity = 0;
     }
@@ -246,7 +248,7 @@ export default function CertificationPage() {
       <section className="py-20 bg-white overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
           {/* Carousel Container */}
-          <div className="relative h-[600px] flex items-center justify-center">
+          <div className="relative h-[420px] md:h-[600px] flex items-center justify-center">
             {/* Cards */}
             <div className="relative w-full flex items-center justify-center">
               {extendedCertifications.map((cert, index) => {
@@ -274,12 +276,12 @@ export default function CertificationPage() {
                         className="absolute inset-0 w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                        <h3 className={`font-extrabold leading-tight ${isCenterCard ? "text-2xl mb-3" : "text-xl"}`}>
+                      <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-white">
+                        <h3 className={`font-extrabold leading-tight ${isCenterCard ? "text-base md:text-2xl mb-2 md:mb-3" : "text-sm md:text-xl"}`}>
                           {cert.title}
                         </h3>
                         {isCenterCard && (
-                          <p className="text-sm leading-relaxed opacity-90 mb-4 break-keep">
+                          <p className="text-xs md:text-sm leading-relaxed opacity-90 mb-2 md:mb-4 break-keep">
                             {cert.description}
                           </p>
                         )}

@@ -142,7 +142,7 @@ export default function InsightsPage() {
               href="https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223630048870&redirect=Dlog"
               target="_blank"
               rel="noopener noreferrer"
-              className="md:col-span-2 relative h-[320px] rounded-2xl overflow-hidden text-white p-12 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300"
+              className="md:col-span-2 relative min-h-[420px] md:h-[320px] rounded-2xl overflow-hidden text-white p-8 md:p-12 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300"
               style={{ background: "linear-gradient(135deg, #1E2A8A 0%, #1B1E6D 100%)" }}
             >
               <div className="absolute top-10 right-10 text-white/20 text-[80px] font-extrabold leading-none select-none pointer-events-none">&quot;</div>
