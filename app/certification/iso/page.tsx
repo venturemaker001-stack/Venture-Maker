@@ -167,7 +167,9 @@ export default function IsoPage() {
       {/* ================= ISO 45001 ================= */}
       <section className="max-w-7xl mx-auto px-6 py-20 border-t">
         <h2 className="text-3xl font-bold mb-12">
-          ISO 45001(안전보건경영시스템) 인증
+          ISO 45001
+          <br className="md:hidden" />
+          (안전보건경영시스템) 인증
         </h2>
 
         <div className="grid md:grid-cols-[600px_1fr] gap-16 items-center">

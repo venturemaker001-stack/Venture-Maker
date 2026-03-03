@@ -33,7 +33,7 @@ export default function ResearchLabPage() {
       {/* ================= INTRO ================= */}
       <section className="max-w-7xl mx-auto px-6 py-24">
         <div className="mb-16">
-          <h1 className="text-6xl font-extrabold tracking-tight text-gray-900">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 whitespace-nowrap">
             기업부설연구소
           </h1>
           <div className="mt-6 h-1 w-16 bg-blue-600 rounded-full" />
