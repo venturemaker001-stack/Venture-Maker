@@ -33,7 +33,7 @@
       description:
         "정책자금 100% 승인을 위한 로드맵.\n재무제표 개선을 통한 신용등급 상향 전략",
       image: "/fundoptimization-mainpage.jpg",
-      link: "https://blog.naver.com/PostList.nhn?blogId=eum63&from=postList&categoryNo=36",
+      link: "https://m.blog.naver.com/eum63/224182326880",
     },
     {
       title: "Franchise Expansion",
