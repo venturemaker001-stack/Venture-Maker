@@ -1,5 +1,6 @@
 "use client";
 
+  import Link from "next/link";
   import { useState, useEffect } from "react";
   import Footer from "./components/Footer";
   import { marked } from "marked";
@@ -66,6 +67,39 @@
         "빅데이터와 증강현실(AR) 기술을 결합한 콘텐츠 창작.\n벤처와 연구소인증 성공 사례",
       image: "/arbigdata-mainpage.jpg",
       link: "https://blog.naver.com/PostView.naver?blogId=eum63&logNo=223597096021&redirect=Dlog",
+    },
+  ];
+
+  const certificationCategories = [
+    {
+      title: "벤처기업인증",
+      description: "기술성과 성장성을 인정받아 정부 지원 혜택을 받을 수 있는 벤처기업 인증",
+      href: "/certification/venture",
+    },
+    {
+      title: "이노비즈인증",
+      description: "기술혁신형 중소기업 인증으로 경쟁력 있는 기업임을 증명",
+      href: "/certification/innobiz",
+    },
+    {
+      title: "메인비즈인증",
+      description: "경영혁신형 중소기업 인증으로 우수한 경영 시스템 보유 증명",
+      href: "/certification/mainbiz",
+    },
+    {
+      title: "ISO 인증",
+      description: "국제 표준 품질경영시스템 인증으로 글로벌 신뢰도 확보",
+      href: "/certification/iso",
+    },
+    {
+      title: "기업부설연구소",
+      description: "연구개발 전담 조직 설립으로 기술 개발 및 세제 혜택 확보",
+      href: "/certification/research-center",
+    },
+    {
+      title: "소부장전문기업",
+      description: "소재·부품·장비 분야 전문기업 지정으로 특별 지원 수혜",
+      href: "/certification/materials-parts",
     },
   ];
 
@@ -508,12 +542,57 @@
     </div>
   </section>
 
+  {/* ================= SECTION 3 : CERTIFICATION CATEGORIES ================= */}
+  <section className="py-20 bg-white border-t border-gray-100">
+    <div className="max-w-7xl mx-auto px-6">
+      <div className="text-center mb-12">
+        <p className="text-sm font-semibold tracking-widest text-orange-500 mb-2">
+          CERTIFICATION CENTER
+        </p>
+        <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-3">
+          기업인증센터
+        </h2>
+        <p className="text-gray-600">
+          우리 기업에 맞는 인증 유형을 빠르게 확인해보세요.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {certificationCategories.map((category) => (
+          <Link
+            key={category.title}
+            href={category.href}
+            className="group rounded-2xl border border-gray-200 bg-white p-7 shadow-sm hover:shadow-md hover:border-blue-200 transition-all"
+          >
+            <h3 className="text-xl font-bold text-blue-900 mb-3 break-keep">
+              {category.title}
+            </h3>
+            <p className="text-gray-600 leading-relaxed break-keep text-sm">
+              {category.description}
+            </p>
+            <span className="mt-5 inline-flex items-center text-sm font-semibold text-blue-700 group-hover:text-blue-900">
+              자세히 보기
+              <svg
+                className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </Link>
+        ))}
+      </div>
+    </div>
+  </section>
+
   {/* ================= SECTION 3 : KNOWLEDGE HUB ================= */}
   <section className="py-24 bg-white">
     <div className="max-w-7xl mx-auto px-6">
 
       {/* Header */}
-      <div className="mb-12">
+      <div className="mb-12 text-center">
         <p className="text-sm font-semibold tracking-widest text-orange-500 mb-2">
           KNOWLEDGE HUB
         </p>
