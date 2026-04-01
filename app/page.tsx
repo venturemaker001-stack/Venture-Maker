@@ -75,31 +75,37 @@
       title: "벤처기업인증",
       description: "기술성과 성장성을 인정받아 정부 지원 혜택을 받을 수 있는 벤처기업 인증",
       href: "/certification/venture",
+      image: "/certificationpage-venture.jpg",
     },
     {
       title: "이노비즈인증",
       description: "기술혁신형 중소기업 인증으로 경쟁력 있는 기업임을 증명",
       href: "/certification/innobiz",
+      image: "/certificationpage-inobiz.jpg",
     },
     {
       title: "메인비즈인증",
       description: "경영혁신형 중소기업 인증으로 우수한 경영 시스템 보유 증명",
       href: "/certification/mainbiz",
+      image: "/certificationpage-mainbiz.jpg",
     },
     {
       title: "ISO 인증",
       description: "국제 표준 품질경영시스템 인증으로 글로벌 신뢰도 확보",
       href: "/certification/iso",
+      image: "/certificationpage-iso.jpg",
     },
     {
       title: "기업부설연구소",
       description: "연구개발 전담 조직 설립으로 기술 개발 및 세제 혜택 확보",
       href: "/certification/research-center",
+      image: "/certificationpage-research.jpg",
     },
     {
       title: "소부장전문기업",
       description: "소재·부품·장비 분야 전문기업 지정으로 특별 지원 수혜",
       href: "/certification/materials-parts",
+      image: "/certificationpage-professional.jpg",
     },
   ];
 
@@ -562,25 +568,35 @@
           <Link
             key={category.title}
             href={category.href}
-            className="group rounded-2xl border border-gray-200 bg-white p-7 shadow-sm hover:shadow-md hover:border-blue-200 transition-all"
+            className="group h-[340px] rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md hover:border-blue-200 transition-all overflow-hidden flex flex-col"
           >
-            <h3 className="text-xl font-bold text-blue-900 mb-3 break-keep">
-              {category.title}
-            </h3>
-            <p className="text-gray-600 leading-relaxed break-keep text-sm">
-              {category.description}
-            </p>
-            <span className="mt-5 inline-flex items-center text-sm font-semibold text-blue-700 group-hover:text-blue-900">
-              자세히 보기
-              <svg
-                className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </span>
+            <div className="relative h-44">
+              <img
+                src={category.image}
+                alt={category.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/35 to-black/15" />
+            </div>
+            <div className="p-6 flex-1 flex flex-col">
+              <h3 className="text-xl font-bold text-blue-900 mb-3 break-keep">
+                {category.title}
+              </h3>
+              <p className="text-gray-600 leading-relaxed break-keep text-sm">
+                {category.description}
+              </p>
+              <span className="mt-auto pt-5 inline-flex items-center text-sm font-semibold text-blue-700 group-hover:text-blue-900">
+                자세히 보기
+                <svg
+                  className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </div>
           </Link>
         ))}
       </div>
